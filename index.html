@@ -114,6 +114,10 @@
       display: block;
     }
 
+    .hidden {
+      display: none;
+    }
+
     audio {
       display: none;
     }
@@ -125,14 +129,17 @@
   </style>
 </head>
 <body>
+
   <div class="container">
     <h1>Surat Untuk Wita</h1>
+
     <div class="kontrol-musik">
       <button onclick="playMusik()">▶ Play</button>
       <button onclick="pauseMusik()">⏸ Pause</button>
     </div>
     <audio id="audio" src="cardigan.mp3" preload="auto" loop></audio>
 
+    <!-- LOGIN SECTION -->
     <div id="loginSection">
       <p>Ketikkan sesuatu untuk membuka halaman.</p>
       <input type="password" id="password" placeholder="••••••••">
@@ -141,8 +148,11 @@
       <p id="errorMsg" style="color:#d63031; display:none;">Salah bro. Coba lagi.</p>
     </div>
 
+    <!-- SURAT SECTION -->
     <div id="suratSection" class="hidden">
       <p id="counter" style="font-size: 0.9em; color: #999;"></p>
+
+      <!-- Dashboard -->
       <div class="layer active" id="dashboardSurat">
         <p style="text-align:center; font-size: 1.1em;">
           Halo... ini surat yang pernah aku simpan buat kamu.<br>
@@ -153,7 +163,8 @@
           <button onclick="window.location.href='https://google.com'">❌ Nanti Saja</button>
         </div>
       </div>
-<!-- Halaman 1–10 -->
+
+      <!-- Halaman 1 -->
       <div class="layer" id="halaman1">
         <p>Isi halaman 1 di sini...</p>
         <div class="navigasi">
@@ -161,6 +172,7 @@
         </div>
       </div>
 
+      <!-- Halaman 2 -->
       <div class="layer" id="halaman2">
         <p>Isi halaman 2 di sini...</p>
         <div class="navigasi">
@@ -169,6 +181,7 @@
         </div>
       </div>
 
+      <!-- Halaman 3 -->
       <div class="layer" id="halaman3">
         <p>Isi halaman 3 di sini...</p>
         <div class="navigasi">
@@ -177,6 +190,7 @@
         </div>
       </div>
 
+      <!-- Halaman 4 -->
       <div class="layer" id="halaman4">
         <p>Isi halaman 4 di sini...</p>
         <div class="navigasi">
@@ -185,104 +199,66 @@
         </div>
       </div>
 
+      <!-- Halaman 5 -->
       <div class="layer" id="halaman5">
         <p>Isi halaman 5 di sini...</p>
         <div class="navigasi">
           <button onclick="gantiHalaman(4)">Kembali</button>
-          <button onclick="gantiHalaman(6)">Lanjut</button>
+          <button onclick="gantiHalaman(1)">Ke Awal</button>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="layer" id="halaman6">
-        <p>Isi halaman 6 di sini...</p>
-        <div class="navigasi">
-          <button onclick="gantiHalaman(5)">Kembali</button>
-          <button onclick="gantiHalaman(7)">Lanjut</button>
-        </div>
-      </div>
+  <script>
+    const audio = document.getElementById("audio");
+    audio.volume = 0.6;
 
-      <div class="layer" id="halaman7">
-        <p>Isi halaman 7 di sini...</p>
-        <div class="navigasi">
-          <button onclick="gantiHalaman(6)">Kembali</button>
-          <button onclick="gantiHalaman(8)">Lanjut</button>
-        </div>
-      </div>
-
-      <div class="layer" id="halaman8">
-        <p>Isi halaman 8 di sini...</p>
-        <div class="navigasi">
-          <button onclick="gantiHalaman(7)">Kembali</button>
-          <button onclick="gantiHalaman(9)">Lanjut</button>
-        </div>
-      </div>
-
-      <div class="layer" id="halaman9">
-        <p>Isi halaman 9 di sini...</p>
-        <div class="navigasi">
-          <button onclick="gantiHalaman(8)">Kembali</button>
-          <button onclick="gantiHalaman(10)">Lanjut</button>
-        </div>
-      </div>
-
-      <div class="layer" id="halaman10">
-        <p>Isi halaman 10 di sini...</p>
-        <div class="navigasi">
-          <button onclick="gantiHalaman(9)">Kembali</button>
-          <button onclick="gantiHalaman(1)">Balik ke Awal</button>
-        </div>
-      </div>
-    </div> <!-- akhir suratSection -->
-  </div> <!-- akhir container -->
-<script>
-  const audio = document.getElementById("audio");
-  audio.volume = 0.6;
-
-  function playMusik() {
-    audio.play().catch(err => {
-      alert("Gagal memutar lagu: " + err.message);
-    });
-  }
-
-  function pauseMusik() {
-    audio.pause();
-  }
-
-  function bukaSurat() {
-    const pass = document.getElementById("password").value;
-    if (pass === "dzwta") {
-      document.getElementById("loginSection").classList.add("hidden");
-      document.getElementById("suratSection").classList.remove("hidden");
-      playMusik();
-      hitungHari();
-      gantiHalaman("dashboardSurat");
-    } else {
-      document.getElementById("errorMsg").style.display = "block";
+    function playMusik() {
+      audio.play().catch(err => {
+        alert("Gagal memutar lagu: " + err.message);
+      });
     }
-  }
 
-  function bukaSuratAsli() {
-    gantiHalaman(1);
-  }
+    function pauseMusik() {
+      audio.pause();
+    }
 
-  function gantiHalaman(n) {
-    const layers = document.querySelectorAll(".layer");
-    layers.forEach(el => el.classList.remove("active"));
+    function bukaSurat() {
+      const pass = document.getElementById("password").value;
+      if (pass === "dzwta") {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("suratSection").classList.remove("hidden");
+        playMusik();
+        hitungHari();
+        gantiHalaman("dashboardSurat");
+      } else {
+        document.getElementById("errorMsg").style.display = "block";
+      }
+    }
 
-    const target = typeof n === 'string'
-      ? document.getElementById(n)
-      : document.getElementById("halaman" + n);
+    function bukaSuratAsli() {
+      gantiHalaman(1);
+    }
 
-    if (target) target.classList.add("active");
-  }
+    function gantiHalaman(n) {
+      const layers = document.querySelectorAll(".layer");
+      layers.forEach(el => el.classList.remove("active"));
 
-  function hitungHari() {
-    const awal = new Date("2025-06-24T00:30:00");
-    const sekarang = new Date();
-    const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
-    document.getElementById("counter").textContent = `Surat ini sudah disimpan selama ${selisih} hari.`;
-  }
-</script>
+      const target = typeof n === 'string'
+        ? document.getElementById(n)
+        : document.getElementById("halaman" + n);
+
+      if (target) target.classList.add("active");
+    }
+
+    function hitungHari() {
+      const awal = new Date("2025-06-24T00:30:00");
+      const sekarang = new Date();
+      const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
+      document.getElementById("counter").textContent = `Surat ini sudah disimpan selama ${selisih} hari.`;
+    }
+  </script>
 
 </body>
 </html>
