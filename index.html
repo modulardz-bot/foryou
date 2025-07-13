@@ -7,34 +7,37 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
       background-color: #121212;
       color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     .container {
+      width: 90%;
       max-width: 700px;
-      margin: 60px auto;
       padding: 40px;
       border-radius: 12px;
       background: #1e1e1e;
       box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       color: #ff7675;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .kontrol-musik {
-      text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .kontrol-musik button {
       padding: 10px 30px;
-      margin: 5px 10px;
+      margin: 5px;
       font-size: 1em;
       border: none;
       border-radius: 6px;
@@ -47,10 +50,6 @@
     .kontrol-musik button:hover {
       background-color: #ff7675;
       color: #000;
-    }
-
-    .hidden {
-      display: none;
     }
 
     input[type="password"] {
@@ -85,6 +84,7 @@
       justify-content: center;
       gap: 20px;
       margin-top: 30px;
+      flex-wrap: wrap;
     }
 
     .navigasi button {
@@ -107,6 +107,7 @@
       white-space: pre-wrap;
       word-wrap: break-word;
       animation: fadeIn 0.6s ease-in-out forwards;
+      text-align: left;
     }
 
     .active {
@@ -124,125 +125,135 @@
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Surat Untuk Wita</h1>
+    <div class="kontrol-musik">
+      <button onclick="playMusik()">▶ Play</button>
+      <button onclick="pauseMusik()">⏸ Pause</button>
+    </div>
+    <audio id="audio" src="cardigan.mp3" preload="auto" loop></audio>
 
-<div class="container">
-  <h1>Surat Untuk Wita</h1>
-
-  <!-- Kontrol Musik -->
-  <div class="kontrol-musik">
-    <button onclick="audio.play()">▶ Play</button>
-    <button onclick="audio.pause()">⏸ Pause</button>
-  </div>
-  <audio id="audio" src="cardigan.mp3" loop></audio>
-
-  <!-- Login -->
-  <div id="loginSection">
-    <p>Ketikkan sesuatu untuk membuka halaman.</p>
-    <input type="password" id="password" placeholder="••••••••">
-    <br>
-    <button onclick="bukaSurat()">Masuk</button>
-    <p id="errorMsg" style="color:#d63031; display:none;">Salah bro. Coba lagi.</p>
-  </div>
-
-  <!-- Surat Section -->
-  <div id="suratSection" class="hidden">
-    <p id="counter" style="font-size: 0.9em; color: #999;"></p>
-
-    <!-- Dashboard Awal -->
-    <div class="layer active" id="dashboardSurat">
-      <p style="text-align:center; font-size: 1.1em;">
-        Halo... ini surat yang pernah aku simpan buat kamu.<br>
-        Mau mulai baca sekarang?
-      </p>
-      <div class="navigasi">
-        <button onclick="bukaSuratAsli()">📖 Buka Surat</button>
-        <button onclick="window.location.href='https://google.com'">❌ Nanti Saja</button>
-      </div>
+    <div id="loginSection">
+      <p>Ketikkan sesuatu untuk membuka halaman.</p>
+      <input type="password" id="password" placeholder="••••••••">
+      <br>
+      <button onclick="bukaSurat()">Masuk</button>
+      <p id="errorMsg" style="color:#d63031; display:none;">Salah bro. Coba lagi.</p>
     </div>
 
-    <!-- Halaman 1–10 -->
-    <div class="layer" id="halaman1">
-      <p>Isi halaman 1 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(2)">Lanjut</button>
+    <div id="suratSection" class="hidden">
+      <p id="counter" style="font-size: 0.9em; color: #999;"></p>
+      <div class="layer active" id="dashboardSurat">
+        <p style="text-align:center; font-size: 1.1em;">
+          Halo... ini surat yang pernah aku simpan buat kamu.<br>
+          Mau mulai baca sekarang?
+        </p>
+        <div class="navigasi">
+          <button onclick="bukaSuratAsli()">📖 Buka Surat</button>
+          <button onclick="window.location.href='https://google.com'">❌ Nanti Saja</button>
+        </div>
       </div>
-    </div>
-
-    <div class="layer" id="halaman2"><p>Isi halaman 2 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(1)">Kembali</button>
-        <button onclick="gantiHalaman(3)">Lanjut</button>
+<!-- Halaman 1–10 -->
+      <div class="layer" id="halaman1">
+        <p>Isi halaman 1 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(2)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman3"><p>Isi halaman 3 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(2)">Kembali</button>
-        <button onclick="gantiHalaman(4)">Lanjut</button>
+      <div class="layer" id="halaman2">
+        <p>Isi halaman 2 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(1)">Kembali</button>
+          <button onclick="gantiHalaman(3)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman4"><p>Isi halaman 4 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(3)">Kembali</button>
-        <button onclick="gantiHalaman(5)">Lanjut</button>
+      <div class="layer" id="halaman3">
+        <p>Isi halaman 3 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(2)">Kembali</button>
+          <button onclick="gantiHalaman(4)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman5"><p>Isi halaman 5 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(4)">Kembali</button>
-        <button onclick="gantiHalaman(6)">Lanjut</button>
+      <div class="layer" id="halaman4">
+        <p>Isi halaman 4 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(3)">Kembali</button>
+          <button onclick="gantiHalaman(5)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman6"><p>Isi halaman 6 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(5)">Kembali</button>
-        <button onclick="gantiHalaman(7)">Lanjut</button>
+      <div class="layer" id="halaman5">
+        <p>Isi halaman 5 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(4)">Kembali</button>
+          <button onclick="gantiHalaman(6)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman7"><p>Isi halaman 7 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(6)">Kembali</button>
-        <button onclick="gantiHalaman(8)">Lanjut</button>
+      <div class="layer" id="halaman6">
+        <p>Isi halaman 6 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(5)">Kembali</button>
+          <button onclick="gantiHalaman(7)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman8"><p>Isi halaman 8 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(7)">Kembali</button>
-        <button onclick="gantiHalaman(9)">Lanjut</button>
+      <div class="layer" id="halaman7">
+        <p>Isi halaman 7 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(6)">Kembali</button>
+          <button onclick="gantiHalaman(8)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman9"><p>Isi halaman 9 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(8)">Kembali</button>
-        <button onclick="gantiHalaman(10)">Lanjut</button>
+      <div class="layer" id="halaman8">
+        <p>Isi halaman 8 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(7)">Kembali</button>
+          <button onclick="gantiHalaman(9)">Lanjut</button>
+        </div>
       </div>
-    </div>
 
-    <div class="layer" id="halaman10"><p>Isi halaman 10 di sini...</p>
-      <div class="navigasi">
-        <button onclick="gantiHalaman(9)">Kembali</button>
-        <button onclick="gantiHalaman(1)">Balik ke Awal</button>
+      <div class="layer" id="halaman9">
+        <p>Isi halaman 9 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(8)">Kembali</button>
+          <button onclick="gantiHalaman(10)">Lanjut</button>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
+      <div class="layer" id="halaman10">
+        <p>Isi halaman 10 di sini...</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(9)">Kembali</button>
+          <button onclick="gantiHalaman(1)">Balik ke Awal</button>
+        </div>
+      </div>
+    </div> <!-- akhir suratSection -->
+  </div> <!-- akhir container -->
 <script>
   const audio = document.getElementById("audio");
   audio.volume = 0.6;
+
+  function playMusik() {
+    audio.play().catch(err => {
+      alert("Gagal memutar lagu: " + err.message);
+    });
+  }
+
+  function pauseMusik() {
+    audio.pause();
+  }
 
   function bukaSurat() {
     const pass = document.getElementById("password").value;
     if (pass === "dzwta") {
       document.getElementById("loginSection").classList.add("hidden");
       document.getElementById("suratSection").classList.remove("hidden");
-      audio.play().catch(() => {});
+      playMusik();
       hitungHari();
       gantiHalaman("dashboardSurat");
     } else {
@@ -258,7 +269,10 @@
     const layers = document.querySelectorAll(".layer");
     layers.forEach(el => el.classList.remove("active"));
 
-    const target = typeof n === 'string' ? document.getElementById(n) : document.getElementById("halaman" + n);
+    const target = typeof n === 'string'
+      ? document.getElementById(n)
+      : document.getElementById("halaman" + n);
+
     if (target) target.classList.add("active");
   }
 
