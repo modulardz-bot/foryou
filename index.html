@@ -14,16 +14,14 @@
       height: 100vh;
       margin: 0;
     }
-
     .box {
       background-color: #1e1e1e;
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 15px rgba(255,255,255,0.05);
       text-align: center;
       width: 300px;
     }
-
     input[type="password"] {
       padding: 10px;
       width: 90%;
@@ -34,7 +32,6 @@
       color: #fff;
       font-size: 1em;
     }
-
     button {
       padding: 10px 20px;
       background-color: #ff7675;
@@ -45,11 +42,9 @@
       cursor: pointer;
       transition: 0.3s ease;
     }
-
     button:hover {
       background-color: #fab1a0;
     }
-
     .error {
       color: #d63031;
       font-size: 0.9em;
@@ -63,18 +58,19 @@
   <div class="box">
     <p>Ketikkan sesuatu untuk membuka halaman.</p>
     <input type="password" id="password" placeholder="••••••••">
-    <button onclick="cekPassword()">Buka</button>
-    <div class="error" id="errorMsg">Salah. Coba lagi.</div>
+    <br>
+    <button onclick="bukaHalaman()">Masuk</button>
+    <div class="error" id="errorMsg">Salah bro. Coba lagi.</div>
   </div>
 
   <script>
-    function cekPassword() {
+    function bukaHalaman() {
       const pass = document.getElementById("password").value;
       if (pass === "dzwta") {
+        localStorage.setItem("bolehPlay", "yes");
         window.location.href = "lutdccqkk28u/surat.html";
       } else {
-        const err = document.getElementById("errorMsg");
-        err.style.display = "block";
+        document.getElementById("errorMsg").style.display = "block";
       }
     }
   </script>

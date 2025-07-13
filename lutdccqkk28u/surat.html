@@ -18,7 +18,7 @@
       padding: 40px;
       border-radius: 12px;
       background: #1e1e1e;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
     }
 
     h1 {
@@ -58,19 +58,20 @@
     }
 
     .navigasi {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
       margin-top: 40px;
     }
 
     .navigasi button {
-      padding: 10px 25px;
-      font-size: 1em;
+      padding: 10px 30px;
+      font-size: 0.95em;
       background-color: #2d2d2d;
       color: #fff;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      margin: 5px;
       transition: 0.3s ease;
     }
 
@@ -80,7 +81,7 @@
 
     audio {
       display: block;
-      margin: 20px auto;
+      margin: 20px auto 5px;
     }
 
     @keyframes fadeIn {
@@ -100,10 +101,14 @@
       <button onclick="keHalaman(1)">Iya</button>
       <button onclick="tutup()">Tidak</button>
 
-      <audio id="bgmusic" src="cardigan.mp3" controls loop></audio>
+      <audio id="bgmusic" src="cardigan.mp3" loop></audio>
+      <div style="text-align:center; margin-top: 10px;">
+        <button onclick="audio.play()">▶ Play</button>
+        <button onclick="audio.pause()">⏸ Pause</button>
+      </div>
     </div>
 
-    <!-- Halaman 1 -->
+    <!-- Halaman 1–10 -->
     <div class="layer" id="halaman1">
       <p>Hai, Wita...
 
@@ -112,7 +117,8 @@ mungkin dunio kau lah jauh samo dunio aku sekarangg…
 tapi aku nulis ini bukan untuk narik balik kau lg,
 aku cuma pengen ngelepasin kau… dengan caro paling jujur yang biso hati aku lakuke.
 
-aku jugo masih glk buka IG kau, bukan untuk jingok dunio kau tapiii…                                 tapi untuk nyari siso siso senyum kau dulu yang pernah aku jingok dengan jarak deket.
+aku jugo masih glk buka IG kau, bukan untuk jingok dunio kau tapiii…
+tapi untuk nyari siso siso senyum kau dulu yang pernah aku jingok dengan jarak deket.
 aku jugo cuma biso jingok ke satu hal, wajah kau wit.
 bukan karno aku dk biso nerimo,
 tapi karno di situ masih ado kenangan yang dak biso aku buang.
@@ -120,7 +126,8 @@ tapi karno di situ masih ado kenangan yang dak biso aku buang.
 kau sekarang sudah samo dio, dan aku idak marah.
 aku cuma… diam.
 cak langit yang tau hujan bakalan turun, tapi ttp biru di depan wong banyak.
-sakitny dak kejingokan, tapi nancap di dalam.                                                        
+sakitny dak kejingokan, tapi nancap di dalam.
+
 aku inget galo:
 pelukan kau, suaro kau, caro kau cium aku dulu dengan lembut.
 cak mano caro kau dak bikin dunio aku kosong waktu itu.
@@ -138,7 +145,8 @@ bukan buat di kenang tiap hari, tapi sebagai pelajaran yang paling jujur,
 tentang raso yang dak pernah selesa.
 
 aku minta maaf untuk segalonyo,
-dan aku jugo minta maaf ke diriku dwk,                                                               karno terlalu berharap kito biso sampe ke garis akhir bareng.
+dan aku jugo minta maaf ke diriku dwk,
+karno terlalu berharap kito biso sampe ke garis akhir bareng.
 
 selamat ya, wit…
 semoga kau bahagio, walaupun bukan samo aku, tapi aku bahagio jingok kau bahagio,
@@ -146,8 +154,11 @@ walaupun di balik bayangan kau.
 
 aku pamit dari harapan yg dk pernah kejadian.
 tapi cinta ini,
-bakalan tetap hidup, dalam diam.                                                                     
-dan terakhir, aku idak bakal bener-bener pergi,                                                      tapi aku hidup di balik bayangan kau.                                                                dan aku tetap megang omongan kau yang nyuruh aku untuk nungguke kau.
+bakalan tetap hidup, dalam diam.
+
+dan terakhir, aku idak bakal bener-bener pergi,
+tapi aku hidup di balik bayangan kau.
+dan aku tetap megang omongan kau yang nyuruh aku untuk nungguke kau.
 see ya.
 
 — Dimas
@@ -157,7 +168,6 @@ see ya.
       </div>
     </div>
 
-    <!-- Halaman 2 -->
     <div class="layer" id="halaman2">
       <p>Masih jam 23:23
 
@@ -202,7 +212,6 @@ aku cuma diem, sambil pelan" ngomong di kepala:
       </div>
     </div>
 
-    <!-- Halaman 3 -->
     <div class="layer" id="halaman3">
       <p>Untuk Wita, dari Dimas.
 
@@ -248,7 +257,6 @@ yg msh nunggu kau, tpi karno aku blm nemu alasan buat berhenti jagain kau...
       </div>
     </div>
 
-    <!-- Halaman 4 -->
     <div class="layer" id="halaman4">
       <p>Witaa...
 
@@ -287,7 +295,6 @@ nungguke kau, dengan caro yang paling sunyi.
       </div>
     </div>
 
-    <!-- Halaman 5 -->
     <div class="layer" id="halaman5">
       <p>Witaa...
 25 juli denget lagii.
@@ -338,45 +345,40 @@ tapi aku tetap berharap kau ado di samping aku di waktu ulang tahun aku. :)
       </div>
     </div>
 
-    <!-- Halaman 6 -->
     <div class="layer" id="halaman6">
-      <p>Masih kosong... isi nanti ya </p>
+      <p>Halaman 6 masih kosong, siap nunggu rasa baru.</p>
       <div class="navigasi">
         <button onclick="keHalaman(5)">Kembali</button>
         <button onclick="keHalaman(7)">Lanjut</button>
       </div>
     </div>
 
-    <!-- Halaman 7 -->
     <div class="layer" id="halaman7">
-      <p>Masih kosong juga, tapi tempatnya udah ada.</p>
+      <p>Halaman 7 juga masih kosong, tempat kenangan berikutnya.</p>
       <div class="navigasi">
         <button onclick="keHalaman(6)">Kembali</button>
         <button onclick="keHalaman(8)">Lanjut</button>
       </div>
     </div>
 
-    <!-- Halaman 8 -->
     <div class="layer" id="halaman8">
-      <p>Halaman 8 menunggu cerita dari malam sunyi lainnya.</p>
+      <p>Halaman 8... nanti isi sama cerita malam yang lain.</p>
       <div class="navigasi">
         <button onclick="keHalaman(7)">Kembali</button>
         <button onclick="keHalaman(9)">Lanjut</button>
       </div>
     </div>
 
-    <!-- Halaman 9 -->
     <div class="layer" id="halaman9">
-      <p>Halaman 9 kosong, tapi bukan berarti tanpa rasa.</p>
+      <p>Halaman 9: kosong, tapi bukan tanpa harap.</p>
       <div class="navigasi">
         <button onclick="keHalaman(8)">Kembali</button>
         <button onclick="keHalaman(10)">Lanjut</button>
       </div>
     </div>
 
-    <!-- Halaman 10 -->
     <div class="layer" id="halaman10">
-      <p>Halaman 10 adalah tempat terakhir rasa ini tertulis.</p>
+      <p>Halaman terakhir — tapi rasa gak pernah benar-benar selesai.</p>
       <div class="navigasi">
         <button onclick="keHalaman(9)">Kembali</button>
         <button onclick="kembaliDashboard()">Kembali ke Awal</button>
@@ -388,23 +390,27 @@ tapi aku tetap berharap kau ado di samping aku di waktu ulang tahun aku. :)
     const audio = document.getElementById("bgmusic");
     audio.volume = 0.6;
 
+    // Autoplay musik jika datang dari login
+    if (localStorage.getItem("bolehPlay") === "yes") {
+      audio.play().catch(() => {});
+      localStorage.removeItem("bolehPlay");
+    }
+
     function keHalaman(nomor) {
       document.getElementById("dashboard").style.display = "none";
+
       for (let i = 1; i <= 10; i++) {
-        const halaman = document.getElementById("halaman" + i);
+        let halaman = document.getElementById("halaman" + i);
         if (halaman) halaman.style.display = "none";
       }
-      const aktif = document.getElementById("halaman" + nomor);
-      if (aktif) aktif.style.display = "block";
 
-      if (nomor === 1 && audio.paused) {
-        audio.play().catch(() => {});
-      }
+      let aktif = document.getElementById("halaman" + nomor);
+      if (aktif) aktif.style.display = "block";
     }
 
     function kembaliDashboard() {
       for (let i = 1; i <= 10; i++) {
-        const halaman = document.getElementById("halaman" + i);
+        let halaman = document.getElementById("halaman" + i);
         if (halaman) halaman.style.display = "none";
       }
       document.getElementById("dashboard").style.display = "block";
