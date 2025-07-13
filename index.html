@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Surat Untuk Wita</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 12px;
+      background: #1e1e1e;
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff7675;
+      margin-bottom: 20px;
+    }
+
+    .media-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .media-player p {
+      margin-bottom: 8px;
+      color: #aaa;
+      font-size: 0.95em;
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 400px;
+      height: 8px;
+      background-color: #555;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 0;
+      position: relative;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #ff7675;
+      width: 0%;
+      border-radius: 5px;
+    }
+
+    .time {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 4px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      width: 80%;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2d2d2d;
+      color: #fff;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff7675;
+      border: none;
+      border-radius: 6px;
+      color: #000;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin: 5px;
+    }
+
+    .navigasi {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .navigasi button {
+      padding: 12px 35px;
+      font-size: 1em;
+      background-color: #2d2d2d;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .navigasi button:hover {
+      background-color: #0984e3;
+    }
+
+    .layer {
+      display: none;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      animation: fadeIn 0.6s ease-in-out forwards;
+      text-align: left;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .dashboard-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0 auto 25px;
+      max-width: 100%;
+    }
+
+    .dashboard-text p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Surat Untuk Wita</h1>
+
+    <!-- MEDIA PLAYER -->
+    <div class="media-player">
+      <p>🎵 cardigan - Taylor Swift (slowed)</p>
+      <div>
+        <button onclick="playMusik()">▶ Play</button>
+        <button onclick="pauseMusik()">⏸ Pause</button>
+      </div>
+      <div class="progress-container" onclick="setProgress(event)">
+        <div class="progress" id="progressBar"></div>
+      </div>
+      <div class="time" id="timeDisplay">0:00 / 0:00</div>
+    </div>
+
+    <audio id="audio" src="cardigan.mp3" preload="auto" loop></audio>
+
+    <!-- LOGIN SECTION -->
+    <div id="loginSection">
+      <p>Ketikkan sesuatu untuk membuka halaman.</p>
+      <input type="password" id="password" placeholder="••••••••">
+      <br>
+      <button onclick="bukaSurat()">Masuk</button>
+      <p id="errorMsg" style="color:#d63031; display:none;">Salah bro. Coba lagi.</p>
+    </div>
+
+    <!-- SURAT SECTION -->
+    <div id="suratSection" class="hidden">
+      <p id="counter" style="font-size: 0.9em; color: #999;"></p>
+
+      <!-- Dashboard -->
+      <div class="layer active" id="dashboardSurat">
+        <div class="dashboard-text">
+          <p>
+            Halo... ini surat yang pernah aku simpen untuk kau. Mau mulai baca sekarang?
+          </p>
+        </div>
+        <div class="navigasi">
+          <button onclick="bukaSuratAsli()">📖 Buka Surat</button>
+          <button onclick="window.location.href='https://google.com'">❌ Nanti Saja</button>
+        </div>
+      </div>
+
+      <!-- Halaman 1 -->
+      <div class="layer" id="halaman1">
+        <p>Hai, Wita...
+
+mungkin kau dk kan baco surat ini.
+mungkin dunio kau lah jauh samo dunio aku sekarangg…
+tapi aku nulis ini bukan untuk narik balik kau lg,
+aku cuma pengen ngelepasin kau… dengan caro paling jujur yang biso hati aku lakuke.
+
+aku jugo masih glk buka IG kau, bukan untuk jingok dunio kau tapiii…
+tapi untuk nyari siso siso senyum kau dulu yang pernah aku jingok dengan jarak deket.
+aku jugo cuma biso jingok ke satu hal, wajah kau wit.
+bukan karno aku dk biso nerimo,
+tapi karno di situ masih ado kenangan yang dak biso aku buang.
+
+kau sekarang sudah samo dio, dan aku idak marah.
+aku cuma… diam.
+cak langit yang tau hujan bakalan turun, tapi ttp biru di depan wong banyak.
+sakitny dak kejingokan, tapi nancap di dalam.
+
+aku inget galo:
+pelukan kau, suaro kau, caro kau cium aku dulu dengan lembut.
+cak mano caro kau dak bikin dunio aku kosong waktu itu.
+dan sekarang, itu semua cuman hidup di pikiran aku bae.
+cak film dak pernah selesai, tapi aku puter terus tiap malan.
+
+aku tau, dk ktk yang biso gantike kau.
+bahkan wong yang mirip sekalipun-karno yang aku cari bukan duplikat,
+tapi kauu.
+
+tapi wit… mulai hari ini,
+aku dk glk lagi nyeret kau ke hidupan aku.
+aku bakal simpan kau baik-baik di sudut hati aku yang paling sunyi.
+bukan buat di kenang tiap hari, tapi sebagai pelajaran yang paling jujur,
+tentang raso yang dak pernah selesa.
+
+aku minta maaf untuk segalonyo,
+dan aku jugo minta maaf ke diriku dwk,
+karno terlalu berharap kito biso sampe ke garis akhir bareng.
+
+selamat ya, wit…
+semoga kau bahagio, walaupun bukan samo aku, tapi aku bahagio jingok kau bahagio,
+walaupun di balik bayangan kau.
+
+aku pamit dari harapan yg dk pernah kejadian.
+tapi cinta ini,
+bakalan tetap hidup, dalam diam.
+
+dan terakhir, aku idak bakal bener-bener pergi,
+tapi aku hidup di balik bayangan kau.
+dan aku tetap megang omongan kau yang nyuruh aku untuk nungguke kau.
+see ya.
+
+— Dimas
+-24/06/2025</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(2)">Lanjut</button>
+        </div>
+      </div>
+
+      <!-- Halaman 2 -->
+      <div class="layer" id="halaman2">
+        <p>Masih jam 23:23
+
+23 Juni 2025
+Jam23:23
+
+aku ddk dwkan mlm itu.
+dk ktk yang nemenin, dk ktk suaro siapo".
+cuma aku, smo detik yg lewat pelan nn.
+
+dan... ya, enth ngpo di hari itu aku mulai nunggu ke kau, mulai nyangkut dengan waktu.
+
+Jam23:23
+aku jingok hp, dan cuma diem.
+karno... ini waktu yang aku simpan untuk kau. waktu yang aku tandoi, buat jago raso aku yang dak pernah kau tau se dalam apo.
+
+dulu aku kiro aku bakal sembuh.
+tapi makin aku tahan, makin aku sadar... yang aku jago bukan luko. yang aku jago tu kau.
+kenangan tentang kau.
+namo kau.
+semua hal yang bahkan sudah dak biso aku peluk lagi.
+
+aku inget nn pas kau masih deket, jam jam ck ini kito belom kadang belom tedok. biasonya chattingan dk jelas, biasonyo ketawo hal receh, biasony diem tapi ngeraso tenang.
+
+tapi sekarang beda.
+sekarang setiap jam 23:23 cuma ngeraso sepi... tapi ntah ngpo aku masih di sini. masih ddk. masih nunggu.
+
+bukan karno aku blm move on
+tapi karno aku cuma... dk pengen ninggalke momen yang pernah bikin aku yakin: kau itu rumah aku.
+
+dan malam itu
+aku idak nangis. tapi jugo aku dk ngomong aku kuat.
+aku cuma diem, sambil pelan" ngomong di kepala:
+
+"Witt... aku msh di sini ee. kalo suatu saat kau nyari aku, aku dk pergi ke mno" kok."
+
+-Dimas
+-25/06/2025</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(1)">Kembali</button>
+          <button onclick="gantiHalaman(3)">Lanjut</button>
+        </div>
+      </div>
+
+      <!-- Halaman 3 -->
+      <div class="layer" id="halaman3">
+        <p>Untuk Wita, dari Dimas.
+
+Witt...
+
+sekarang sore. langit nak berubah warno, dan tibo" aku keinget galo pas kito jalan" dulu. waktu kau masih di kontrakan aku...
+jam ck ini kito biasonyo keluar bareng, entah cari angin, beli makanan kecil, atau cuma keliling dk jelas tapi hati aku selalu tenang.
+
+aku dk tau ngpo hari ini kangen itu nyerang segitunyo.
+tapi yang aku tau, kau masih ado di tempat yang dk pernah aku singkirke:
+di sisi hati aku yang paling dalam, yang cuma biso nyebut namo kau di dalam diam.
+
+tadi siang aku mimpike kau, witt. kito duduk di pinggiran sungai, ditempat kapsul ck itu, kau di sebrang aku, tapi aku ajak kau pindah ke samping aku. aku cium kau di mimpi itu, dan aku nyender di bahu kau.
+bangun"... rasony campur adu. atara seneng biso ngerasoi kau lgi, tapi sakit jgo karno sadar itu cuma mimpi.
+
+aku msh inget kok raso nyato dari ciuman kau dulu.
+aku msh inget kok pelukan kito, senyum kau, bahkan nado suaro kau kao manggil namo aku.
+seluruhny belom hilang.
+dan hari ini... semua itu dateng lgi. keras. jelas. bikin sesak.
+
+aku dk nyalahi keadaan, kok.
+aku ngerti kau sdh jalan di hidup kau yang baru, mungkin jugo bahagio. dan aku seneng, beneran.
+cuma izinkan aku sore ini ngerasoi kangen itu tanpa harus pura" kuat.
+izinkan aku duduk di tempat yang dulu kito lewati...
+walau sekarang cuma aku yang duduk di sano.
+
+witt,
+kalo suatu hari kau ngeraso hangat tanpa alasan...
+mungkin itu raso aku yang lg nyentuh kau, dari jauh.
+aku dk ganggu, aku dk minta apo".
+cuma pengen kau tau:
+ado satu hati yg dk pernah ninggalke kau, bahkan saat kau sdh pergi.
+
+dari aku
+yg msh nunggu kau, tpi karno aku blm nemu alasan buat berhenti jagain kau...
+... dalam doa dan diam.
+
+-Dimas
+-28/06/2025</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(2)">Kembali</button>
+          <button onclick="gantiHalaman(4)">Lanjut</button>
+        </div>
+      </div>
+
+      <!-- Halaman 4 -->
+      <div class="layer" id="halaman4">
+        <p>Witaa...
+
+malam" itu dk pernah berubah ee?
+masih panjang, masih sepiii, dan... masih jadi tempat aku nunggu kau diam".
+
+tiap hari lewat... aku mungkin kejingokan biaso bae.
+tapi pas malam dateng, segalonyo runtuh.
+aku balik lagi ke tempat paling sunyi:
+ruang tunggu yang isiny cuma kau, tapi kau dk pernah dateng.
+aku dk tidur cepet, wit.
+bukan karno aku insomnia, tapi karno aku takut kehilangan raso yang muncul setiap malam, raso yang cuma muncul kalo aku inget kau.
+
+dan anehnyo, setiap malam aku berharap kau jugo lg kebangun,
+lg memandangi langit, terus... kepiniran aku walau cuma sedetik.
+
+malam" ini sdh jadi saksi paling setia.
+saksi aku nunggke kau tanpa kau pernah tau.
+saksi aku nulis banyak hal yang dak pernah aku kirim.
+saksi aku ngomong “aku masih di sini, wit...”
+meski pun dk ktk balasan
+
+aku dk minta kau balik.
+aku cuma pengen kau tau satu hal:
+setiap malam, aku dk pernah ninggalke tempat ruang tunggu itu.
+
+dan kalo suatu har kau cape, bingung arah, malam ini... besok malam... atau kapan pun, aku masih duduk di tempat yang samo.
+
+nungguke kau, dengan caro yang paling sunyi.
+
+-Dimas
+-07/07/2025</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(3)">Kembali</button>
+          <button onclick="gantiHalaman(5)">Lanjut</button>
+        </div>
+      </div>
+
+      <!-- Halaman 5 -->
+      <div class="layer" id="halaman5">
+        <p>Witaa...
+25 juli denget lagii.
+dulu, ini tanggal yang kau rayoke untuk akuu.
+sekarang cuma siso bayangan.
+tapi karno kau adoo.
+karno waktu itu kau ngomong:
+“ulang tahun kau, aku yang ucapi duluan ee...”
+
+dan emang bener,
+kau yang pertamo ucapin.
+kau yang bikin hari itu jadi beda dari hari lain.
+dan sekarang...
+tanggal yang samo cuma jadi pengingat bahwa yang dulu bareng, sekarang cuma tinggal aku dwkan.
+
+tahun ini... dk ktk ucapan dari kau.
+dk ktk suaro manja kau waktu ngomong “selamat ulang tahun, dimasss”
+dk ktk senyuman kau, dk ktk pelukan kecil untuk hari menjelang malam ini.
+
+yang ado cuma aku.
+dan bayangan kau yang muncul di kepala aku tiap jam makin deket tengah malam.
+
+aku dk marah, wit..
+beneran, dk marah.
+cuma... kosong...
+ck hidupke lilin tapi angin ny kenceng nn, terang denget, abis itu mati lagi.
+
+aku masih inget rasonyo waktu kau jagoi aku tedok pas malam ulang tahun.
+masih inget caro kau nyuruh aku make wish, dan sekarang?...
+satu satuny wish aku cuma: biso denger suaro kau sekali lagi.
+sekaliii lagiii....
+walau cuma di mimpi.
+
+tgl 25 ini...
+mungkin kau dk inget.
+tapi aku ttp duduk di tempat biaso aku tungguke kau,
+walau sekarang cuma bayangan kau yang ngawani aku.
+
+dan itu cukup.
+buat ulang tahun yang sdh dk ktk kau.
+tapi aku tetap berharap kau ado di samping aku di waktu ulang tahun aku. :)
+
+-Dimas
+-23/07/2025</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(4)">Kembali</button>
+          <button onclick="gantiHalaman(6)">Lanjut</button>
+        </div>
+      </div>
+
+      <!-- Halaman 6 -->
+      <div class="layer" id="halaman6">
+        <p>Chapternya belum di buat :)</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(5)">Kembali</button>
+          <button onclick="gantiHalaman(7)">Lanjut</button>
+        </div>
+      </div>
+
+      <!-- Halaman 7 -->
+      <div class="layer" id="halaman7">
+        <p>Chapter terakhir juga belum di buat :)</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(6)">Kembali</button>
+          <button onclick="gantiHalaman('dashboardSurat')">Ke Dashboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById("audio");
+    const progress = document.getElementById("progressBar");
+    const timeDisplay = document.getElementById("timeDisplay");
+
+    audio.volume = 0.6;
+
+    function playMusik() {
+      audio.play().catch(err => {
+        alert("Gagal muter lagu: " + err.message);
+      });
+    }
+
+    function pauseMusik() {
+      audio.pause();
+    }
+
+    audio.addEventListener("timeupdate", updateProgress);
+    audio.addEventListener("loadedmetadata", updateProgress);
+
+    function updateProgress() {
+      const current = audio.currentTime;
+      const duration = audio.duration;
+      const percent = (current / duration) * 100;
+      progress.style.width = percent + "%";
+
+      const format = (t) => {
+        const m = Math.floor(t / 60);
+        const s = Math.floor(t % 60);
+        return `${m}:${s < 10 ? "0" + s : s}`;
+      };
+
+      timeDisplay.textContent = `${format(current)} / ${format(duration)}`;
+    }
+
+    function setProgress(e) {
+      const container = e.currentTarget;
+      const rect = container.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const percent = clickX / width;
+      audio.currentTime = audio.duration * percent;
+    }
+
+    function bukaSurat() {
+      const pass = document.getElementById("password").value;
+      if (pass === "dzwta") {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("suratSection").classList.remove("hidden");
+        playMusik();
+        hitungHari();
+        gantiHalaman("dashboardSurat");
+      } else {
+        document.getElementById("errorMsg").style.display = "block";
+      }
+    }
+
+    function bukaSuratAsli() {
+      gantiHalaman(1);
+    }
+
+    function gantiHalaman(n) {
+      const layers = document.querySelectorAll(".layer");
+      layers.forEach(el => el.classList.remove("active"));
+
+      const target = typeof n === 'string'
+        ? document.getElementById(n)
+        : document.getElementById("halaman" + n);
+
+      if (target) target.classList.add("active");
+    }
+
+    function hitungHari() {
+      const awal = new Date("2025-06-24T00:30:00");
+      const sekarang = new Date();
+      const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
+      document.getElementById("counter").textContent = `Surat ini sudah disimpan selama ${selisih} hari.`;
+    }
+  </script>
+
+</body>
+</html>
