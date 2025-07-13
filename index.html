@@ -31,25 +31,41 @@
       margin-bottom: 20px;
     }
 
-    .kontrol-musik {
-      margin-bottom: 25px;
+    .media-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
     }
 
-    .kontrol-musik button {
-      padding: 10px 30px;
-      margin: 5px;
-      font-size: 1em;
-      border: none;
-      border-radius: 6px;
-      background-color: #2d2d2d;
-      color: #fff;
+    .media-player p {
+      margin-bottom: 8px;
+      color: #aaa;
+      font-size: 0.95em;
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 400px;
+      height: 8px;
+      background-color: #555;
+      border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s ease;
+      margin: 10px 0;
+      position: relative;
     }
 
-    .kontrol-musik button:hover {
+    .progress {
+      height: 100%;
       background-color: #ff7675;
-      color: #000;
+      width: 0%;
+      border-radius: 5px;
+    }
+
+    .time {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 4px;
     }
 
     input[type="password"] {
@@ -73,10 +89,6 @@
       cursor: pointer;
       transition: 0.3s ease;
       margin: 5px;
-    }
-
-    button:hover {
-      background-color: #fab1a0;
     }
 
     .navigasi {
@@ -118,8 +130,20 @@
       display: none;
     }
 
-    audio {
-      display: none;
+    .dashboard-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0 auto 25px;
+      max-width: 100%;
+    }
+
+    .dashboard-text p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 0;
     }
 
     @keyframes fadeIn {
@@ -133,10 +157,19 @@
   <div class="container">
     <h1>Surat Untuk Wita</h1>
 
-    <div class="kontrol-musik">
-      <button onclick="playMusik()">▶ Play</button>
-      <button onclick="pauseMusik()">⏸ Pause</button>
+    <!-- MEDIA PLAYER -->
+    <div class="media-player">
+      <p>🎵 cardigan - Taylor Swift (slowed)</p>
+      <div>
+        <button onclick="playMusik()">▶ Play</button>
+        <button onclick="pauseMusik()">⏸ Pause</button>
+      </div>
+      <div class="progress-container" onclick="setProgress(event)">
+        <div class="progress" id="progressBar"></div>
+      </div>
+      <div class="time" id="timeDisplay">0:00 / 0:00</div>
     </div>
+
     <audio id="audio" src="cardigan.mp3" preload="auto" loop></audio>
 
     <!-- LOGIN SECTION -->
@@ -145,7 +178,7 @@
       <input type="password" id="password" placeholder="••••••••">
       <br>
       <button onclick="bukaSurat()">Masuk</button>
-      <p id="errorMsg" style="color:#d63031; display:none;">Salah bro. Coba lagi.</p>
+      <p id="errorMsg" style="color:#d63031; display:none;">Salah. Coba lagi.</p>
     </div>
 
     <!-- SURAT SECTION -->
@@ -154,11 +187,12 @@
 
       <!-- Dashboard -->
       <div class="layer active" id="dashboardSurat">
-        <p style="text-align: center; font-size: 1.1em; line-height: 1.6; max-width: 100%; margin: auto;">
-           Halo... ini surat yang pernah aku simpen untuk kau.<br>
-           Aku harap kau baco yo surat ini, karno aku full time bikin nyo hehe.<br>
-           Mau mulai baca sekarang?
-        </p>
+        <div class="dashboard-text">
+          <p>
+            Halo... ini surat yang pernah aku simpen untuk kau.<br>
+            Mau mulai baca sekarang?
+          </p>
+        </div>
         <div class="navigasi">
           <button onclick="bukaSuratAsli()">📖 Buka Surat</button>
           <button onclick="window.location.href='https://google.com'">❌ Nanti Saja</button>
@@ -402,24 +436,64 @@ tapi aku tetap berharap kau ado di samping aku di waktu ulang tahun aku. :)
 -23/07/2025</p>
         <div class="navigasi">
           <button onclick="gantiHalaman(4)">Kembali</button>
-          <button onclick="gantiHalaman(1)">Ke Awal</button>
+          <button onclick="gantiHalaman(6)">Lanjut</button>
         </div>
       </div>
+
+      <!-- Halaman 6 -->
+      <div class="layer" id="halaman6">
+        <p>Belum ada Cerita</p>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(5)">Kembali</button>
+          <button onclick="gantiHalaman('dashboardSurat')">Ke Dashboard</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <script>
     const audio = document.getElementById("audio");
+    const progress = document.getElementById("progressBar");
+    const timeDisplay = document.getElementById("timeDisplay");
+
     audio.volume = 0.6;
 
     function playMusik() {
       audio.play().catch(err => {
-        alert("Gagal memutar lagu: " + err.message);
+        alert("Gagal muter lagu: " + err.message);
       });
     }
 
     function pauseMusik() {
       audio.pause();
+    }
+
+    audio.addEventListener("timeupdate", updateProgress);
+    audio.addEventListener("loadedmetadata", updateProgress);
+
+    function updateProgress() {
+      const current = audio.currentTime;
+      const duration = audio.duration;
+      const percent = (current / duration) * 100;
+      progress.style.width = percent + "%";
+
+      const format = (t) => {
+        const m = Math.floor(t / 60);
+        const s = Math.floor(t % 60);
+        return `${m}:${s < 10 ? "0" + s : s}`;
+      };
+
+      timeDisplay.textContent = `${format(current)} / ${format(duration)}`;
+    }
+
+    function setProgress(e) {
+      const container = e.currentTarget;
+      const rect = container.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const percent = clickX / width;
+      audio.currentTime = audio.duration * percent;
     }
 
     function bukaSurat() {
