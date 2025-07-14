@@ -18,7 +18,7 @@
 
     .container {
       width: 90%;
-      max-width: 720px;
+      max-width: 700px;
       padding: 40px;
       border-radius: 12px;
       background: #1e1e1e;
@@ -99,19 +99,9 @@
       flex-wrap: wrap;
     }
 
-    .navigasi button {
-      padding: 12px 35px;
-      font-size: 1em;
-      background-color: #2d2d2d;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
     .navigasi button:hover {
       background-color: #0984e3;
+      color: #fff;
     }
 
     .layer {
@@ -153,12 +143,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
   <div class="container">
     <h1>Surat Untuk Wita</h1>
 
+    <!-- MEDIA PLAYER -->
     <div class="media-player">
       <p>🎵 Cardigan - Taylor Swift</p>
       <div>
@@ -173,6 +163,7 @@
 
     <audio id="audio" src="cardigan.mp3" preload="auto" loop></audio>
 
+    <!-- LOGIN -->
     <div id="loginSection">
       <p>Ketikkan sesuatu untuk membuka halaman.</p>
       <input type="password" id="password" placeholder="••••••••">
@@ -181,23 +172,38 @@
       <p id="errorMsg" style="color:#d63031; display:none;">Salah. Coba lagi.</p>
     </div>
 
+    <!-- SURAT SECTION -->
     <div id="suratSection" class="hidden">
       <p id="counter" style="font-size: 0.9em; color: #999;"></p>
-<!-- Dashboard -->
+
+      <!-- Dashboard -->
       <div class="layer active" id="dashboardSurat">
         <div class="dashboard-text">
-          <p>Halo... ini surat yang pernah aku simpen untuk kau. Ini aku bikin full time, tolong dibaco ya. Mau mulai baca sekarang?</p>
+          <p>Halo... ini surat yang pernah aku simpen untuk kau. Ini aku bikin ny full time tolong di baco galo ee hehe. Mau mulai baca sekarang?</p>
         </div>
         <div class="navigasi">
           <button onclick="bukaSuratAsli()">📖 Buka Surat</button>
           <button onclick="window.location.href='https://google.com'">❌ Nanti Saja</button>
         </div>
       </div>
+<!-- Halaman Surat -->
+      <div class="layer" id="halaman1"><div class="kontenSurat" id="konten1"></div>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(2)">Lanjut</button>
+        </div>
+      </div>
 
-      <!-- Tempat surat terenkripsi akan ditampilkan -->
-      <div id="semuaHalaman"></div>
+      <div class="layer" id="halaman2"><div class="kontenSurat" id="konten2"></div>
+        <div class="navigasi">
+          <button onclick="gantiHalaman(1)">Kembali</button>
+          <button onclick="gantiHalaman('dashboardSurat')">Kembali ke Awal</button>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- CryptoJS Library -->
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 
   <script>
     const encryptedSurat = {
@@ -207,29 +213,34 @@
       halaman4: "U2FsdGVkX1+5PQji9PA5PlA7rQlCpu84b8SPT0oqSFWFRXXfDn/XPSJoV6vIKqkxRsk13Q77jumvKKplvbTnpEJYOEwL+3IS+5OoZ83Yhkh2fVoCoywEhnZxqReeadjZJm8gerbeJBc/xghV2TwXy6zlUwLnZYRoaZG7V7ehJXbK97pq2ZnlhK7zTjcOIneN02r7fHWW765PBgdWwh0ge3FAg3sHPKsJMCu75km+MdS1DScg0DAVRHDc1jzOwpIQJ0TXB7jfydr7a9KxU+bLmlmuc6eSyUss4bxy+pEnSWwXTylpAsV6U0Qy12RrKCjoOmEMMY1L5kWr4hwMu08WPLsQiPIU+f0ryu/miYnuKm29vkas7dJQ50b8TDIOgXrSgG9gfVS84txgMu0hQh+pR2OhRa0w6Md6iFywCxwKzg5LQethBTUs0ojwGx4q3mahdDujf3+LyKVsYGiuI1/irc61P1Khx2PBDIMrnd5GBbQCncS1mV3BJHtEiQAhZ6EJxHFC8c/ccE4WZ+sts3gs2jlbnN5+z5h3cExZjbkKViwK1HSAFRg8qti0W8Jh43btpuuoTeOODsehMlI+omBOGMIUn+Q7ekXKo0AKhtRmWntQ6Kmcu+M+Awn0TpOQHKLwDjj+XSloWXCchvxrcPzlzajClkbXgH4Az7oWlzWudFPG9ncVuzQrau6AuJXuV2Zod/uQXRL7T7rf3cOD7Nc2cLYrdTapJ/dxw91wTMySW9Gaq0ZijxaIVwdiFTTkVEGoOL714kZQ+1OlDSKBISWfes1DKUZrpgTZVgCfGcQGiWitC3tgkpObL6P92p8JvrYlMrqhC5uBNxBpw7U2LcHBj9UZkrJeWz7nzOjs9ZY1kMPCsdf9gB+x9+5F6mkSovaYXtZtUEpwEFHtVV8izKY3eSXWPwfCNN7RRb8DyjhQz1gzHWV0fYzL02Xp84FQlTz+BkLpo5n+REFJEUl98yhMPbVRUixRDCPbxvM027Q7D/BrKHKxf/H3a0N5nIns9jyT1o7tR+CTj8DiSmlvgbR0ZToru45M4YWVhVc6Dqtt/vBYgvqHjzbIl66p9iY9cRM7JS4V6XsOrV3gvcXgRg9oJCDQ/Ena9AN2V8m8374y2JddySF0tDqT7zz0e79hWwGv1wQuCr5K8XU1pYenWhItWRc7TQPCXnGTSi7Y5fTzBArL/prQq5EnEiF3kKaR+bffkHOkbSN0J6g8zRd7cqAWtQLSLwtrgdwZfk9IlmaAcOz+E+ZyoLb6oGQhuLBaLYRjMT/+yfpDfWgEnRZ0bGJ0esKAjtg/kim61rNKNXVnoxMfSFqoYm19bNKoNCfoynvmlrThjbvRqLNIjp4TYqp1sHkv0GWHX+beJVjfBNaRBERiRyfdfyNaLg+EuPJVZkM9cj4A71OwxtiC+AtYnPPslKjypHmafNDuNxWE+cA50JYbwSG9dHw2bPsnH5kBaat9iK4HoFtPMXr81dTjsw9YIss8rS2SfHwdEXMFaiWZOfORGCMmPTV8ZPoJ4EpNuSy7",
       halaman5: "U2FsdGVkX18vPREEUxXnzzH/lb8PMcmyP5O4pqlAylwZe8JO6OmzqPIC6mQlXcFGNXYWRkOSA6D5qEmwCZfad2MsBY97ONwxzWkq8+QSHVS3RJSgIwVLKIFo0M4/SlXV16qWUhF/Ts7kzsGKQ/9CKFW+fhr+ZSzjYSk23et145jn6XkZ+NzIzz1iGUKoqpYzJj5/MTmdkADkw8lV2czJnJrnHoGCXitf/3XSGmDyQJL9pDUjKE8ZbDHG9poPDyctP/OtA2V3QsA0fjLo5fkQyj1wlVikLzXZfFZdFTl7ldDl4r+3SdU1XPgBXoBczbS0/cT/l71J0rFjvKPQF1AUy0hCSYYwhT3hTIq+c706qLHsjeBQHNfxtq5WvNiOY3ZYvqc71JQzD+fRpikF592ruS589xOPUOVmFy+WFO88zqappyqTtFtkmX0NfUJ740ckyrlOf0nnFlWUBCjj/ubsLnVPwFwsnPxCaw/cp7MQbWwaYnRmzweTh8x+8MHg394fwtY6B5TzszmL0s6RFMddx9PKLhDLQwrDPfT1xltdos8rGzL65mxQ0WagbChBhG+HxOc/8yCwQWdzA8pPjam3KrUC33Rsp+3yD+cciFVnukMTDHjP7xJ2gb9YdD0dYj4Ap/eFuC1DWt62yqm9DXsqUymjt0GIc825qK2P6Z59JJAOV1jFtlckmFUFhuU/aw0w/f0uv9TnHMlKjDkDRDgSBm18k3v+nW4wjZSZdjYVABjr1iiVDzhtHhusxoMDMDHv/Yo4zO64oNIH8yzl2U5hp+jGb2adzDkOMOY2RKesXfnamtCP3+HIJsUMlvWXq2QDwiS6aQeGqrOhUMnEb77GmzdiSAgfG5JgYk6qkmrTyV3nJ/NqCYeQ37Mw/2ZOQgcAiCHYZxVBvjf/rvNJSe5TBX2JhrfANcDn4dFBdavny1GaNCqOWkGpVH3D0ygsGhUCknpoFySSvyuUWipYAWpejbbteD/7FYfivHMgNjI8dCylkE7x3py63AjH9pn39Pb0zY5P7elm+lzQamaSfy7TWJWEf0C+mw6UuMU7alUEObNo5nrkABxbYWaVgR1B+s89IPSLU5zrQu9QrLxPJo7FmRletCkhK1mqQQkAlH4ypufYbiRU2lW0Mkhy1gWW0G70opsby8nBAra1+Y96d8xCgZjtNo/spC+Xu/5rxLAZLrXSpYkayUuAVQZ5ads2a/5+I8DroFmz9ImBvmwEgOsONXJAihru05zLxv4JzupcQD1cQ8c/J/wVvZtLDWYIywGQ2V1ckRsapu2YbkGHCcfB0XKHfIyF1A3E4s3RaMH/W64ieAX5G/bzDW0vIZdjs9ulAGBQPwN6UYJDjxTFn2jA+f4IeF0pZ/YJ6Eo/N6Z8U9QfKRcaPC46KYlTReseJAG9bD6dKHbcb+8DJy/Sx82IdKSdt/gNwFf+xLbWz51Ym7dQqOwuHKTc6QOKW53yMHYYwtwKmogKo5XyYIrGf1zHbbKTq+NCHdz/9dPUsCfjaM4N5o4xr3ebkUgO1a0ZYZqcHcgN7VK2i5nY62kR4pVRkViyN3AKUlIoHbaM8QaikXZxPH25cOHxw02Dv5KurbBhQom0m9JXUQefpjkcTrNZBBzDbV85nhiLntSRYQo2WFppNFTYvvpjcVapG2tOUJC8IT2FiRDWTI2eAOcrgnC0jVHgcSuMgxA6+LqOt+BHdllghePlcCyxvP9VOSeD7NtU50I90X9a5P2DM+XJQixK6kXakOugbOIC7BSBoDoG8fl7kRSL0A8gqAiKswoXCeyxnHEnLj77yXFPHxlB9BS58NX9RBFS/KsWyekWWj9MDPo=",
       halaman6: "U2FsdGVkX18TupJZuGkhTnwynS3AVqbYmbIDg4d73WfBA5HKblPcKOyvnt7pRngWk6KTFWgrL36hoJ/kdE1AFzMabaqh5iCI0PBlnn/xqMt6k7ENsMEODhg+NDQ9NTIbJMpiZHLEXo4Z5HzdyIQbMs/FoLKMncaRAZGrHuh469EgLny2cdtaj8nRTqfyNJ0J0QKIn6oNrxKzs7qoX0H6WtwRTdWTFKiaxU+m6BS3GpdtsO7NjOOh1m+IcIo7C/Nv0/+xXl3NLYMwlp3r/fvkA8xwcWQUv0fv4CdB79p2AX4pI/Gy3B+HH2ibkHwDVhb97eOlB3LUj0YpxJYzA+779JPYJmn+SK4rvAWcyHYEHFXlAW7iaJ6tNhAO1JGgWLci0I2nHejt1GH3NaSBHv15NR8d7V34JcwrkX7vt87U9eA3rhwuuyYr03vPNGkT15JaL7KAgORNzj1ukXLF1nPeAxsGj9kL16hcyV+s12eeOZjy08B/fVM32vwq1wo/5c7JIpbeRY8hX9cTY5NbWA7SpfCfjRDipP6MF8TdLAK7QYTGynC9wCmL+pq9eP2J1Ec5FeAsyUiNPfUHlbHUkAutFIg2Hui07pZerPYuQXdb01KGEidDH/VMdMwonyYXi7AeaqZyFezx5EN529Gszv55szD///AvJvYrO9R4b7ezf00D+sAxRq0aF59qNLDpL0s2mNMZe0A3UbdLNGMDTdsPEoj+9HPnOqPJzNTerz6wdIwFHfUIk/8fb6yOmMIRVm2kvxM8NkNMogxFXLKS5wwoL3OOfXIWgNSfGW5wctsQW236GpKQdjn+Np5J7/qQfJm3Za9G/qzSr+61mTJSy+EArYhFBrdqfjiZDEG4Xfw98sQBQg7OIhogzag12NvTYwlsK8XClFdgTJdqpMWtCoVIZu9NiIY8BnjbP6Flp+R4JOgDMSgoezCjWLpXfOkCDlTPcb3zOjxGHxq63Wj1EVr5gykoKsX4L2ZNA1+tSOl2fc02deLbwoEOySmS6dqIrJFjP3cz8GLGMQ/6aN9ppqHiM9GxY+kd1wkjS/tSF5bShGc7mZ6WQy8HWWldVLR6ziGCMpmkfJ0jMhHTiff+suCpI6i6vDlaVO18I+tFbcGOGKNqRuZMPss5YVAoOQ3M673QxcNC0eEKeijeZ9qGRrV4MIrLTlURNtzjkh0KUg/NgDVhGEXHVLLone1DWbHyfgc/j8dKH/RVvVAEiai1OB5xOLQdf9tmeIinnEnXB1J5H3vVAcm15aMKQJOfRCIXFr6cu3g/NUPyhHQ2kF2ecSfBpeUCRb8kQGhTfi4yJz0X5gJHjjvMH7w1fYfbwrsmjLPT8ojQPjhUcO9fO9uCmecEUfn4D2EmyuLhHsHfrG/CzE8eVyaEP6dbf1dGwXp7T/FSN8G9MRKx9XP9mtpRrAht0Ri2DjjFBRO0cukJMYxUOoQlDT5K+XTqVSpvyrJScwxP4iECX9//sPWJF2wiQ3uQ2nVb6u6ldCGfe225Ct3K/owMEydSFYLhIN3TEhFpi0zMG1Azh1TzkfWlvRAc0INTrdrGmMqi0UPc2kkw8RtjqnbjMXdQORa7z2s4HQNKHHG9kJPP4iqTtGLnQklZRF8uNZc505dMNKOo7E9aqyD63HKLi9zYH+ciGWqo+S3KhoaDwaBwFY4VwwSSwgRF0LIb6Z68Rxhohuy8evjcmSjkL6bls+i3WkmfZw0UsHt7MVSXtTbT9d/hJ7xBLI6MrarBXEiqSTUb3U6y0aCDSd0ppq791QeZWdbnjxHhEEPSq/9f2Mot/YDTX4xyIRsLYbUH91DJgQBGVlvpvT546dJX9nLzdJDWTJrBc1NWod+7i5z+m39YgTzipDzTyu6x4hW3qHO7CAOiX8Kaana8tlPibCAZGiyU5tPUZau8NON9bgIFJNEBS+H7n5Exrjbgzms6LppeFUCyVMHqKWhqpDGdbLjUguoaAcAfQfkvPemClHHSDBH71/2hzwBGA2pGXXH/MqDCl+9+vnRof/UI45uRfgNkGDmWsahSNOUdP/dmg6j4GbXfrSJjRt0YBYXN4dH/60gXaYYQOksCX8bm8zG5BhNgcSb9uAvZ0Vy/b5bBVHSjtZAkSVvKFukPHU5jORRMubK/3jYxvZ/MNLp7Zwy++ePlpmguVl0+eP6vkVdt5FyAXdlCM2gHCJe60J9hezkJ2enrOOU2vt3nWdmjEJO8juau5apV48ztnQBRQKkU/UgTY5s4uwmx9FECiHUIpRVAVDl+gf4Kg/533Ey/mEmRjhV2+DEYqDeIEXmnHOhvGz4m",
-      // sisanya halaman6 sampai halaman20 tinggal lu tempelin manual bro
     };
-
-    const audio = document.getElementById("audio");
-    const progress = document.getElementById("progressBar");
-    const timeDisplay = document.getElementById("timeDisplay");
-
-    audio.volume = 0.6;
+const passwordHash = "f09b133c45f78e374cd650c77229de1a5ea54dc4d2d3ca9bb1ddfe3c496f7939";
 
     function playMusik() {
-      audio.play().catch(err => {
-        alert("Gagal muter lagu: " + err.message);
-      });
+      const audio = document.getElementById("audio");
+      audio.play().catch(() => {});
     }
 
     function pauseMusik() {
+      const audio = document.getElementById("audio");
       audio.pause();
     }
 
-    audio.addEventListener("timeupdate", updateProgress);
-    audio.addEventListener("loadedmetadata", updateProgress);
+    function setProgress(e) {
+      const audio = document.getElementById("audio");
+      const progress = document.getElementById("progressBar");
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const percent = clickX / width;
+      audio.currentTime = audio.duration * percent;
+    }
 
     function updateProgress() {
+      const audio = document.getElementById("audio");
+      const progress = document.getElementById("progressBar");
+      const timeDisplay = document.getElementById("timeDisplay");
+
       const current = audio.currentTime;
       const duration = audio.duration;
       const percent = (current / duration) * 100;
@@ -240,44 +251,51 @@
         const s = Math.floor(t % 60);
         return `${m}:${s < 10 ? "0" + s : s}`;
       };
-
       timeDisplay.textContent = `${format(current)} / ${format(duration)}`;
     }
 
-    function setProgress(e) {
-      const container = e.currentTarget;
-      const rect = container.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const width = rect.width;
-      const percent = clickX / width;
-      audio.currentTime = audio.duration * percent;
-    }
+    document.getElementById("audio").addEventListener("timeupdate", updateProgress);
+    document.getElementById("audio").addEventListener("loadedmetadata", updateProgress);
 
-    function bukaSurat() {
+    async function bukaSurat() {
       const pass = document.getElementById("password").value;
-      if (pass === "dzwta") {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(pass);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join("");
+
+      if (hashHex === passwordHash) {
         document.getElementById("loginSection").classList.add("hidden");
         document.getElementById("suratSection").classList.remove("hidden");
         playMusik();
         hitungHari();
         gantiHalaman("dashboardSurat");
-        renderHalaman();
+        renderHalaman(pass); // kunci dekripsi dari password
       } else {
         document.getElementById("errorMsg").style.display = "block";
       }
     }
-function bukaSuratAsli() {
-      gantiHalaman(1);
+
+    function renderHalaman(kunci) {
+      for (let i = 1; i <= 20; i++) {
+        const key = "halaman" + i;
+        if (encryptedSurat[key]) {
+          try {
+            const bytes = CryptoJS.AES.decrypt(encryptedSurat[key], kunci);
+            const isi = bytes.toString(CryptoJS.enc.Utf8);
+            document.getElementById("konten" + i).innerText = isi || "[Gagal didekripsi]";
+          } catch (e) {
+            document.getElementById("konten" + i).innerText = "[Gagal didekripsi]";
+          }
+        }
+      }
     }
 
     function gantiHalaman(n) {
       const layers = document.querySelectorAll(".layer");
       layers.forEach(el => el.classList.remove("active"));
-
-      const target = typeof n === 'string'
-        ? document.getElementById(n)
-        : document.getElementById("halaman" + n);
-
+      const target = typeof n === "string" ? document.getElementById(n) : document.getElementById("halaman" + n);
       if (target) target.classList.add("active");
     }
 
@@ -287,49 +305,6 @@ function bukaSuratAsli() {
       const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
       document.getElementById("counter").textContent = `Surat ini sudah disimpan selama ${selisih} hari.`;
     }
-
-    function renderHalaman() {
-      const container = document.getElementById("semuaHalaman");
-      for (let i = 1; i <= 50; i++) {
-        const key = "halaman" + i;
-        if (!encryptedSurat[key]) continue;
-
-        const div = document.createElement("div");
-        div.classList.add("layer");
-        div.id = key;
-
-        const decrypted = CryptoJS.AES.decrypt(encryptedSurat[key], "dzwta").toString(CryptoJS.enc.Utf8);
-        const p = document.createElement("p");
-        p.textContent = decrypted;
-
-        const nav = document.createElement("div");
-        nav.className = "navigasi";
-
-        if (i > 1) {
-          const back = document.createElement("button");
-          back.textContent = "⬅ Kembali";
-          back.onclick = () => gantiHalaman(i - 1);
-          nav.appendChild(back);
-        }
-
-        if (i < 20 && encryptedSurat["halaman" + (i + 1)]) {
-          const next = document.createElement("button");
-          next.textContent = "Lanjut ➡";
-          next.onclick = () => gantiHalaman(i + 1);
-          nav.appendChild(next);
-        } else if (i === 20 || !encryptedSurat["halaman" + (i + 1)]) {
-          const done = document.createElement("button");
-          done.textContent = "🏠 Kembali ke Dashboard";
-          done.onclick = () => gantiHalaman("dashboardSurat");
-          nav.appendChild(done);
-        }
-
-        div.appendChild(p);
-        div.appendChild(nav);
-        container.appendChild(div);
-      }
-    }
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </body>
 </html>
