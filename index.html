@@ -17,6 +17,35 @@
       overflow-x: hidden;
     }
 
+    .shooting-star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      box-shadow:
+        0 0 8px #fff,
+        0 0 15px #a29bfe,
+        0 0 25px #fd79a8,
+        -5px -5px 15px rgba(255,255,255,0.3); /* jejak */
+      animation: shoot 1.5s ease-out forwards;
+      opacity: 0.95;
+      z-index: 1;
+    }
+
+    @keyframes shoot {
+      0% {
+       transform: translate(0, 0) scale(1);
+       opacity: 1;
+      }
+      100% {
+       transform: translate(600px, 400px) scale(0.9);
+       opacity: 0;
+      }
+    }
+
     .stars {
       position: fixed;
       width: 100%;
@@ -31,7 +60,14 @@
       width: 2px;
       height: 2px;
       background: white;
-      animation: blink 2s infinite ease-in-out;
+      border-radius: 50%;
+      box-shadow:
+       0 0 4px #a29bfe,
+       0 0 8px #81ecec,
+       0 0 12px #fd79a8,
+       0 0 16px #a29bfe,
+       0 0 20px #81ecec;
+      animation: blink 2s infinite ease-in-out alternate;
     }
 
     @keyframes blink {
@@ -190,17 +226,28 @@
       font-size: 3em;
       position: relative;
       display: block;
-      animation: pigeonLoop 10s ease-in-out infinite;
-      opacity: 0.8;
-      filter: blur(0.1px);
+      animation: pigeonLoop 10s ease-in-out infinite, glowPulse 2.5s ease-in-out infini>
+      opacity: 0.9;
+      filter: blur(0.1px) brightness(1.2);
+      text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.3),
+      0 0 8px rgba(255, 255, 255, 0.2),
+      0 0 12px #ff7675,
+      0 0 20px #ff7675;
     }
 
     @keyframes pigeonLoop {
-      0% { left: 100px; opacity: 0; transform: scale(0.95) }
+      0% { left: 100px; opacity: 0; transform: scale(0.95); }
       15% { opacity: 0.4; transform: scale(1); }
       50% { left: 0px; opacity: 1; transform: scale(1.02); }
       85% { opacity: 0.4; transform: scale(1); }
       100% { left: -100px; opacity: 0; transform: scale(0.95); }
+    }
+
+    @keyframes glowPulse {
+      0%   { text-shadow: 0 0 6px #ff7675; }
+      50%  { text-shadow: 0 0 12px #ff7675, 0 0 24px #ff7675; }
+      100% { text-shadow: 0 0 6px #ff7675; }
     }
 
     .fade-out {
@@ -550,6 +597,26 @@ function renderHalaman(kunci) {
 </style>
 
 <script>
+  function createShootingStar() {
+    const star = document.createElement("div");
+    star.className = "shooting-star";
+
+    star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
+    star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
+
+    document.body.appendChild(star);
+
+  setTimeout(() => {
+    star.remove();
+  }, 1800); // Hapus setelah animasi selesai
+}
+
+setInterval(() => {
+  if (Math.random() < 0.4) {
+    createShootingStar();
+  }
+}, 4500);
+
   function createStars(jumlah = 120) {
     const starsContainer = document.createElement("div");
     starsContainer.className = "stars";
