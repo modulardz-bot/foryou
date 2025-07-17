@@ -600,7 +600,7 @@ function bukaSuratTerakhir(kunci) {
   } catch (err) {
     console.warn("Gagal load galeri:", err);
   }
-}
+}, 150ms};
 
 function renderFotoSurat() {
   fetch("foto.json")
