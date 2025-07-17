@@ -295,26 +295,26 @@
       margin-top: 15px;
     }
 
-  .surat-terakhir-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    padding-top: 12px;
-  }
+    .surat-terakhir-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding-top: 12px;
+    }
 
-  .surat-foto {
-    width: 160px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 0 8px rgba(255,255,255,0.2);
-    transition: transform 0.3s ease;
-  }
+    .surat-foto {
+      width: 160px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 0 8px rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
 
-  .surat-foto:hover {
-    transform: scale(1.05);
-  }
+    .surat-foto:hover {
+      transform: scale(1.05);
+    }
 </style>
 </head>
 <body>
@@ -542,89 +542,92 @@ function renderHalaman(kunci) {
     container.appendChild(div);
   }
 }
-function bukaSuratTerakhir(kunci) {
-  const container = document.getElementById("semuaHalaman");
+<script>
+  function bukaSuratTerakhir(kunci) {
+    const container = document.getElementById("semuaHalaman");
 
-  const semuaLayer = container.querySelectorAll(".layer");
-  semuaLayer.forEach(el => el.classList.remove("active"));
+    const semuaLayer = container.querySelectorAll(".layer");
+    semuaLayer.forEach(el => el.classList.remove("active"));
 
-  const existing = document.getElementById("suratTerakhirLayer");
-  if (existing) existing.remove();
+    const existing = document.getElementById("suratTerakhirLayer");
+    if (existing) existing.remove();
 
-  const div = document.createElement("div");
-  div.classList.add("layer", "active");
-  div.id = "suratTerakhirLayer";
+    const div = document.createElement("div");
+    div.classList.add("layer", "active");
+    div.id = "suratTerakhirLayer";
 
-  const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
-  const p = document.createElement("p");
-  p.textContent = decrypted;
+    const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
+    const p = document.createElement("p");
+    p.textContent = decrypted;
 
-  const timestamp = document.createElement("div");
-  timestamp.className = "timestamper";
-  timestamp.textContent = `📅 Dibuka pada ${new Date().toLocaleString("id-ID")}`;
+    const timestamp = document.createElement("div");
+    timestamp.className = "timestamper";
+    timestamp.textContent = `📅 Dibuka pada ${new Date().toLocaleString("id-ID")}`;
 
-  const notif = document.createElement("div");
-  notif.className = "notif-penutup";
-  notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
+    const notif = document.createElement("div");
+    notif.className = "notif-penutup";
+    notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
 
-  const galeri = document.createElement("div");
-  galeri.id = "suratFotoGallery";
-  galeri.className = "surat-terakhir-grid";
-  galeri.style.marginTop = "20px";
+    // 🖼️ Galeri foto
+    const galeri = document.createElement("div");
+    galeri.id = "suratFotoGallery";
+    galeri.className = "surat-terakhir-grid";
+    galeri.style.marginTop = "20px";
 
-  const nav = document.createElement("div");
-  nav.className = "navigasi";
-  const kembaliBtn = document.createElement("button");
-  kembaliBtn.textContent = "🏠 Kembali ke Dashboard";
-  kembaliBtn.onclick = () => {
-    const dashboard = document.getElementById("dashboardSurat");
-    dashboard.classList.add("fade-slow");
-    setTimeout(() => {
-      gantiHalaman("dashboardSurat");
-      dashboard.classList.remove("fade-slow");
-    }, 750);
-  };
-  nav.appendChild(kembaliBtn);
+    const nav = document.createElement("div");
+    nav.className = "navigasi";
+    const kembaliBtn = document.createElement("button");
+    kembaliBtn.textContent = "🏠 Kembali ke Dashboard";
+    kembaliBtn.onclick = () => {
+      const dashboard = document.getElementById("dashboardSurat");
+      dashboard.classList.add("fade-slow");
+      setTimeout(() => {
+        gantiHalaman("dashboardSurat");
+        dashboard.classList.remove("fade-slow");
+      }, 750);
+    };
+    nav.appendChild(kembaliBtn);
 
-  div.appendChild(notif);
-  div.appendChild(p);
-  div.appendChild(timestamp);
-  div.appendChild(galeri);
-  div.appendChild(nav);
-  container.appendChild(div);
+    div.appendChild(notif);
+    div.appendChild(p);
+    div.appendChild(timestamp);
+    div.appendChild(galeri); // Inject galeri
+    div.appendChild(nav);
+    container.appendChild(div);
 
-  // Delay panggilan renderFotoSurat() sampai DOM fix
-  requestAnimationFrame(() => {
-    renderFotoSurat();
-  });
-}
-
-function renderFotoSurat() {
-  console.log("🔃 Mulai render galeri...");
-
-  fetch("foto.json")
-    .then(res => res.json())
-    .then(fotoList => {
-      const gallery = document.getElementById("suratFotoGallery");
-      if (!gallery) {
-        console.warn("❌ suratFotoGallery NOT FOUND saat fetch");
-        return;
-      }
-
-      console.log("✅ Foto berhasil di-load:", fotoList);
-
-      fotoList.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = "Foto";
-        img.className = "surat-foto";
-        gallery.appendChild(img);
-      });
-    })
-    .catch(err => {
-      console.error("Gagal load foto.json:", err);
+    // Panggil galeri setelah DOM siap
+    requestAnimationFrame(() => {
+      renderFotoSurat();
     });
-}
+  }
+</script>
+<script>
+  function renderFotoSurat() {
+    console.log("🔃 Mulai render galeri...");
+
+    fetch("foto.json")
+      .then(res => res.json())
+      .then(fotoList => {
+        const gallery = document.getElementById("suratFotoGallery");
+        if (!gallery) {
+          console.warn("❌ suratFotoGallery NOT FOUND saat fetch");
+          return;
+        }
+
+        console.log("✅ Foto berhasil di-load:", fotoList);
+
+        fotoList.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "Foto";
+          img.className = "surat-foto";
+          gallery.appendChild(img);
+        });
+      })
+      .catch(err => {
+        console.error("Gagal load foto.json:", err);
+      });
+  }
 </script>
 
 <style>
