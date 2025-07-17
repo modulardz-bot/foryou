@@ -600,7 +600,7 @@ function bukaSuratTerakhir(kunci) {
   } catch (err) {
     console.warn("Gagal load galeri:", err);
   }
-}, 150ms};
+}
 
 function renderFotoSurat() {
   fetch("foto.json")
@@ -620,7 +620,7 @@ function renderFotoSurat() {
     .catch(err => {
       console.error("Gagal load foto.json:", err);
     });
-}
+}, 150};
 </script>
 
 <style>
