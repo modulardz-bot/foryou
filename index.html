@@ -567,7 +567,6 @@ function bukaSuratTerakhir(kunci) {
   notif.className = "notif-penutup";
   notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
 
-  // Tambah galeri container
   const galeri = document.createElement("div");
   galeri.id = "suratFotoGallery";
   galeri.className = "surat-terakhir-grid";
@@ -590,24 +589,32 @@ function bukaSuratTerakhir(kunci) {
   div.appendChild(notif);
   div.appendChild(p);
   div.appendChild(timestamp);
-  div.appendChild(galeri); // Inject gallery div
+  div.appendChild(galeri);
   div.appendChild(nav);
   container.appendChild(div);
 
-  // Panggil renderFotoSurat terakhir
-  try {
+  // Delay panggilan renderFotoSurat() sampai DOM fix
+  requestAnimationFrame(() => {
     renderFotoSurat();
-  } catch (err) {
-    console.warn("Gagal load galeri:", err);
-  }
+  });
 }
+</script>
 
+<!-- Tambahin renderFotoSurat() -->
+<script>
 function renderFotoSurat() {
+  console.log("🔃 Mulai render galeri...");
+
   fetch("foto.json")
     .then(res => res.json())
     .then(fotoList => {
       const gallery = document.getElementById("suratFotoGallery");
-      if (!gallery) return;
+      if (!gallery) {
+        console.warn("❌ suratFotoGallery NOT FOUND saat fetch");
+        return;
+      }
+
+      console.log("✅ Foto berhasil di-load:", fotoList);
 
       fotoList.forEach(src => {
         const img = document.createElement("img");
@@ -620,7 +627,7 @@ function renderFotoSurat() {
     .catch(err => {
       console.error("Gagal load foto.json:", err);
     });
-}, 150};
+}
 </script>
 
 <style>
