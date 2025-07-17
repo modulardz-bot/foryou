@@ -238,32 +238,35 @@
     }
 
     .galeri-mantan {
-      column-count: 3;
-      column-gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
       margin-top: 25px;
     }
 
-    .galeri-mantan img.foto-besar {
-      width: 200%;
-      margin-bottom: 10px;
+    .galeri-mantan img {
+      width: 100%;
       border-radius: 8px;
       display: block;
       object-fit: contain;
       background-color: #111;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
-      break-inside: avoid;
       cursor: zoom-in;
+    }
+
+    .galeri-mantan img.foto-besar {
+      grid-column: span 2;
     }
 
     @media (max-width: 768px) {
       .galeri-mantan {
-        column-count: 2;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 480px) {
       .galeri-mantan {
-        column-count: 1;
+        grid-template-columns: 1fr;
       }
     }
 
@@ -414,14 +417,13 @@
 
   renderHalaman(pass);
 
-  // ✅ Preload galeri
-  fetch("foto.json")
-    .then(res => res.json())
-    .then(data => {
-      window.preloadedGaleri = data.map(e =>
-        CryptoJS.AES.decrypt(e, pass).toString(CryptoJS.enc.Utf8)
-      );
-    });
+ fetch("foto.json")
+  .then(res => res.json())
+  .then(data => {
+    window.preloadedGaleri = data.map(e =>
+      CryptoJS.AES.decrypt(e, pass).toString(CryptoJS.enc.Utf8)
+    );
+  });
 } else {
   document.getElementById("errorMsg").style.display = "block";
 }
