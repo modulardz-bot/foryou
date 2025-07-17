@@ -567,8 +567,8 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
       div.appendChild(notif);
       div.appendChild(p);
       div.appendChild(timestamp);
-      div.appendChild(galeri); // galeri foto
       div.appendChild(nav);
+      renderFotoSurat(div);
       container.appendChild(div);
 
       requestAnimationFrame(() => {
@@ -576,25 +576,29 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
       });
     }
 
-    function renderFotoSurat() {
-      fetch("foto.json")
-        .then(res => res.json())
-        .then(fotoList => {
-          const gallery = document.getElementById("suratFotoGallery");
-          if (!gallery) return;
-          fotoList.forEach(src => {
-            const img = document.createElement("img");
-            img.src = src;
-            img.alt = "Foto";
-            img.className = "surat-foto";
-            gallery.appendChild(img);
-          });
-        })
-        .catch(err => {
-          console.error("Gagal load foto:", err);
-        });
-    }
-  </script>
+function renderFotoSurat(parentDiv) {
+  fetch("foto.json")
+    .then(res => res.json())
+    .then(fotoList => {
+      if (!Array.isArray(fotoList)) return;
+
+      const gallery = document.createElement("div");
+      gallery.className = "surat-terakhir-grid";
+
+      fotoList.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Foto";
+        img.className = "surat-foto";
+        gallery.appendChild(img);
+      });
+
+      parentDiv.appendChild(gallery);
+    })
+    .catch(err => {
+      console.error("Gagal load foto:", err);
+    });
+}
 <style>
     .surat-terakhir-grid {
       display: grid;
