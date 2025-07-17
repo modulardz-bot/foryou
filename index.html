@@ -316,6 +316,31 @@
        column-count: 1;
      }
     }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
   </style>
 <body>
   <div class="container">
@@ -360,6 +385,10 @@
       <div id="semuaHalaman"></div>
     </div>
   </div>
+  <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightboxImg" src="">
+  </div>
+</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
   const passwordHash = "f09b133c45f78e374cd650c77229de1a5ea54dc4d2d3ca9bb1ddfe3c496f7939";
@@ -579,29 +608,33 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
     div.appendChild(timestamp);
     div.appendChild(nav);
 
-    // ⬇ Inject Galeri Foto Mantan
-    fetch("foto.json")
-      .then(res => res.json())
-      .then(encryptedImages => {
-        const decryptedImages = encryptedImages.map(e =>
-          CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
-        );
+ fetch("foto.json")
+  .then(res => res.json())
+  .then(encryptedImages => {
+    const decryptedImages = encryptedImages.map(e =>
+      CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
+    );
 
-        const galeri = document.createElement("div");
-        galeri.className = "galeri-mantan";
+    const galeri = document.createElement("div");
+    galeri.className = "galeri-mantan";
 
-        decryptedImages.forEach(src => {
-          const img = document.createElement("img");
-          img.src = src;
-          galeri.appendChild(img);
-        });
+    decryptedImages.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
 
-        div.appendChild(galeri);
-      })
-      .catch(err => console.error("Gagal load galeri:", err));
+      img.onclick = () => {
+        document.getElementById("lightboxImg").src = src;
+        document.getElementById("lightbox").classList.add("active");
+      };
 
-    container.appendChild(div);
-  }
+      galeri.appendChild(img);
+    });
+
+    div.appendChild(galeri);
+  })
+  .catch(err => console.error("Gagal load galeri:", err));
+
+container.appendChild(div);
 </script>
 
 <script>
