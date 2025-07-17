@@ -601,10 +601,7 @@ function bukaSuratTerakhir(kunci) {
     console.warn("Gagal load galeri:", err);
   }
 }
-</script>
 
-<!-- Tambahin renderFotoSurat() di akhir HTML -->
-<script>
 function renderFotoSurat() {
   fetch("foto.json")
     .then(res => res.json())
