@@ -289,21 +289,32 @@
       margin-top: 15px;
     }
 
-    /* 💖 Tambahan galeri */
     .galeri-mantan {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 10px;
+      column-count: 3;
+      column-gap: 10px;
       margin-top: 25px;
-      padding-top: 10px;
     }
 
     .galeri-mantan img {
       width: 100%;
-      height: auto;
-      border-radius: 6px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: block;
       object-fit: contain;
-      box-shadow: 0 0 6px rgba(255,255,255,0.2);
+      background-color: #111;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+    }
+ 
+    @media (max-width: 768px) {
+     .galeri-mantan {
+       column-count: 2;
+     }
+    }
+
+    @media (max-width: 480px) {
+     .galeri-mantan {
+       column-count: 1;
+     }
     }
   </style>
 <body>
