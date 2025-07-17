@@ -412,6 +412,16 @@
       }, 3000);
 
       renderHalaman(pass);
+
+      // ✅ PRELOAD galeri foto mantan
+      fetch("foto.json")
+        .then(res => res.json())
+        .then(encryptedImages => {
+          window._decryptedGaleri = encryptedImages.map(e =>
+            CryptoJS.AES.decrypt(e, pass).toString(CryptoJS.enc.Utf8)
+          );
+        })
+        .catch(err => console.warn("Preload galeri gagal:", err));
     } else {
       document.getElementById("errorMsg").style.display = "block";
     }
@@ -559,33 +569,42 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
     div.appendChild(timestamp);
     div.appendChild(nav);
 
-    // ⬇ Inject Galeri Foto Mantan
-    fetch("foto.json")
-      .then(res => res.json())
-      .then(encryptedImages => {
-        const decryptedImages = encryptedImages.map(e =>
-          CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
-        );
+    // ✅ Inject Galeri Foto Mantan (pakai cache jika tersedia)
+    (new Promise(resolve => {
+      if (window._decryptedGaleri) {
+        resolve(window._decryptedGaleri);
+      } else {
+        fetch("foto.json")
+          .then(res => res.json())
+          .then(encryptedImages => {
+            const decrypted = encryptedImages.map(e =>
+              CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
+            );
+            resolve(decrypted);
+          })
+          .catch(err => {
+            console.error("Gagal load galeri:", err);
+            resolve([]);
+          });
+      }
+    }))
+    .then(decryptedImages => {
+      const galeri = document.createElement("div");
+      galeri.className = "galeri-mantan";
 
-        const galeri = document.createElement("div");
-        galeri.className = "galeri-mantan";
+      decryptedImages.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.loading = "lazy";
+        img.onclick = () => {
+          document.getElementById("lightboxImg").src = src;
+          document.getElementById("lightbox").classList.add("active");
+        };
+        galeri.appendChild(img);
+      });
 
-        decryptedImages.forEach(src => {
-          const img = document.createElement("img");
-          img.src = src;
-          img.loading = "lazy";
-
-          img.onclick = () => {
-            document.getElementById("lightboxImg").src = src;
-            document.getElementById("lightbox").classList.add("active");
-          };
-
-          galeri.appendChild(img);
-        });
-
-        div.appendChild(galeri);
-      })
-      .catch(err => console.error("Gagal load galeri:", err));
+      div.appendChild(galeri);
+    });
 
     container.appendChild(div);
   }
