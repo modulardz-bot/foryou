@@ -216,70 +216,18 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .pigeon-run {
-      font-size: 3em;
-      position: relative;
-      display: block;
-      animation: pigeonLoop 10s ease-in-out infinite, glowPulse 2.5s ease-in-out infinite;
-      opacity: 0.9;
-      filter: blur(0.1px) brightness(1.2);
-      text-shadow:
-      0 0 4px rgba(255, 255, 255, 0.3),
-      0 0 8px rgba(255, 255, 255, 0.2),
-      0 0 12px #ff7675,
-      0 0 20px #ff7675;
-    }
-
-    @keyframes pigeonLoop {
-      0% { left: 100px; opacity: 0; transform: scale(0.95); }
-      15% { opacity: 0.4; transform: scale(1); }
-      50% { left: 0px; opacity: 1; transform: scale(1.02); }
-      85% { opacity: 0.4; transform: scale(1); }
-      100% { left: -100px; opacity: 0; transform: scale(0.95); }
-    }
-
-    @keyframes glowPulse {
-      0%   { text-shadow: 0 0 6px #ff7675; }
-      50%  { text-shadow: 0 0 12px #ff7675, 0 0 24px #ff7675; }
-      100% { text-shadow: 0 0 6px #ff7675; }
-    }
-
-    .fade-out {
-      animation: fadeOut 2s ease forwards;
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
     .notif-penutup {
       text-align: center;
       font-size: 1.1em;
       color: #ff7675;
       font-style: italic;
       margin-bottom: 25px;
-      animation: fadeNotif 1.6s ease-in-out both;
     }
 
     .ily-text {
       display: block;
       margin-top: 5px;
       color: #ccc;
-    }
-
-    @keyframes fadeNotif {
-      from { opacity: 0; transform: translateY(-5px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-slow {
-      animation: slowFadeOut 3s ease forwards;
-    }
-
-    @keyframes slowFadeOut {
-      from { opacity: 1; transform: scale(1); }
-      to   { opacity: 0; transform: scale(0.98); }
     }
 
     #counter {
@@ -303,18 +251,19 @@
       object-fit: contain;
       background-color: #111;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+      cursor: zoom-in;
     }
- 
+
     @media (max-width: 768px) {
-     .galeri-mantan {
-       column-count: 2;
-     }
+      .galeri-mantan {
+        column-count: 2;
+      }
     }
 
     @media (max-width: 480px) {
-     .galeri-mantan {
-       column-count: 1;
-     }
+      .galeri-mantan {
+        column-count: 1;
+      }
     }
 
     .lightbox {
@@ -329,7 +278,6 @@
       justify-content: center;
       z-index: 999;
     }
-
     .lightbox img {
       max-width: 90%;
       max-height: 90%;
@@ -337,11 +285,11 @@
       border-radius: 10px;
       box-shadow: 0 0 10px #fff;
     }
-
     .lightbox.active {
       display: flex;
     }
   </style>
+</head>
 <body>
   <div class="container">
     <h1>Memories - D</h1>
@@ -385,9 +333,12 @@
       <div id="semuaHalaman"></div>
     </div>
   </div>
+
   <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
     <img id="lightboxImg" src="">
   </div>
+
+  <div class="stars"></div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
@@ -608,33 +559,36 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
     div.appendChild(timestamp);
     div.appendChild(nav);
 
- fetch("foto.json")
-  .then(res => res.json())
-  .then(encryptedImages => {
-    const decryptedImages = encryptedImages.map(e =>
-      CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
-    );
+    // ⬇ Inject Galeri Foto Mantan
+    fetch("foto.json")
+      .then(res => res.json())
+      .then(encryptedImages => {
+        const decryptedImages = encryptedImages.map(e =>
+          CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
+        );
 
-    const galeri = document.createElement("div");
-    galeri.className = "galeri-mantan";
+        const galeri = document.createElement("div");
+        galeri.className = "galeri-mantan";
 
-    decryptedImages.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
+        decryptedImages.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
 
-      img.onclick = () => {
-        document.getElementById("lightboxImg").src = src;
-        document.getElementById("lightbox").classList.add("active");
-      };
+          // lightbox onclick
+          img.onclick = () => {
+            document.getElementById("lightboxImg").src = src;
+            document.getElementById("lightbox").classList.add("active");
+          };
 
-      galeri.appendChild(img);
-    });
+          galeri.appendChild(img);
+        });
 
-    div.appendChild(galeri);
-  })
-  .catch(err => console.error("Gagal load galeri:", err));
+        div.appendChild(galeri);
+      })
+      .catch(err => console.error("Gagal load galeri:", err));
 
-container.appendChild(div);
+    container.appendChild(div);
+  }
 </script>
 
 <script>
@@ -659,8 +613,7 @@ container.appendChild(div);
   }, 4500);
 
   function createStars(jumlah = 120) {
-    const starsContainer = document.createElement("div");
-    starsContainer.className = "stars";
+    const starsContainer = document.querySelector(".stars");
 
     for (let i = 0; i < jumlah; i++) {
       const star = document.createElement("div");
@@ -670,13 +623,10 @@ container.appendChild(div);
       star.style.animationDelay = `${Math.random() * 2}s`;
       starsContainer.appendChild(star);
     }
-
-    document.body.appendChild(starsContainer);
   }
 
   window.onload = () => {
     createStars();
   };
 </script>
-</body>
 </html>
