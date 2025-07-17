@@ -573,8 +573,8 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
         decryptedImages.forEach(src => {
           const img = document.createElement("img");
           img.src = src;
+          img.loading = "lazy";
 
-          // lightbox onclick
           img.onclick = () => {
             document.getElementById("lightboxImg").src = src;
             document.getElementById("lightbox").classList.add("active");
