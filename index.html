@@ -243,14 +243,15 @@
       margin-top: 25px;
     }
 
-    .galeri-mantan img {
-      width: 100%;
+    .galeri-mantan img.foto-besar {
+      width: 200%;
       margin-bottom: 10px;
       border-radius: 8px;
       display: block;
       object-fit: contain;
       background-color: #111;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+      break-inside: avoid;
       cursor: zoom-in;
     }
 
@@ -397,39 +398,38 @@
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join("");
 
-    if (hashHex === passwordHash) {
-      passwordYangBenar = pass;
-      document.getElementById("loginSection").classList.add("hidden");
-      document.getElementById("suratSection").classList.remove("hidden");
-      playMusik();
-      hitungHari();
-      gantiHalaman("dashboardSurat");
+ if (hashHex === passwordHash) {
+  passwordYangBenar = pass;
+  document.getElementById("loginSection").classList.add("hidden");
+  document.getElementById("suratSection").classList.remove("hidden");
+  playMusik();
+  hitungHari();
+  gantiHalaman("dashboardSurat");
 
-      setTimeout(() => {
-        showAsciiAnime();
-        document.getElementById("btnBukaSurat").disabled = false;
-        document.getElementById("btnNanti").disabled = false;
-      }, 3000);
+  setTimeout(() => {
+    showAsciiAnime();
+    document.getElementById("btnBukaSurat").disabled = false;
+    document.getElementById("btnNanti").disabled = false;
+  }, 3000);
 
-      renderHalaman(pass);
+  renderHalaman(pass);
 
-      // ✅ PRELOAD galeri foto mantan
-      fetch("foto.json")
-        .then(res => res.json())
-        .then(encryptedImages => {
-          window._decryptedGaleri = encryptedImages.map(e =>
-            CryptoJS.AES.decrypt(e, pass).toString(CryptoJS.enc.Utf8)
-          );
-        })
-        .catch(err => console.warn("Preload galeri gagal:", err));
-    } else {
-      document.getElementById("errorMsg").style.display = "block";
-    }
-  }
+  // ✅ Preload galeri
+  fetch("foto.json")
+    .then(res => res.json())
+    .then(data => {
+      window.preloadedGaleri = data.map(e =>
+        CryptoJS.AES.decrypt(e, pass).toString(CryptoJS.enc.Utf8)
+      );
+    });
+} else {
+  document.getElementById("errorMsg").style.display = "block";
+}
+}
 
-  function showAsciiAnime() {
-    const notif = document.getElementById("asciiNotifAnime");
-    const asciiText = `
+function showAsciiAnime() {
+  const notif = document.getElementById("asciiNotifAnime");
+  const asciiText = `
 📜 Haii orang yang selalu aku tunggu
 (Di baco sampe abis yo hehe surat yang aku buat)
 
@@ -441,104 +441,47 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
     dan cuma buat kamu.
     `;
 
-    notif.style.display = "block";
-    notif.textContent = "";
-    let i = 0;
-    function typingAnime() {
-      if (i < asciiText.length) {
-        notif.textContent += asciiText.charAt(i);
-        i++;
-        setTimeout(typingAnime, 45);
-      }
-    }
-    typingAnime();
-  }
-
-  function gantiHalaman(n) {
-    const layers = document.querySelectorAll(".layer");
-    layers.forEach(el => el.classList.remove("active"));
-    const target = typeof n === 'string' ? document.getElementById(n) : document.getElementById("halaman" + n);
-    if (target) target.classList.add("active");
-  }
-
-  function bukaSuratAsli() {
-    gantiHalaman(1);
-  }
-
-  function hitungHari() {
-    const awal = new Date("2025-06-24T00:30:00");
-    const sekarang = new Date();
-    const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
-    document.getElementById("counter").textContent = `📅 Surat ini sudah disimpan selama ${selisih} hari.`;
-  }
-
-  function renderHalaman(kunci) {
-    const container = document.getElementById("semuaHalaman");
-    for (let i = 1; i <= 20; i++) {
-      const key = "halaman" + i;
-      if (!encryptedSurat[key]) continue;
-
-      const div = document.createElement("div");
-      div.classList.add("layer");
-      div.id = key;
-
-      const decrypted = CryptoJS.AES.decrypt(encryptedSurat[key], kunci).toString(CryptoJS.enc.Utf8);
-      const p = document.createElement("p");
-      p.textContent = decrypted;
-
-      const timestamp = document.createElement("div");
-      timestamp.className = "timestamper";
-      const today = new Date().toLocaleString("id-ID");
-      timestamp.textContent = `📅 Dibuka pada ${today}`;
-
-      const indikator = document.createElement("div");
-      indikator.className = "halaman-indikator";
-      indikator.textContent = `📖 Halaman ${i}`;
-
-      const nav = document.createElement("div");
-      nav.className = "navigasi";
-
-      if (i > 1) {
-        const back = document.createElement("button");
-        back.textContent = "⬅ Kembali";
-        back.onclick = () => gantiHalaman(i - 1);
-        nav.appendChild(back);
-      }
-
-      if (i < 20 && encryptedSurat["halaman" + (i + 1)]) {
-        const next = document.createElement("button");
-        next.textContent = "Lanjut ➡";
-        next.onclick = () => gantiHalaman(i + 1);
-        nav.appendChild(next);
-      } else if (i === 20 || !encryptedSurat["halaman" + (i + 1)]) {
-        const toLast = document.createElement("button");
-        toLast.textContent = "📜 Surat Terakhir";
-        toLast.onclick = () => bukaSuratTerakhir(kunci);
-        nav.appendChild(toLast);
-      }
-
-      div.appendChild(p);
-      div.appendChild(timestamp);
-      div.appendChild(indikator);
-      div.appendChild(nav);
-      container.appendChild(div);
+  notif.style.display = "block";
+  notif.textContent = "";
+  let i = 0;
+  function typingAnime() {
+    if (i < asciiText.length) {
+      notif.textContent += asciiText.charAt(i);
+      i++;
+      setTimeout(typingAnime, 45);
     }
   }
+  typingAnime();
+}
 
-  function bukaSuratTerakhir(kunci) {
-    const container = document.getElementById("semuaHalaman");
+function gantiHalaman(n) {
+  document.querySelectorAll(".layer").forEach(el => el.classList.remove("active"));
+  const target = typeof n === 'string' ? document.getElementById(n) : document.getElementById("halaman" + n);
+  if (target) target.classList.add("active");
+}
 
-    const semuaLayer = container.querySelectorAll(".layer");
-    semuaLayer.forEach(el => el.classList.remove("active"));
+function bukaSuratAsli() {
+  gantiHalaman(1);
+}
 
-    const existing = document.getElementById("suratTerakhirLayer");
-    if (existing) existing.remove();
+function hitungHari() {
+  const awal = new Date("2025-06-24T00:30:00");
+  const sekarang = new Date();
+  const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
+  document.getElementById("counter").textContent = `📅 Surat ini sudah disimpan selama ${selisih} hari.`;
+}
+
+function renderHalaman(kunci) {
+  const container = document.getElementById("semuaHalaman");
+  for (let i = 1; i <= 20; i++) {
+    const key = "halaman" + i;
+    if (!encryptedSurat[key]) continue;
 
     const div = document.createElement("div");
-    div.classList.add("layer", "active");
-    div.id = "suratTerakhirLayer";
+    div.classList.add("layer");
+    div.id = key;
 
-    const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
+    const decrypted = CryptoJS.AES.decrypt(encryptedSurat[key], kunci).toString(CryptoJS.enc.Utf8);
     const p = document.createElement("p");
     p.textContent = decrypted;
 
@@ -546,106 +489,135 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
     timestamp.className = "timestamper";
     timestamp.textContent = `📅 Dibuka pada ${new Date().toLocaleString("id-ID")}`;
 
-    const notif = document.createElement("div");
-    notif.className = "notif-penutup";
-    notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
+    const indikator = document.createElement("div");
+    indikator.className = "halaman-indikator";
+    indikator.textContent = `📖 Halaman ${i}`;
 
     const nav = document.createElement("div");
     nav.className = "navigasi";
-    const kembaliBtn = document.createElement("button");
-    kembaliBtn.textContent = "🏠 Kembali ke Dashboard";
-    kembaliBtn.onclick = () => {
-      const dashboard = document.getElementById("dashboardSurat");
-      dashboard.classList.add("fade-slow");
-      setTimeout(() => {
-        gantiHalaman("dashboardSurat");
-        dashboard.classList.remove("fade-slow");
-      }, 750);
-    };
-    nav.appendChild(kembaliBtn);
 
-    div.appendChild(notif);
+    if (i > 1) {
+      const back = document.createElement("button");
+      back.textContent = "⬅ Kembali";
+      back.onclick = () => gantiHalaman(i - 1);
+      nav.appendChild(back);
+    }
+
+    if (i < 20 && encryptedSurat["halaman" + (i + 1)]) {
+      const next = document.createElement("button");
+      next.textContent = "Lanjut ➡";
+      next.onclick = () => gantiHalaman(i + 1);
+      nav.appendChild(next);
+    } else {
+      const toLast = document.createElement("button");
+      toLast.textContent = "📜 Surat Terakhir";
+      toLast.onclick = () => bukaSuratTerakhir(kunci);
+      nav.appendChild(toLast);
+    }
+
     div.appendChild(p);
     div.appendChild(timestamp);
+    div.appendChild(indikator);
     div.appendChild(nav);
-
-    // ✅ Inject Galeri Foto Mantan (pakai cache jika tersedia)
-    (new Promise(resolve => {
-      if (window._decryptedGaleri) {
-        resolve(window._decryptedGaleri);
-      } else {
-        fetch("foto.json")
-          .then(res => res.json())
-          .then(encryptedImages => {
-            const decrypted = encryptedImages.map(e =>
-              CryptoJS.AES.decrypt(e, kunci).toString(CryptoJS.enc.Utf8)
-            );
-            resolve(decrypted);
-          })
-          .catch(err => {
-            console.error("Gagal load galeri:", err);
-            resolve([]);
-          });
-      }
-    }))
-    .then(decryptedImages => {
-      const galeri = document.createElement("div");
-      galeri.className = "galeri-mantan";
-
-      decryptedImages.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.loading = "lazy";
-        img.onclick = () => {
-          document.getElementById("lightboxImg").src = src;
-          document.getElementById("lightbox").classList.add("active");
-        };
-        galeri.appendChild(img);
-      });
-
-      div.appendChild(galeri);
-    });
-
     container.appendChild(div);
   }
+}
+
+function bukaSuratTerakhir(kunci) {
+  const container = document.getElementById("semuaHalaman");
+  container.querySelectorAll(".layer").forEach(el => el.classList.remove("active"));
+  document.getElementById("suratTerakhirLayer")?.remove();
+
+  const div = document.createElement("div");
+  div.className = "layer active";
+  div.id = "suratTerakhirLayer";
+
+  const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
+  const p = document.createElement("p");
+  p.textContent = decrypted;
+
+  const timestamp = document.createElement("div");
+  timestamp.className = "timestamper";
+  timestamp.textContent = `📅 Dibuka pada ${new Date().toLocaleString("id-ID")}`;
+
+  const notif = document.createElement("div");
+  notif.className = "notif-penutup";
+  notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
+
+  const nav = document.createElement("div");
+  nav.className = "navigasi";
+  const kembaliBtn = document.createElement("button");
+  kembaliBtn.textContent = "🏠 Kembali ke Dashboard";
+  kembaliBtn.onclick = () => {
+    gantiHalaman("dashboardSurat");
+  };
+  nav.appendChild(kembaliBtn);
+
+  div.appendChild(notif);
+  div.appendChild(p);
+  div.appendChild(timestamp);
+  div.appendChild(nav);
+
+  // ✅ Inject Galeri (Auto foto besar)
+  const decryptedImages = window.preloadedGaleri || [];
+  if (decryptedImages.length) {
+    const galeri = document.createElement("div");
+    galeri.className = "galeri-mantan";
+
+    decryptedImages.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.loading = "lazy";
+
+      // ✅ otomatis bikin besar jika base64 panjang
+      if (src.length > 100000) {
+        img.classList.add("foto-besar");
+      }
+
+      img.onclick = () => {
+        document.getElementById("lightboxImg").src = src;
+        document.getElementById("lightbox").classList.add("active");
+      };
+
+      galeri.appendChild(img);
+    });
+
+    div.appendChild(galeri);
+  }
+
+  container.appendChild(div);
+}
 </script>
 
 <script>
-  function createShootingStar() {
+function createShootingStar() {
+  const star = document.createElement("div");
+  star.className = "shooting-star";
+  star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
+  star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
+  document.body.appendChild(star);
+  setTimeout(() => star.remove(), 1800);
+}
+
+setInterval(() => {
+  if (Math.random() < 0.4) createShootingStar();
+}, 4500);
+
+function createStars(jumlah = 120) {
+  const starsContainer = document.querySelector(".stars");
+  for (let i = 0; i < jumlah; i++) {
     const star = document.createElement("div");
-    star.className = "shooting-star";
-
-    star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
-    star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
-
-    document.body.appendChild(star);
-
-    setTimeout(() => {
-      star.remove();
-    }, 1800);
+    star.className = "star";
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.animationDelay = `${Math.random() * 2}s`;
+    starsContainer.appendChild(star);
   }
+}
 
-  setInterval(() => {
-    if (Math.random() < 0.4) {
-      createShootingStar();
-    }
-  }, 4500);
-
-  function createStars(jumlah = 120) {
-    const starsContainer = document.querySelector(".stars");
-
-    for (let i = 0; i < jumlah; i++) {
-      const star = document.createElement("div");
-      star.className = "star";
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.animationDelay = `${Math.random() * 2}s`;
-      starsContainer.appendChild(star);
-    }
-  }
-
-  window.onload = () => {
-    createStars();
-  };
+window.onload = () => {
+  createStars();
+};
 </script>
+</body>
 </html>
