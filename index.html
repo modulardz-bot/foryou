@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Tamparan Jiwa</title>
+  <title>Memories - D</title>
   <style>
     body {
       margin: 0;
@@ -29,21 +29,15 @@
         0 0 8px #fff,
         0 0 15px #a29bfe,
         0 0 25px #fd79a8,
-        -5px -5px 15px rgba(255,255,255,0.3); /* jejak */
+        -5px -5px 15px rgba(255,255,255,0.3);
       animation: shoot 1.5s ease-out forwards;
       opacity: 0.95;
       z-index: 1;
     }
 
     @keyframes shoot {
-      0% {
-       transform: translate(0, 0) scale(1);
-       opacity: 1;
-      }
-      100% {
-       transform: translate(600px, 400px) scale(0.9);
-       opacity: 0;
-      }
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(600px, 400px) scale(0.9); opacity: 0; }
     }
 
     .stars {
@@ -53,6 +47,8 @@
       background: transparent;
       z-index: -1;
       overflow: hidden;
+      top: 0;
+      left: 0;
     }
 
     .star {
@@ -62,11 +58,11 @@
       background: white;
       border-radius: 50%;
       box-shadow:
-       0 0 4px #a29bfe,
-       0 0 8px #81ecec,
-       0 0 12px #fd79a8,
-       0 0 16px #a29bfe,
-       0 0 20px #81ecec;
+        0 0 4px #a29bfe,
+        0 0 8px #81ecec,
+        0 0 12px #fd79a8,
+        0 0 16px #a29bfe,
+        0 0 20px #81ecec;
       animation: blink 2s infinite ease-in-out alternate;
     }
 
@@ -129,7 +125,7 @@
       margin-top: 4px;
     }
 
-    input[type="password"] {
+    input[type=\"password\"] {
       padding: 10px;
       width: 160px;
       margin-bottom: 20px;
@@ -175,21 +171,8 @@
       text-align: left;
     }
 
-    .layer p {
-      font-size: 1.5em;
-      line-height: 1.6;
-      color: #e0e0e0;
-      text-align: justify;
-      text-indent: 20px; 
-    }
-
-    .active {
-      display: block;
-    }
-
-    .hidden {
-      display: none;
-    }
+    .active { display: block; }
+    .hidden { display: none; }
 
     .dashboard-text {
       display: flex;
@@ -206,7 +189,7 @@
       font-size: 1.6em;
       line-height: 1.6;
       text-align: center;
-      white-space: pre-warp;
+      white-space: pre-wrap;
     }
 
     .timestamper {
@@ -238,10 +221,10 @@
       opacity: 0.9;
       filter: blur(0.1px) brightness(1.2);
       text-shadow:
-      0 0 4px rgba(255, 255, 255, 0.3),
-      0 0 8px rgba(255, 255, 255, 0.2),
-      0 0 12px #ff7675,
-      0 0 20px #ff7675;
+        0 0 4px rgba(255, 255, 255, 0.3),
+        0 0 8px rgba(255, 255, 255, 0.2),
+        0 0 12px #ff7675,
+        0 0 20px #ff7675;
     }
 
     @keyframes pigeonLoop {
@@ -256,15 +239,6 @@
       0%   { text-shadow: 0 0 6px #ff7675; }
       50%  { text-shadow: 0 0 12px #ff7675, 0 0 24px #ff7675; }
       100% { text-shadow: 0 0 6px #ff7675; }
-    }
-
-    .fade-out {
-      animation: fadeOut 2s ease forwards;
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
     }
 
     .notif-penutup {
@@ -302,11 +276,32 @@
       color: #ccc;
       margin-top: 15px;
     }
+
+    .surat-terakhir-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding-top: 12px;
+    }
+
+    .surat-foto {
+      width: 160px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 0 8px rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .surat-foto:hover {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Tamparan Jiwa</h1>
+    <h1>Memories - D</h1>
 
     <div class="media-player">
       <p>🎵 Cardigan - Taylor Swift</p>
@@ -323,7 +318,7 @@
     <audio id="audio" src="cardigan.mp3" preload="auto" loop></audio>
 
     <div id="loginSection">
-      <p>Masukkan Password untuk membuka halaman.</p>
+      <p>Ketikkan sesuatu untuk membuka halaman.</p>
       <input type="password" id="password" placeholder="••••••">
       <br>
       <button onclick="bukaSurat()">Masuk</button>
@@ -349,159 +344,18 @@
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
-  const passwordHash = "37dbf2b83abd19486157a35cc220a9fe49d6df8e7e805df5c72e570cad29a6ab";
+  const passwordHash = "f09b133c45f78e374cd650c77229de1a5ea54dc4d2d3ca9bb1ddfe3c496f7939";
   const encryptedSurat = {
-  halaman1: "U2FsdGVkX187DzK77W7NsS5kBK46uz2e5h7GgYO02sDfDFPc4WHD2epvhflYglMCGiWgyHwp1RTwvAnfHzMkBZFz5KxUBX9pI6ykgv2EUTTwAtAqboIj5tdolCviXD9QLQ2/d61j+HAjdjBy2crkjCdhmdpDrdeke4AFDFeI854xa2nQenWJ5fKnMK4kYbJ4BD2LOzx+eysmxTM9/4RmWkdWXUwjMEgbhSGk3PXYOy1Z4i5yoHPLXXXsTvNlcbdchtqcHXLdcs88/cePTjKc/IH1nMtWIexEchv90p8fl3M=",
-  halaman2: "U2FsdGVkX196iQEO5oOKxGbIdNFWlktVL/N3gbbkRs6jahPTPlizdKp31LBR9BbHJUE9zk30NjrPz63HQX2zWBR+q+WxzvILckGe/oHa89GI9EDzKxoZ9nGvm7FBJxrxK0KPGMY4i6K5GgrJGN8r07xCgB88LjfPIFv9gmzqEUOw+SomVxAHcHtBz32ZY5Xy0i+Rlgi6z2HqSZkiBcmhziorwgccIBi5E8Gw8+gpL2ia+AiqS1nlPUQ368r1Bi7CeJOA+QD8kZ7jIsGcy+y3fw==",
-  halaman3: "U2FsdGVkX190UP2lo313vm+huI0nJkdiX8rBeDA3SONMw57IlEk42qPXo/cOIy4Ia2ISOHRdlmdSAqL/1AqNLZsDvabxVDMPBQFDabyh5C8GTmZqMI7Y5iCoQoWQ8LoVnUhvYrrFFWdMGymFR9jj0B/ZFA6EGgW3vTsXPqhzT1i/BstvQ6oyRm5jQJ9Wn/bf6nN1xRawyjqoOUEVeSD2hcZpMfKzyCm+2NnhGiSt5dPPkZevmMhr1G04SPvdFr3R",
-  halaman4: "U2FsdGVkX1+yZtuTnwXV9plPbkG4ik+WxyS4Kt/ssWuzCKghNswya0UD0DXi48D7Adsu68J0+YYTm4YTIyyfpiWWUE6xIGrU0OsSs1N9qO42kHwc1htGdJVlYSTvFbzzDkkzfS+a+nuFfNpYK6Cr4kAv2Zsyb7XefwomxGVec5B37jgRvRcttc+B30IchQiKxUJvrQ/H9WKp9csAi6xFbOHOQeIZfKWV53Rb6kNCxthe6L5nd+sr6joeOmGNRbW/u74qvKTd9rap4/eEBioy0A==",
-  halaman5: "U2FsdGVkX19tW8WWHhOMJ5+DtM+9Lrvrzt2uHeCzze/4hxTbnHKfil1Zpp8p72yN93NplFHjRWXbQtsEl79laq9T1smwR3LOuHQYodgLPFK4HrOKFSJcKdHWYsjr7L+4g/Qa/2aMfnsjEBLCMlib9+joWZHR8oszFz9d0a5we/zmOfwCpFIDelwDgPBLtbafuPlkC/GLWVvd95X7c/R6gExTiymslc55KKRHLDe+2gY=",
-  halaman6: "U2FsdGVkX19iXMdpEHA7e/I0hQCXresQLP9TcjHdY7pdMj8mQRTdhUjGniIde/52Yujvlb86NlO42vhxqxQp2CKg6illaDbUqkI9PZavhLr927MatqvuTknQJCNhmpq8B30wJZeKWl2jYtrg1iigMUx16t3EkdwHqvufRlubBpjhScywDKGEpQDQgavhf8licxuoh89yBGzQ06WSfTy8HkDB+/MtiWmFSizMpPLYjPg=",
-  halaman7: "U2FsdGVkX1/tfhNiTgFTNm5AmB6sUwKuFWJzJFlHBcAkOdjJlDIVMJ01MahDjtjORgJGsZiywXuypPTQxRBl8fkKr0beQcNhsnw+9Y4zjau1EIrj3eUloPaF6HfiAZ6oQoJVLhuqsbDcG67LNUhaoQgfAai5gqW8K0e7zP00owWzy9CO5q2t1p0jMIzDV0FTmd1pBhert7ZFBu6/ISI6OxbMIZLtvb40/iUKfl0aPv/0aKFsytoscFHETkI6IP2xi4vTC+aifXvFIrSJqEQn2A==",
-  halaman8: "U2FsdGVkX1/SMQvARpYkwXGv5Ptw4CL8X196n+AGzZmmfmVFujjJdBi/dHyDqps/IFrhwCW3osNUxgOI0hYQz8AWtNff94WMDHlAGSOkiV4fhf8kLrbUQS7kO73yQgFWSkSROzzqQu23Vz2/w0NEesndreiOQerMOL7DR0eNnCi7KnbFhpQCVM7eDLpK8EePndOH54fbt3PpdcqkrEjKgjXT0d1/9ZJAJ7Bv+hAYaEBYjdQHjT31kRuu+istWtpW",
-  halaman9: "U2FsdGVkX191HoM1pc/PCbOwLQBYBKCFAI4GLwIrz11/+/TUGCFR/cIFJwIPfmHbHi36MlnlOvbh88RyoY7Vm3QGDiWTVBBd7oUbnsC0IYBwCqgJPrJvJKYdFdMCNm60NEPGcr4mxoYCSJrE0gumf6X1nLld7kESZJJj+mA2tT8xSK9o9Ye/IWDy4LEdefSQgvRPuEAcsXWb9G4UlZk9EA==",
-  halaman10: "U2FsdGVkX19q16a3pguX8Qi/zcKxyPIz+QVCWqXIum7B/KDbfoBJ6Qjrdd8W0UwS6g5WM2FsmJLwREXQBKlR6A/eb3bf2MNJlnb5QvSq6bWkl5S8p2h0m4Np/IfBy6EAuvnMNUUa5QTzxgNagrjfbqOHaoGveTyVUv+znXI7ZzAWeVtYwN4Yf3DuloT90CWiFzITpdlZeThJO6I8QxpMxNtXpRJIvSdcYHQPY1NYh7c=",
-  halaman11: "U2FsdGVkX18uvLUDa+MFXYRphhTLlelqvw6dsM0UjIVgO7hjziV9JaLhuMIsXvTCof9PgwGKNRS6nDRcnrQ8zitdyAKQIBEvTvhe6oOxoDYeMTE25nvn6KUiiFDjMM3gmL+NZxRs9TO0lXFz5NTvId0bSGivOxNOEH2L1fSzIy/1SgUfv3GV5bBowFWnsV1zxXJ8wzBdTlpebphM24ko44JnK2QTun3dxRQzqQFFqYY=",
-  halaman12: "U2FsdGVkX18BHbpTB+s5pvIarRgAiIzdwMV6IuuRh60K8Qt/Oihugy9rIwB4R6iTamHHsrvBQzosjHeJo2Cj/ckyK7FFtcVep9wqkiOo/laP5V3sR2D9tXOLCbCJKpetwlPABLOwU0CKKxTmoZ0yA+Q07p9LN+IEsz8p4x75zWgZUJGNqktFQCXksolHnh483DNAxqOJ6NVoJqHsMcWc//bRmwnUy8lBcmVl3SnbHjoTdDN+17a7QNScA+y6GYTqLiPaVU4QPOI0SXeqkYi91rh/sYRLAds8x2SG2Ha6rl8=",
-  halaman13: "U2FsdGVkX1+674qXWpw6RyHUFgCwWUaFcmkO8cYXkM21dneB095nmwU/gMkM8AbIQ9pf6GrBkZrLNxCPipzayRra0MUSB/edIYrKjtr3j50s8V584VQrjivWFVb50LqqNooS+s/DUxW7mpyaaBRee1POZFPi9XNz3bXMOWnhtt9lm+VoUtsn+hrOoz3OWUTnNlNjZTpIjQxAlxoKw4+6Lw==",
-  halaman14: "U2FsdGVkX19xaxtBLPD/OwQ9CkSR4sAHYNYwNFrG9CwK7TtND1HiVj0M58lK8RUilSdU8kdv5E/CTTtWAxXfaCLxJMtw7eUibApVZQNjQ5MpOCusbq7wPUiAoBwbEQwyOlmbuerQYDpcZntoC35kb3ZhC89QsKk6dbgn0PW3xjH5AzLIzI+7Dn3+V9A/HRTNOtZxcbwrzQdrJYFl2N+ZvtwcUnKkq0hZBtscwcehbVM=",
-  halaman15: "U2FsdGVkX19V/xZrhJKT8idqcQuoHuN1tLwjV2CBsdsfiqLyNRQ9NcAE2Uy3fy2OYtP7shVg2BP3b0siC7uGRGI6JQt7bjWFgB1FT90Dv9vjQqKy4Ixe7BtQmZwekWF/CFmr+szZbUzW7q5jsQanfR2blcbFAIz4tiKcrSw8rAen5KqDx1L2vrowbRSqAHmQXalDQVcGgiLPaImXt/kBeA==",
-  halaman16: "U2FsdGVkX18yOg4OPW+n376MkPWqCVSx8zXUi7v4erHr2M4MbqTqPV1PoSYZhqaSIa65xhW/CN7f8tBaxP3nU+nQiQtycTrTCcC2uN1B27KCwhn+ynlBrAVIMoU3Pu886MPvQVGjFLG3V9YXo0sfTrl7Xhl6fap7jtoey0Xy4s3/gexdARIEi2CZtnSNmJcdZO7UFw5JmG+ZID7Rp6oo9m+Si5qeukIhqcpT75rzu7+yIdVXB+7JtMoTgN2Tx1aYtu4ANQRjgi9ajG3XhtRSWQ==",
-  halaman17: "U2FsdGVkX1/ZJs0Eji6Z+txdD7aQq5aqbJFKbCthp8bLnVA+K4svbcrWUemngQK0/Llg0ADRoaUfAlzkYYfsQg8Oxj9oV9z6etu07KoC8Mm+cc2lI4FeewmqqQM/nnlb/sBxArz5z12s6GNyAYcyU1gffpkZ0J491O+BeiRTg5WpFk8SPKl0DJ5Be4SfrIfsc7PMqkzeDT0oSgIEZqJJ7/q/9pAUXIXzARmItpMdeTCcmOymJS2RaLe6n6E6wuh12TDtdXlqAR8WWFVnw3I/qn8PpUms963S8X9hd+I71Uc=",
-  halaman18: "U2FsdGVkX18pSiYMIuZU40VvnqqZi18UqxVkGmdq7ss1WHfDtkxhf6dG3FGbv0x0GeEFobQZQBvs8lwQHWeaUKdd2e1yRY/KqfldRgwzrHU98xbKTYoZ5EquMsoC48xxmkuV9RDgBiGAAG/kxsymSUI7s6wpJtAS7fpQTFtKE7J8zQjgv9LvrlhzC9MyRgWSvdpg+zP4pB8ThNMIhjWaprKedY0LVmkUiYZ7IDixJpcUWpk4S1kqzeh/gOl18HufMgUxzRsxWpY9Je1suxATM4MaNAfTNcHyTo8PYmBi1kk=",
-  halaman19: "U2FsdGVkX19HBsFWUKQXGZxhUAonTQmz+Kp7SB1GqzNMcdxw0J0dSkrMncFEJI7XRH2BPJZhhujA8LnT5yCVSaLaFdFZmWRytuLLYBOzBkdgYKlMdVbh2curRr0JNOrD1m3b6pyJND5tj/e7Wj5/v26vMELGzZp1gbIzCgAJXKN/U5ZtScf29m7q6FIR0UmtYN2mdLDY0SUuhS/kMOldybdwhxUsyA8VY13KAzabV1aBb3vTuk7gYBqD7ZhE3Q29/0r5foUPiNmF/rvha4jiKg==",
-  halaman20: "U2FsdGVkX18WovP8piJmxnIjvpkRNHjaAnbkyFGT7koA7oZt8jPoB2Vm3umqHDbGfHPUwdoI6Z0rhyztZoWdWmyRKKqPamGmCEny/LNRx3CmOahwwnI0lxeBmWSPKEMIBLTwlxCqKYLGLIjYRgP4hTb33Iop5Df6TGxoyT4iZ81eUNQq9/POjLXcQ1XDmQIVPP/bRWpX1Bl/qxSsHvdVLBKNV++fhTOvix2qTpDyGfuXQS3vcHquUpmzEAd7qDBw",
-  halaman21: "U2FsdGVkX188JGA7qfpSgYYd1cUVQ6F9zi2GqsTEifjDSvEbgqXjS1f6jYuA4MgEswclI2Tcku8NlJVx6pdOJxH38vV+W6CHfIQmJLRcN86DjvnjGYDOaMUKzCBJ9Lv3j78oXrG5gav4dP8ANxa5FRrtLQ90q2Xh1n4yQ3XWZUNYAwkruxxyJGxwyBinDr4u8nM9ZasaSaOEHjLQclosv1u9AofjxWDREoW6ZgmVqlCwJDMZ0On4iXibtuQDmdLC",
-  halaman22: "U2FsdGVkX1+Iw42gjVm9hqK30eFJ7Abd19DPBbuc/TqA8brfeoDczbqkJT7j4zva6sNd4v/K8qggu9lCPDyCrqqfvlt0RZnrQiztNaR1ldf/hxe0kmB4VO+iC+lD9LO4CpdbYSiGW5l+nuwEdaYVgveo1fjlgGluHrHabfYabI2Hgt+H6zJCWerv79JL9ijU0vbLZ1UN3UgJ2bHySjm6IedIO4dZc8sKVWA1wkx/YVVljvws1zrRUmDfe69/1/HM",
-  halaman23: "U2FsdGVkX1961I81zvmJtWaq5fSxrV8QGeWe88upIfUVQ7qgexh+GqQrSlrCdGWa6h5lplDJ0CoukFbB4h4xy1MY7QSwaZJvSZH4VPNslFuPNs6woAmHOnkzyQRn5OeE2fe0hW/r6xRL9nsfsp50iFea7JX/cNaH6qMB6kMHtUTUWiUP6ud5t0cBhe6hcfzQ6Gn/2MqAnAI9m9rvTL9odO7AFvCUv8nG+17Pv5RVXpa1tQKrz7A7YDjOyUJVuNGG",
-  halaman24: "U2FsdGVkX1/iSVj6ULIv+mYjsWAXTkFedoNJOvV+4kIhFlzFwe/bryV9wBJB4eTyYor0fEr+Ta2uUDR+tZJvhdakFDljHDTWPWuSUA+GjGeFIg4texU7+vS1pv5FTQSPjnUNLq8/JmfDqRW7tCVaUIB3uiWtqwy747XB4uaDzzkpQcLcRzcmJ8Gu6U/zFGNLOwcq/3ukrOXYTjeqK8ivYUmIBVeKlsQjy90oQbOaaD8=",
-  halaman25: "U2FsdGVkX18JZ3beR3rgMuBWAmcb0HSecUKe2QCZTCdyblA3tA/5N+2Sop3+oVjfybNs2FXa2tenZ7B71RHOCM7MN54vDQrYVo8zx787XRq36wNulAT9FO+QkhdWp17VLRm5mWA6VKmq9nGXvEALenoF3oKLhdMPXs7/QuEc+44kgyxdv5FbMUbdeQerld3WRgftmF8/EejuYa2cw9r3BiDd3wNIFzhx4GG8r6UbWpo=",
-  halaman26: "U2FsdGVkX1+fko4rmthVEW4rsN0sbsXZitIXIJB9qUTWIxY0UR9OhuJuQZa69QJ6kI8aC2goKk9hYswgdhYHXFdS4Uiv2hHYo/JskW6/uX6i5TyYjj4aFvwI9M9ZKy4bxEwhoucmthWCnYDVGBjsNdNJp+7OyDPFVP1QkzjXmPScILtVFaaKpOga7/oq3Ipp",
-  halaman27: "U2FsdGVkX19IQV94DleL608NGPAVqTFJp/TER6naqz/i0EtvIETzURJVDsyvJM52LIiqllGX6v8q09W4Z3vDnrVRzi2G6KMm2BGIBQ0VCSP1Kr9m0yiN9xKHwWcZ7Tt5XAtPQjKyGApA7FIaExK7LxWKT8JsNdsXoDH00lWGmgdT0Vofvwcowcj6cmZFFwoOgc8q6lSUhNzHgYPedWqwvHH5qC3DVltUtFUVKKoOiV8=",
-  halaman28: "U2FsdGVkX19f2N33nZN5ZPNm5K3y/vtJp4AbGOwaJdBUwdG38NUJp3r0NE21RXFhfHFzRi8UgRlH59n94q6GQgkhezsdIfD5tMxW+bQ+XikdgrOH0KT+ROcU/D1tePGakLssv0C9CteIR4scdjdiKpGvnmgPQRZ0TUIUd/nx7a0QR3rvdQEf5tdZ73rdbZNNVF6RqzGGXBd2WmASw52WTQ==",
-  halaman29: "U2FsdGVkX1+vYqZEH/P4+u5rnCmp890UP2fSk66PLNAk93sXpubfFFGXRGQmFaS1mljmXpS9dO/Ymj20Ccadd8dfRnuGL9BvW5E2PzamsOwZS39bkiP5M+0IpBscYuv+IYZ0ieS9ascIsV9V3UAAHwbTD1Vs2N75tQOvDVNajeV2SoeVSSZk9D1LZex9+iqkgMe0JoJeDODlBPTc8uIbhhEXYfKBWmS+3IvU+SwxlnDvylE4S5+21zFnEINAJiOT",
-  halaman30: "U2FsdGVkX1/U8GpOFVTVp73Bp6xUpXkRqt9yw93f0zs2kNQzWnpsgaMpIXqS3GiHRYhZmqydC2siQoj2GjjFMDKDMx5Oy8OImz2QGrl4Mo1RZ05f/h+4sTMYms12lUutzLnbfC9oeUki7DKNHg0RYiGiqo5yZK4B7NS3a201igKpWjakKI/bpAfY7cjECgRFwjmvAfidsq7tQFaggJdNreb1cxJqvxdWDaVlYntzj5M60Cc9I+Wf1EFYSIraQYzr",
-  halaman31: "U2FsdGVkX18VYG014t0I+s1+pXwrhGV6pJOaoB2XRKPrgagz0o3SBqbGEktFINJEVX7BGaxFh9eHzVMXjcpuglvDPj/+4ULumwTT2+DgMoWmOJf0KIh/A+PtUrMGasusA38U5p7hR063SIYrCHVO2Hm53i11edNi+IsN0iuzArEwK6+dI3a0/l6lh3ARWFIaPmU1Tj/54nCyLl2GTCAm8aJmW1g8inXFDjBFu63e3hs=",
-  halaman32: "U2FsdGVkX1+jksXT8urVk2L5E699Hd+ICAc2FwEbZsTQlxSEdcSuo4BLrLZwfxOOIA1qtlZWGcD59eer4lERKU8WOSuB517gsJVnaomkbQC1QX2q4ApQAlRxOLHack1aK+nH3UpMKbBBMmJRhTwaljuA9UMt8se9/XIsXX7Hr1m/S83puq0qhc3Lt1TDARgjgk1dgQ2w4+tK8BKwZERyI/duljuo37yTzklYEl2l8xfTy9QBb0+aBpsHpQBIYOhx",
-  halaman33: "U2FsdGVkX19WB2oeQfRQoEvnt8ouJ8rlJldZuYWyjJlPsI0nszuoM8ZaRyA/So2NKROcYAonjAJlLkOyjSSc8jdeI1s5exns6P/R+YKzntm4hBycicsETeB4noGzMEe70VoY0Esodqv56EpJjDuV+HZDtRBwbnteaxB8/7aExkC3bMAiZkGWJWAiZ6bx/mBelX4/YOOdggwMGEgZABAxUx91n+BtvqXjWCPx1MMRoZp1i5BgahFxdmrXo6C5tia6wFR8ZPENR40l2JWgxb/NVg==",
-  halaman34: "U2FsdGVkX1/Y6GA8C1BDjRb42hLPN0jShu4UHwni6adpoSqmh0Nh3IoEBe+GJgfK0q1L0J+HuJfRnuEbMI603UixZ4NVATKLPMu4RSqV0K/67MEbz+RSuGeIabUDu97YlWs7M3h/Qb5mv3gIptc6YHhVQzhPOubxAxzPFbgV0vnd4awmrZAgr7NuoGFXYuvr",
-  halaman35: "U2FsdGVkX19j7WwLa1+OjVznrx0z062Nug3vBCR5z4vFWd6ehKDfZsUKqOYWhcIFtREr5Uy/BMhRi1t69dwjZ7xKuz67SbaXZZZj4cF/XaGYpRTn2ShR2BfJuaH9jB1QHkWnUTZb2HBKpxGLqaiCvPaYiPNz0Vh3uWrDg31CXVix5SYU+WJ7Bs7gUeWaYW8tyNc9u8VDIX0FhE3e/7X6UA==",
-  halaman36: "U2FsdGVkX19w4BhqU2eTrJG5RA2TFczZyIEefp7F+Wx0wUpGPeZ03ZessFwJXNAZk2jrltvFe2um0kzPc3ir6ltfuDqhoUCacvWSxB+wMpx9d1nGGM6W3YvtQJEsijpud5WZOeP8rStXtz08RsPNscs8OE6yPhr2CAjKJAYm8of6rz1m4ffv7RyqjBGHyst57dwIWS+TgExgul09JJeCPn4N8FWAiFID476V9ALGvZo=",
-  halaman37: "U2FsdGVkX19oKEfg0g9ZC/txSnww+nb0uUlf+9v8pjrtoa8wdtn24cDOVH56/Bqkd8psJPrcp63EAW9vclLSfhMBowERHpjYTP/6r2LoMCko56e9EKsrbwWllZL+MqJW6mIYKZYZpkd17Vu9+m/pLCuaIgrC2kRQzYHXEHSc2JVJwfXafElSzm4puCjgLz9w+mDxyBrWcmaUoRRoqZb1qdv1uI5bCzw5aeo9aL/byHF+DwtjwLy+87FyYPUESub/",
-  halaman38: "U2FsdGVkX19B+G9JtFjyUxfDQvxFC6AwM6J9fqSEs3PhRpkPaH8Yrm1EhD+AUjrFho1kyZE54nqNFB0fW0Af3sQLOe5l0FZW+Mbg5g3zixT0uiQr1svYX1W46J03FoyRVRXacT+Th9TfXs0Oq6vh+AUGlZ9RDD55WrC3yT83XIBMAlX6G2oG1e+47i1B/xyOo51uvH5SCtUhQSKYbwjJb+Im9+0tGnIt0eHBHbCkw+4=",
-  halaman39: "U2FsdGVkX194NkPY3h/t+90rfRuZSXQGFohsrjwL5heNNPUjYaDCc4tqspJf8yJ8yAEkVAGrpzQHkvc2wKG7y6ogd0eTQ0khIs3MDpeKacZ1LyRL6wk2m0SM3CmykBJq4q4kEwBYWxbZjpP/jjVXx8Hckpp+G7wRS02jnfXhi+Snbzvq7HrzBcrajgQzaNh7iFzKeMHfxP27w/1TYUZiKKW2t4SDnSPXtYn7xI5dREct3xsu8G3VaJDt3mPHVG6s",
-  halaman40: "U2FsdGVkX19AtQpTSIpqXBpWA8sMJvQry/8wg6Anj/qt/bI3Ij/ROs5/NgXiZrW3JtbxjVDt9M/6+5NZ+UPrIShw4btLX35+VPOJtKAGGnpIKnE3UXn9zBQJbIGdGs3Qa0wMP2OeFLKUPDpDysMekQEHODXF81QnzclO4X+2ZO6AuJ0v5V5FkxNMgmB1E2KA",
-  halaman41: "U2FsdGVkX1/f1AqU2zmAtbOjRYbAI6fE5fiACT35xtr1pGK+xnjO2Cj0fTMEqJeAg7iHu/vpW5cjaH7yNcSX3BWMnaxYxLnalNPIjWPt7PvvdDrAxjCPIR4zRBd368gudhMUX0/xdfz48/VVbvUmCqRUXqvNI3ZJUQx4XuKEPf40W/M+1Nzm2FfMTVN6xNt+bmdvujERhqFgSL2ACY77edaWs3Dt8AU6YUJCgW12BJQ=",
-  halaman42: "U2FsdGVkX194Tdu40IkAYOFVLKsUx1biIp9cbVYDMJ1MDJre7ItDD6f7xcaxzqPs6mUiUO/QDPz+2ZXHjYV1IDTjur7Kx7LleFHj4cf/2R4gg+vFnUC7nn08Y2bgioJ/19sywKAnJSM33u4yqv9noeGbb//g9WbJ7fI2BMUY393ToVBm2Eto9WewbbqOQ3j0u12/BxxHPJp4IvzMzMjIQw==",
-  halaman43: "U2FsdGVkX1/3B7gK2K5nJWbfxOXs+BSbz0YtbznHOtUWxx6KMfdJhOWzKtHgvrrbvmdF8BYFLdCqoLFLueZP3JOKas+9wo6c3PtE7ZCZp7GTRFvYs36u9LOJCasNR6r9ZQdrjtyXbw94nkW5yvl3KdI3ZdrPaNjmeoe3AEFEsB3/f93hWLyRxVWMtixEgHMeFL9Z23wQkSpxlHBDGiudoBA+KLPqiKJgRx44SHAclck=",
-  halaman44: "U2FsdGVkX18/fAFYZTl90xGe6JATVrWJ94x57GD+hXONn8szrZGpiB9ktxXwp+XdYehdHOTUlWX1qJ9TBTWhR/KDCXdVe8xzYPWci/nx0w9em45lgI4bAUnz6tibyRgfKWMoaDK9iU070rvp47Og4ZJCIS2CFgbvM3pyvORfgZJlwkOzh43me6m/HFzKsxgd3gMYPAT0JzXZYWhP4eIe1A==",
-  halaman45: "U2FsdGVkX18ifhcdTB+Pt0SfzUp72chWy/AL9nZ7tKHU1spM90D+xW9OZl6n980B+NyH3OteMJlDCmbbV5fVaqPiIlOlhu07d+cuphFAfYC33lKfsov+Q4xObrN2IpRDjjKxM9diUb0fcR5FeHcORbIT+Z3eD8gk++3VzQP7/KdUBevQGiGBF1pqmQGlz9QngMiPnpBMwL99s+M/aNPTgeg6CvrPlxkOdIrFOGVKfu4=",
-  halaman46: "U2FsdGVkX18hgV0iVOcu327U1JwpvEhqyB9Gc3/enkcZjOijmL03vjMU9J8C3xirDvDye0vkbmCz0te+2Wu9NZJAUTeSCJddqzgE9Xo5524GJC3pQjDhruOWiVtCiIhZkiBae7eQuec9ys4DJ5P3SVCdG97FAov8DbTwzrlqHtpy5sMsY9vgUCbv6zBs0XGF23EBKdiyap2bJlGbOPHFrQ==",
-  halaman47: "U2FsdGVkX18wupZUPst8I8oi4NA0rr4TxPZtcZzZRfXMn1wSvJOOn8lKazSCZFwi2/N8t40dWHyx7e6R2JgPX104fr48SdtQYgAndm1vpD81V79NkCEpC/ZlOLy4kfGtXT2/Uk6iRdEmuACdlaHxAB5dqCVdKsW+uF86+ybm/KQX6I20e5kAXi3R5oakX4xFhuW2N0iqiL6WP6p1e1Ddo+gSH+kLewxH/h/ocvVnKX0=",
-  halaman48: "U2FsdGVkX19spp8YFE1VHh55GCW5ipnZ9XOrkiquHZoVK+Wj4oo4EmSqNe6UPsMpZ9vIZctVUNMljbqEEssiL4s6CKpubvhJE/JAnie8wCU4EKxqf7ey39I9u8Jg69kiNggn7LkGNsD+cM2uK7Ffgp6nQbOU3zL0KcIF+oWNvcNzg3a4IXQlqj8aAL+X4ifOlNzG+JdRa+IX3TCfdBkQjA==",
-  halaman49: "U2FsdGVkX18I8nibzPycTS2mPnuY4SK6ayzyROENjkAlHYa1/GldwnQu1wjs19KcXydWpDAiDiJY59QqLqaQo6joVPRnzFjtBVptOQPIMINvrYV/lStAN36L4JhR1Ac/VV/D7bxS6HJA//IFpIr2+7Nj3rA758Ev27JHB0io4uMRCE7rtcsd/rpvEueoJAEp",
-  halaman50: "U2FsdGVkX19MuggG3eR5Rl/Cc9ONvQ9Aii0UIWA+GvCjFDazzHbO1YGgb32hu+RppVys+cpVI5AbDotJE+2mdTD/9PUirkYyK4XjyJRStgQ/od0h5WenysE656ms16Vh+leuEFZijTqWQJUdLRCy86mYOhchYlN85aiy9ItS9nMUjRcWoZtsRUfkiug0b8e+aqX2DRLKt9/iYN9Ex942GcUbOVmdY/H3n/L1JsrGnBOrl/rNlezpdc0if9ZJ8uSH",
-  halaman51: "U2FsdGVkX19IE7Zs7U4vzatswZYx/tjUmnVqSicJfIDwJYkQSJoeCzZZdefP3RwcCj4E+hWpOgfNWS/FMt3oG8Ny2SoPrbb1PxPqUGGTQrSYKJcWqcBfkHPeBGEhtC0NWUzmD6w/Jj7g3o3WPkHqfUUt1VOwc/AG6gwQ/1i+Kw1kDm3oEPiaX0JRkUfIgL4Z41JjNQzex+4ldDNersebDA==",
-  halaman52: "U2FsdGVkX19KMJiY7rvt2sw2i66EcridQvlatFkWqPrye6iE1phi239+VeR9VP+TeQztc8PnBj1wVeKdMj224wUqX7Nj4t6SEMCqAr2tlm6uozPyt86944SBratL9/2JxfDOKZfgNG2lVCcTRRwtBxwWEjLcpf6ZQ0bFbxFMtoP0fthVUzyLyd/Aa5K0CC0+ajCPdt5xv81tYXIKoodQiw==",
-  halaman53: "U2FsdGVkX18eNEZTri3ROawJoyxuCjRGH8V76JWR8PbgchF0iTCFXRVk0UjJHElFek7lU+5CbtgoHEkseo/CZA/UvT2hrHUSDnZRJmwmFsRbiAlUSO41MEDA3TCDd2F6icJVOCEdRdf9RPIE6c0+f1R6VqLSsDYeDEx45NAVbg5qWHJVgYdaZU0GPSJRFDhObTgNnN1K0AmvY6h/yqkj5k/Wf8hf45j0sMaf+ItuT8nVaaXIvJgDUQgN/WVjMo3Q",
-  halaman54: "U2FsdGVkX1+vSRAVXrSqZB5xZ28GnohAQ3MLfS1cdEm3sWzm65MxqV2mxq3qNOxdjkx6ISjbdjZKjbkTrTZhnxz+y2rtGiP+K2dxy2Jvh7doPV/ELNnpzHhCHsmFb0cTtf1m6t4QmwcXWlIznx8HJIoEygQo3CJdsbeHOi1W3Z1GLKevb0JRMF09Sbjdbq/i",
-  halaman55: "U2FsdGVkX18G3XMyCqmt1EWX0ZG3lG9IpZS8pdkQwV0kSTvxOESD+L12fld3/O8DQ8vfacIlIg9kQijR347rqKNLlbXX9QR5VeogAjL+MHEaaNFuViIpz9LuPANklzvtdMms99mwYWskPL9w/JFdxtR4L81F3eNL2hxeet+qMwa2BpS4vYeVaMxwuOfcuWeHdccFGVZ62OBokU1Bru5baGUMb/rXrKNASXGmHlIfGjA=",
-  halaman56: "U2FsdGVkX1+IAodShw66XvAxqszPi8natQKShS5G4g6nJ3IMwfH/WWy9ZNe8YilYg5BPB7ChS5eArj/ffvv+vCXhwEl6gyuwfn6OlJqWYCZ8MdZ5+7IMutKVi2/PyLCPkhYqICHCYbk4z3uLb3slqnaebIxyVIBscfbEFpOoy9M+EGTDrsVYasGDBSN7Ev/JKwZSEuDsCo/124DJR0eYFQ==",
-  halaman57: "U2FsdGVkX1+tHLHNC8SHaNnoxA2E7SRHwJi3ru8P+GgdgOHkRitOtg6IVQlH8y0JRCi7qAmLzibJSUPqSEQY7wmvxg8Xjp0LfExVSEQxS8xjBWxLpeiwDdQjeJGNFfMK+d7LbrrRbTx+4CkH0NHjXNVpBO6913ZjmJWV44kQus01Q8JESvfZiNlcQfFYymPwPfdloerzyr/EXlPlSqV8QA==",
-  halaman58: "U2FsdGVkX18MQOgVnjBXlIYcJDOG+vh9hUKrLwqFrdsRFbb6iJyad6GX6qAdwoAYlTxv2ICwnH2Hu9RnNhrir9Z7H6HBRfeUrKfB9foebdmeGvW/L7dA7a2aqUv3duCfmLnLEtduiFwTO5BWd3FXpwDdh8OXMWUvn9E+LfoF/JSCf5O4E2GqYHR0gx+7K+algwgZH7TjS7I0/zGT74V1JhUt/hDpF1sWDJEkFulXIPM=",
-  halaman59: "U2FsdGVkX19lJqEWrDIJbeidskgYsaKspcQBp2weSnATajjwlXR1DII/m0XvW6uo2buQoTW9o/sre7CumYsA5/kAmFHk3St69TA+Bb8StScXtMbcAFLmI3iMecKw4KKYT+hg9OIUVd+6UiHgwpUTXQVuixdtyvaCxQQJcUbZ0PBpOOIrtCCX4y15Md1enKtz/7eT6loAhh67rAToOScP7/HsbrvIWpb7GCzotUAAluc=",
-  halaman60: "U2FsdGVkX194LjEGAfLRsg4541IhegwoT6gfJOJPsgpmG/MehwPqa+sQgaofTX0Iu1gHSAJ+8mUtqJjS7mKT6qbNgaZB1CKQ6qqUTdHrHAidSJiMjzhXfsZ1bF8YmOcM7PsVpOtT9bNyKbgNpEWgRzsWQZcyD17ZZlHADIwRcjgnz53N8xnQ9RcoU6PteaUY",
-  halaman61: "U2FsdGVkX19pl+/fuoDXLofEYVf0h28y0QUN9TBOURTqFMiWhVJYj+Ybq1QS6sYcUyKPZSP6YzIn5RGyhGq7owOOcTDYzQRf/YIUaW55D2Jy67z3DShfEui3G6G0AH7Luu7yKW9sUVP6u09rt8mjBUcgKfeyYQ4MSaq4CHzMXGAfGAEfVa5Jxi02yXJaNbQS",
-  halaman62: "U2FsdGVkX19xX0KES4cJm/vZf6Ocmdogw91QavxRWMWy0OglvSCDQ6BS2NXcBZNbh6vj0QdSGmZcbCRFIKDDo3bmGU/DZoOWZQLQOjyfHXLyXRP8zqUzU3uVMmWHPyVK7kuHuoO6e9IHfh3XgeTvEyYlCwGOCSZJ2DKw4zl1K0MV5XRwmfND0A6tjYD88jyqRS+fR4IzvD52mC+EKE3kzBptkv/5nzZVIEezjG3uQ0c=",
-  halaman63: "U2FsdGVkX19yy6GTM7yoZUPWUyvmXmPLJ3nt2SSTpG3wLQHXmyr/xSp9Dn8+xUMpf2xpzNJ7tRDZULfw2+gJgAxP2i0EU2ifioKqEQ27XqHGa1s0Sdk7kk/pQZbX6+uU6y22GVQV1/JqXtF+ZntaPgeh+TcOSnDEyg31Q1DS1QqwOeAb4ueJS1f5ToFQiaBjG9zbsiGrEentke1EJDG3UQ==",
-  halaman64: "U2FsdGVkX18Zs82QMBoD273ubRLpEYNne9d7kaiSUUnJRzx4qC2JfcA6bvpxLIVnJaoEXTPntZFAuQJ75TFuhzbzUbX2HlanQ0+qqmyvoFeahKuZQF/9jGAs5xQdUgYVc9JPs/E/oSpoN3OcmdJDX6miIiI0g40MHD3zn9FCmqUeagC9ZIzq0WePdRhXhCVuTu0ipSzylmAQB+WRc6nZHf8pgUgm+LphNcmY6eJeGNI=",
-  halaman65: "U2FsdGVkX1+E0cOSpkhcnCo2/LNX8Nz+hzfD49/o4cRyC6Ltxhw6RaOvSlr30th6z84bgRWah3WfHljBfNzlITj2Vj77OdHf5hxci+NWJpNSOabBP+BdEgyRm00jZAPt3jnCXM40esVm5ZHcjtEwkttMesoY2CmsjlqghLLSXIOVy3hwpWVEEj0FnyOxOdIg/bFyCQiIC3L6TA5gMhkkvg==",
-  halaman66: "U2FsdGVkX19GI0wczzSEtARi0Eq8HEcZoPWnxhugXNZmaJulMwayRIpjVwMLODPK4zwee8jQFjYJdOtpN6igx1UxiSkO7qvCPHAOGskZVKIusbCtTfNAkKk1SmcVj/fdPC9JT+ruwBsl02kHxvpS9XI7FWrNL5l//pQI01BVQzeJbDGBdDcv8B+BnTjXWNxVOuSU2RiDowieKT2sbYOOow==",
-  halaman67: "U2FsdGVkX1+nPy2sDRrSAkaadZuvNANzl80X5YuyoaJ3TiyFdQJAvk7xqlaGemY03QX2P29YwGXSrYtzAWCVPNlYAuQOp6HVWmXD9ynO/6Fgy4H/ULYM5P89HwoYwzPd5OJQAgnh70rIVsNVWZRTgzCBbnXe38CGdLnJrtvrKYYxAN/cRO5H+93hNmCpztNMzWUeMcCFLMkRPfwtPusxUQ==",
-  halaman68: "U2FsdGVkX1//QE1YJuPbhwOSBMB5fcv/Y9ErDHxeAUjU/eLEdzbQab5TvodkbZE1aRv/n57ockQLMppOwvZ3cyR30oEtT1vRW/IRz9BgyTyk2YOEY6PTggjZvHcFjIhhHmwiDoMJxbNzkE37aO32ososhXl6+3bvf+6uWsgOpGFCfnN0nDPI4vbVPutzdex+MpFJ3OhdfeOa5CYQW+7kUQ==",
-  halaman69: "U2FsdGVkX1+jfKbiUN5uEWwp86jSa+XaN+hbXD+ARZDeTHoymYv4zo+cbV7PKMTEst2ZrgPszuaKdN3JJAdRwjP7ylAZ7yVpKEr+4ExukEQenw+trFGvEuUHU36p+G8EUSHU8fJv+qSqZVkW9XoGuczpOfOqc4SzHMAPIfYZH9Jr1gD8Y0BtsRzLt0cAXyU1xx/7tcj9E9zj58HPRxYMhg==",
-  halaman70: "U2FsdGVkX188dxjuyjdXyqAHOzccmC/98j/KnJ6Fw0VwyLgyG7V7YIrq/Feo1GCUkQs98cI53Uz5H3xtwAZTyxbOPXI5NwCqxogWbQPtKMeZJ5dt5uf+DBEl1OufAi3WToGb77OwoGdb+MpQ8+O7DLXjmL+OgSXnazLaJtFWmMCTidFFHIdlp85H226BYxoVF0N2iEafeD3RpMcm+ro9JZVb4H8Y9lXrI6AXYYWkeT0=",
-  halaman71: "U2FsdGVkX1/Nn0bbkKHn4jVqigbhs3gGJGztrljw/gg4Bti2uJWBXe2TL+/F4FhK0ji7vG/s2xWk2izwTIy/kF/E5aw+ChO44ZRNFnTMiTbc1fwDqVKM6r2b6B6LyGGg5bFizLxifGFISCaYhipBREZjsXWiqlAS+qHSscRigV3HiYB/k9T7cuL5O7+UmEtC5EJgf4Wh78V/u+w+BL4jZg==",
-  halaman72: "U2FsdGVkX19eK/sQXbbHgjnUth69TfRRuLjsFxDu7TQhYgzEZ7jVJsfsfaqNqZh5JmmUsNRpdG/P6aFuemHWf07MdY1mQD9KshI0ZZpwLjnRTcqwcdiFaAWhoaSXl3t+uVdofANR37IQ/BJEuS3xxeR1u7giv+/ttBCL9+Lx/BXBEF+HfJ7K8noghgXGS+UrF2QebrnOdorJLPq+pmTzDqB87M1W0ex31kLgSclgV9E=",
-  halaman73: "U2FsdGVkX19f7FMzgS7UNrKvWoDEUzMPY8qOfeWy3fNpPRqTDbDc0qBYC3tJBVVpjOaRzF9QtAzKqZCIYG9AWxVW9xiqPl6y3fHpPuW5aOStiCNkMM6eVJ3tEtseO6hp5ZYq4FSiSSfmfE+F+gVR/41t0LNHbBuUwXD5Zuz3Y3asC3glpiywg+rrVo5ThfTJPx7ScNZTVD8BZSFXzrJOD4tZ4w1yTf8qWOryac6Dm34=",
-  halaman74: "U2FsdGVkX1/ZiF1PpSS1eP/QJMH4eIwPQ2qmE94hR8o0HQkv9cdIyk6Gvfh/JVF6Z0CGED5F3vj2NCkCy2I/Q7/mnS70BcCwIxWhrWBveHC7yM4nfJRoMspGcgMMN010+k7xdDHh+6U6WofYvBkoJIj9ziYYpYSYT/WEnqUzn9UnmrxkwD8AJFxWiI90RmI0O5u5DLBBgoQ4P2gxVkeX/w==",
-  halaman75: "U2FsdGVkX19pCVq0tqixlgn+/8mgkBRPv7Y4ig7yoUoXT++kepT51SOZHBQogFTQz486N/pOXVO5WD6Il++DDmhbIPhp+kFh9XNXYvbreNMkCqYAcrCeBJDPfSgcJSS9yVD+Alh5T6KqMZV5GtW7lmznDUFRsxh2gvok33EUUObD9xrUjFOzXMV6HFPmIbH7iXiM+TseFMZeNe85kQtduw==",
-  halaman76: "U2FsdGVkX19TbZ+UZkwXmd+hUkUkTGo/14WBvZ+sqftQvY0wa167K4W4uNhhD5J63ulbrbBOBcTq4Vmpct1QIY9Z8r5hlIehdx0OVwhcPCE757Krw2anjyCjyLI3wzou7yfyA2WOwlcEjZrKYAD9qmw0LNRF1q9uJhxdEVsMaXSuHZJM24gdzCOtt3QBxbXPOsticfwi8dqpuHDZgaJiwxT3+53jOPbhfKDXTihPgBM=",
-  halaman77: "U2FsdGVkX19O4N5TMzXv5O1V45MUyjGj0O99JxL5ZrK21vYX46qXVcMC4lHHnOJdYL1VemBK64iR01nIxeu1Yf5vIhuBktW5Q0uSD5Xl3lZ5NW7Hwdgl/GWepfJyrU13RPUPjt7fvgWkBs8rjZxQqrr9G8Wp4aItB7kViqT4bRk=",
-  halaman78: "U2FsdGVkX1/bbBnFqePdNHiv43lbZMYgk00IP3mqfV3RIBO/i+l7URM+fKcHIe4n7LH/nxctVlitslkI8EVaqiCaFl2knxiqZMChzQIJaoEOfMk/457zzS5W0TQjM4dGulLiulO89cWuA56tjYqGxii4TRF7qDPTN1qvxcIHWJt0E9hd8jaOpjlbBl1aopysWwsdEOoG0AoFA7BYB4+kEQ==",
-  halaman79: "U2FsdGVkX1/6rhkE6/+HrW3IjP1bKr8V/paXJF/m+ppsvGJDlnyU2F1OFd1VFngrrEQuCw4I3jU63oUQM6ZgcGoXVLPWIMPgPIFbDQurk1r1nwPqSpNbOYJnRNM6B5v2CernBxA+yLoXcliVc+BsFVtC6oXux/qvk9AZ7iHLlvI=",
-  halaman80: "U2FsdGVkX18VNjg8DOtQD9TfHc/5TNRoROKa98RiDycuXCviGml8GCdSGJecK2NJ2AmqEFyW6KsUrWVfbwX56IogzChaI9OBileTtJJyXnETkgQclLp+dQB5gzVwJPPORGeZLLXZIbIQW6N0uqfP1B32EMghHMzYBlUmsyYPdFqdgHBUD9UV4iidy5fMNSaD",
-  halaman81: "U2FsdGVkX1+THCx4Ot60DWO/G4tKByRsbSOW8WwtHQse3FlnYvngM8cfRZixz/QWUe54y8/Guas/qj4j5i45S1xHWPevJoAfpiyBrwwdmIzzlIi1wt/aTnbZbKI8NDLnG5JVLWUDrL7cwxutdwR94kE3kaKTE13ySoI+yOCsANg=",
-  halaman82: "U2FsdGVkX1/JzLNI3H8074NnJ3jJKJMQD2iBUn7XSn65FgB/8B8b63+897baZR5rNBnKcmWto0m8+ZbIUgVZYQxOKES3uUURXr0ck53cpVwNNn8WhzyysLGR6HxRiDbRqWAXsR3RiqBV4S2LKPwNCxZxMIL+oFT+CvEs9PjejgC2BM7zEhfm4xi4mH4PjpBS",
-  halaman83: "U2FsdGVkX18niDhnBNKxK2p7nOeNmmt86h6I2LJ6A12LKvjq+r/UHEmaCrspIfk6WXv1Ym2XJ5+gb5VPjHEYxyZQ5iutlSQ9B4adZ84gtouJwSslszTW7cAx8ptApY5toRVLbCywfsIHLOTPmXG8mN/19co+A41B0yEV/j21AmKiaYub7r8CWcDhL1UG7iX7",
-  halaman84: "U2FsdGVkX1+/EnRukUZmAvOm+wePcFdTYAhJiHbAO+uGpBxrHNnYhdJkWl2SuqCnfkaKFVgU011WO9dIwX4ASYzkKJ7OLJJ07XTqkhiOzv87pc/jjqA5E8IOii+jlpeYrMThqg984i5z9jMoScq7yggeOFc1kOne3MUFxL3+b3VTmB0c8k0K3FLale8J5kCD",
-  halaman85: "U2FsdGVkX18XYNrONLCpZ4zsWMaQLiS1t4wRDK0w8dCgmCwJRmwiAPMJRP/Wh5YcsL40NTf6dqaXKa63kXVvuYwsk/Y5JcqnPMtg8PGTSnUk2uvocD5z4ueuBMiGFglE9jSu8NUf8NwYJd+GX7lM8mlFrb0faQ9jELLI6+Ysaig=",
-  halaman86: "U2FsdGVkX1+0L2sXQ0+UkTjBXioSkfA8xbsUPWKbnpcFVHZ6Ou2GLPZwCJp3Ph2k9/eDMe2bAkfpDgqvH1YHfeWFzULwNIO7842AGBjUpxyMn4qfN+cEcS6Q5podn1HUDpulRIRXVfuXPfMr1RSXXzJAyO3f8/1RX8xgRPwD7wvO4rEYzqSUK8DNgi6beCV1AlpvLDWlh8XQjQR9naga5g==",
-  halaman87: "U2FsdGVkX1+sZFKyWuNsMzRZYce/SRyxf3NJhDMETbRw0xCr2H0xbUiORhQOWUXbMyWzcUeQTLxJlVHtXHUysjcSXyKVYA3Vg9GdsE2QcUvbf5wT4Ch6R40BRV06zs5hoeL1lIERVEFCmGTlLVoZa6p6znUPGyiUmEicBRFYxgCMjEq5p/jLfWVHeVpLJfRHsXvN6Mh204WEOKiGUyYcdMKiT+4Avmzm+tkfax3gOzc=",
-  halaman88: "U2FsdGVkX1/qPwwBysKrQVQ+SBrRY2I3ffPl/ly1yufMcH1ptQunXQkP/LYtCj8oBKRGbdQJbWeCE7jXEyjO4YH3Vd2pMoOYC+ZwQfBh21aB2mN7OkVbUqxNFY6cnTxhXWxTKBeoZ2/5T5HIMG5kqzyrzzt9HJbEvwluZRrzbTQ6pSA1V6WNzo+NfddY8y1F",
-  halaman89: "U2FsdGVkX18Swae7GYT7BUItBwhTducq+zpf3M/rb6JyyZ9eI51O+kzqvjo1FVBNI++3z9e/Ww5TOzPzKdVqKKikKcMDoN3bfR03ChUVZ/aNb996aSUrIo+Ner6ZjyWq9WGBiCz9gInSQ6xODdkvgsOtmNQDgwYKNGSK/VYkgsvatgOd07SVl912fcMp+Fl8",
-  halaman90: "U2FsdGVkX1/jXgjj64TY8gZOgglZnWb7bb4kNeTvXcjzBZTC++uYnFeNYSbiL0cFn1OZqkHA0s5LJJRDHpG0zXrffa5TGrHglThYTO7KKz9vm+Qdn+SI5GJhZwdeUv+sYsSibVoIcF2eNU+NKf74hR9Xx/lXtPFbjmExuN4s3mSFEN18E4rkBKdtfOuGxU/FJ32rb9vAZsW8NddCkf87OmKdIu+X8DpdtzgWrobjCZI=",
-  halaman91: "U2FsdGVkX1/0T/hY5p4YcfbK9n0ksUmzwR0vo9tSOL6x5yNv3kr8xjf3kmKlwPOdmDH1jsRqMKyNpkpNX/LrQU4IImTuVC1jbiNXgn+vFfw7Sqc05RCvSPsRdUsVLYRe1JpPpzOWc3/uc2Ocf27tKFKg0AywAiFPhwres7Uhsj1+VM31p5cMyNQ7VdXIct27Q8mfcwWxwgDiX2xtzkdsFw==",
-  halaman92: "U2FsdGVkX1/WTHKIK1onUmbHqmHONaulcdehTk/0yE977WOKDFVzZABV4RuBa3PjEGDKWkVguumecm3Idjlh+shaGmcHneS7OXPRzKEwJxsR2kHZRK1lU7XoaN69gFcnw49kiC8eXeMDtX3adOZ/zD5BpkluRhc6Wj9xAV/SM4X5HuPL/YsMf3lU9msiJa0l",
-  halaman93: "U2FsdGVkX1+xP1bWJGq0oZz6hJ2Xt0K3HkQQGYWwZkGStJBYJZNIJAQ8SO+n0NtgH9Ab8t4CxuBk1CAW8t7y0BDSXQHsD7wfDjp1H0mxsJOfLaS2THg3UwdCeXOMTLRbEewKbSJXsG0phnb/s4dgPiwGPNeFlo8ETh2LYq0AH9K7tYPZIPtFBZpIRFVY1GmmAQoH/F5K8UUK3B8UcWIoAbFeWuGh1beXDKleFtUp5lc=",
-  halaman94: "U2FsdGVkX191ljjUv09Skh8IpLhP4fnF2khCcCQmQLFruuYa9tNQLigS95r+TFOyR9k1GmqVJWLwbs2wL2dh04zGtrbUEolqvFRDQ61Ok4QQrafAaRxxtmG9XzPpmox8bIUQ607Wo/H2cAbPq5PYdb+dC54q+bovPau5KnFmiCuZHHkD5IGTheoZ14q1A7S+terYrS/yNEX7a2iYfcKr4EHDr1ET5eBQwFm/TfT0nfI=",
-  halaman95: "U2FsdGVkX1/ZVFA5n50oDKXPPVDkcEerozFKWC6K0aeFOAQdSZpXFh0o+EBy+Va56tIjw8i/D2KVt72K5Wpian1N1E/zTgHuti/iQ7Aodj31nvkrYarvysRR2wG0/TTZy7LGxn5wlpT5xLN2Xgn55pbtEC/O4tmygT+VWptU6hv6as/yMY8gX0PfL0kmMj+p",
-  halaman96: "U2FsdGVkX1/ZeKyuRx3Eyj7L+fXfdnczA0rJxxOW7dKrjMkMT3DeZZ/xv0jAei0MEeLVyxJ1DkVdWOV62nXJKl9unISKfUxeHT9UA5BwTj6o4wUwjaA5ra+64Wx3NOxJVyVfS9KB7DHxurDcI3FwdS81JPerz0HZP0yNQttVUr66Z0vHy56KluHr3qeGJKW/5P0s2dax2ALh7G/XwQK6jg==",
-  halaman97: "U2FsdGVkX18kH5aESM+BMmmJeKvy4MD8JalNehJChSnsPSbNG7qHXR2sPueRiIqCfQ+j0ZxhTiLVvT7bGFs+jnXj0+VNML6yMpnGkZ/8xEsNmCKP+Lcl8N5BpIUUEIJvuRxXQGP6xbrOAhqQVdA/EqFFfy47vBNOMy8RDtWkiM58d8fY9dWh2ju1CHVuOQqyeZMauLxwBD+bWSICIzACByOdk6Opt8fxpOs8L9OKrMQ=",
-  halaman98: "U2FsdGVkX1/jkR0V5Xg47+rwgxZ3eYA3T3fSnxKSPmOJ9QvWpgnvvDsvxlPKlmacvr/Dp1/lSo2X3X/aGnEJf6S/ERlmmB5lDMF8mFAKfmnA2/tSX9aM3RF+ibQP+hP03mhyrch6EHelavjelpFwsUXC34mx86JJah/3IhhroEAsndGMujiYq3dY5hZu1MFpyZ5Fuw9T02Pxh3lQyaF/pA==",
-  halaman99: "U2FsdGVkX18/cjxT6mCvAhtfXxlcxvM2dwZG3pA7KWqQD/VfjMWdYq0OK5lQG1ufvQR57XXlS7k73s4dLxRVO5Fdmfm29zRYlB8x91RIkVINSjHq/2xojGtbT9CMhGi9Xe255AXzlIvxuotNMah/MEdz0lYMHuT4oTiTqnx/dTA=",
-  halaman100: "U2FsdGVkX18zzr9JdRQpTMke3xndyqXwPDeEOEThmySO2Qy+oH4vMCvDdUT3FrW6b9nc/g8xbvxiXAjBZohPHfdBVuoD7gHUaibbR5rlF8mzggn8l2oa9auOcOckve41EiUpwwTS02SB4zrZoDgwMawabztT+7LSYN7cnaENTCf92oNo3BnU/ES1lHQQRW8th9UmeBBIcTN3nORhvGU/DELX7cmYXpYbX3j233kwdR8N26CvFSYOts0No6J+t1t7",
-  halaman101: "U2FsdGVkX1/e6CpRcK2kBWfXshSfB6o4oY2WnBp6F6PxF8dVMSfpHvzU8hvS+/aagJPOJ32gJdj+y/zflCXasYnkGNyOIC+pSSjl1R3p8E7wsMN3ikO5y5JmwqiBFOZTuFTc7EwGWOY/pIq2zd5MLuj1p0/16CGjj7bEwyUrPQE=",
-  halaman102: "U2FsdGVkX1/pAC9uCpgIcUSZhyBQBhM4mlphA7rzcMFBjvBkK2hZARgdA2ZeT+o4/FqUmtgAmGtgXPn+SiM9kJ0kuQ1RVLqlEynH4542X2bvbfnhM10BwkrT3vQEj8GKYSLzAx+s5rsCfZFLkKr5WFxmZ+4L2Sw7Cy51UyDg+iGh2fFwknHZUyALe3DHSzkh",
-  halaman103: "U2FsdGVkX1/ziC2UdV8AZAOiV3/zwKkfpjlhNGfcS/brZ98//JCmYVWdthfzbDvPd+Obgn+0EEZBpJSbmbwv1sDsnRZvlykzkebGFBgaBmK+K4P9QDZdAvWpn5jCGCfGSTDVvvX+zGEE9Km9BzUcNO1JAaxAlHx4a7ozR2wb4yWpN1Vmz7zrDZM7zuf+wRtU",
-  halaman104: "U2FsdGVkX19xYQslVnLO83Cq+Nhl3/nY5yjQb9HnI5WoCErTSwYrTxoly5Bc913WkDxsr1rtUdtt2G2wAIT4wW2F2aXQ6RyuCQIS1BY4Ms8Ilt2kcbwa35lcpROt+VKroLBpQ3m2o/KvUpH74qm+mt0omz+DNXXarg74ZgQJSrfZlbAIczMrDTx6QXU/Rl1U",
-  halaman105: "U2FsdGVkX1/PBhPtUTtVWaAndEu9v8uSvuu+XelrAUtx90SQSAEJQUbMgjCYId/KvJ7HeS7C/i7k8WVdw0r/Ws26F5XRb+L15L6MTOhnbezNHfHK2DC03Bs5va5JQCfZlVkBkAbzWyzEmEamTXgZteOFB5yUe4Qse0oj6nRt+ZQ=",
-  halaman106: "U2FsdGVkX1+UkGgZUBmBiaRT+kMFYo16D5zHpJkPlBfvEtPPZxPkiVxTkPpWcm98HvEncHhfmwtQpXGsuZX5eDVSPGDK4em50rqBYTPEL4wechim+QimpTMvyLDKyNbmzBjzGpUEA2LobY0uWi4Mk6pdmhwMm4r+LPGzdvKC+59/seoPfWzJDvErB8jS4x8MR+uGuVqnHgTHNXPt/4kJrg==",
-  halaman107: "U2FsdGVkX18iEKBO0cGFtgQtSQSWcfZxvimiIPgrNt9mJT4wk/fhxi1F5oeF+kKdtorPHTBw1Z5pWHatksMaD/A6K9w16UujVEMsszeoNGVRXV4Vjbxfv8SEsXlh4T7uS8Qo5WYrug45lIf/QbpxfJJUwi33By1hhM/WotM20EjbfiREItrwXLNbzryVEAXz",
-  halaman108: "U2FsdGVkX18S3aLk9tIFGD3dg1yfyvf/uRacpjobeWkECb4eADgV3WuH2zowaW8BISFAZCqUh7okWBF99aX9n2O9Ul5ahnuXygb15RmcWXZKDcrSbOMpYYj/YI1O78qPVRxNBCWvyz267FDjyPNKoQ==",
-  halaman109: "U2FsdGVkX1+QnSaHHKQRX6TA3P0GG5zdKyYq9TNdB8HGoGczBRQSmYxtZttssKLrBtct/T36euK64mshwoKQgmAx5mt29t63P12pZU7Xgl6shaT+191EwY9ImGexHZMtfj56I3yB/RZ5BUrngrfVVLa+Tv2n1bcFaI7EWDs34PB50se9HbyotK0t57vZdE9lziR1Ltf9I/ZqqSxC5TjPWw==",
-  halaman110: "U2FsdGVkX18Y9xwY5NOvK4Hmq45L+0GYgl5DuzHjBmxDXc6Wxlzj9C855FqJ+N52BgCmd7w4Tu98OoF2/5ErMTlULWI7/+5GlFpWSbx0ZdvLMZmv0v9ftIP8FMNgZ3GIwXyAf5jYSGgN0aDR3OtFjR13tWDbDWpmoC0N2Vk0HflpOOulPRD1ADB9gval1lGe",
-  halaman111: "U2FsdGVkX1/JLKvPkatE17q1E5CDzTdniMHZ+6tH2aoHakjrEJn8HkTy1Nl589THsLBiLTvzYoJF9kEiLuFyOBGiX93azmWUkhNeqYJi0pKmV54/yjJ5WM8EHswq3juSWz87qWcmoyJ0ETR2aNGhP4XBtfeJb6XVa3sawRDQ9do=",
-  halaman112: "U2FsdGVkX1/hUuRyKfl3dY2ifLgovZBCN0mgxZ9yd1vEM/DJ6q/yBYY+by/Mg/wWwLB8IgTfS/w0KUNs/+wU7onZIv/FsirFfP1el+GR4yIIzVdqn/jz4q7GOYmo59Lluy+dEB0NC6MLc1xzlFcDZspoaS9qK+XaJe8Bp4CoFMZbU/Uzoc+eLZLtKz0LSIo6scNXncCU8/ovBZ60HyqV3A==",
-  halaman113: "U2FsdGVkX1+npOoQ4R77zardfOi3uTkQ10DwqN+4B3T3yT/I4hc/ocCmisXosinmdVn4yucXjsBo1rAUyUlKHHckFIpaGdKVD2QzNTnoU2/R77GL7KJU6hTEZJnwHO7N",
-  halaman114: "U2FsdGVkX198qOBKNwIqFLtoZUhW2KoSFfScV/rCyN0bSnAy1CGA8GhQQEcH5q4hukuUKuCjHCCXTZ6r1IbSnuQsQA+MPt84qlr3pXIKWwCOxQptZrlmbvpeQC5g9bc36PT405p5fnQhu/4DHUM+2NPVNV5BU2p7svVrP2Zl17K5o7wJGtMOIUt8VfDPbTV8cjyGbMz0QqqvNYYfivWiWg==",
-  halaman115: "U2FsdGVkX1/Vm1NXNeUsuP9E6ukKQ9dFsTDGt8zx0Azo43LEgTjzbZ4ksOPn7ZCI602qb7XgQcJpW+wKr04OKjBs6NFMp3gW0h3p2zijfb1AMf4u+aGnaAdGbXF+3dWwmtNbIZfsqa6mZz/OCUI3fA==",
-  halaman116: "U2FsdGVkX183U/OYuNqhXcMtysG1g6ARbpbOnuekldeiaw3cRhLbB9E9+O7Ov4jXAQr1gVYrnvAm6Wk5z4Yp8sGV4JJCLCBQ6vGGAePzaBJKes2H7/APRG0eQwf2XkR/tHtf1wIeQ7FUNSXuopcmYar7rARy4KPhcS0oF7Do6rOgOAiNETgH9cffxSnARuMz",
-  halaman117: "U2FsdGVkX1+e/pYVbpOMEvTVv6sG5ieOoWVUu99+HTVeWSSPrnLRoJ+GLsw6fzAEbc55qfyVtiPCANyjOUpuZR/e6/8wCHlHdLlo8I9GBAr1QVKwj48DBM7l6yKS0NG0lz/JYAwdHTUi3w82yQHx4pCb8gt/zakwISWrnwWodjocc65DQ9hsKicLpYlS7fXV",
-  halaman118: "U2FsdGVkX1/Iif1BSdx6lbgzYByNZPwG4cn64Eo7J4rPBR9irjUt5kf6KTRtrad/j09z4IcJcjPWdw1uLTcEuymEDWogC7WkM/ookPcqxYeKfo8pt9jZdbzHp6JN3db9",
-  halaman119: "U2FsdGVkX18x3CFCjf7eZwTRWYKnYoxxaaGiz/2jjmnbzY5rbiEXALCV6m0qgnotDFiKKveOZS+e9/kW1THA15oLmaJSaVbVAlb/IIOUppe/biEHPJBtgPKI+ibD4dBv2B57cFIhqjZlkkMh9T/QObydr4umta7vOdseHS/D3y8=",
-  halaman120: "U2FsdGVkX1/yKYvU+KQ8SeG98vDjOFOF4Q1cuP6Cc5a6coHtiC9qCibMhe6erPQtSis17j2gMyhVsUEVj/CHuk/tVQbqGxBDtsrtAx00rxjwTlXLqOvsZaY7TlMzOnD0EB/8sFlMVzJzIr9+YmUHLw2EXUP7CNovLDwZ4CX7AhaPGwouyAxvL80URBM+3NA7",
-  halaman121: "U2FsdGVkX1/X4yMAcF1DlI4QoRO6BOpYpinx2oaLqu96sajbQmiGynF0TpWcD4s+BdBUk6Rb73GjwenprEVpWUaFk8iwdVOGDyGQ/kSCP3+yZkyyclxSl2qAGKWnkRc21EyOj9mebVF4fPDdwahtr6E8Aqth2xz3XXelmjjVDftE0Qaz4bK7iCyFxWlsstVE",
-  halaman122: "U2FsdGVkX18Cq2oSZ8c3cwmPPBKG1YfCo8pbA16W2lGdTC5Wc6h+I4hyRP7lHIAhB2UfwUKoczp0RBhQieg3/Dj0sqvaqzhqgtQDxKdwoj0HrXebO1IA4XN1MyHRqp+E",
-  halaman123: "U2FsdGVkX1+V6nI1b7wR1mJNhRvUEHKyxNNjL7jeclbJu5iyNwog0Nq9G2E3UxcftY1enWj+iRP6xUZ1PqTzh+RiMYu2WcrhkkP13OkpjwHRURF9sh7PC2awczZL09ZrnHTgcQHgRxC2m4Cg2eSeOHIGjzAuFPZl72ExQY5orBA=",
-  halaman124: "U2FsdGVkX1/rDGWX/jFBvEsB/u08xnw0O8TzcJ9JVVfT7eozdlburiyLfgcK7pSHePHZWdHS4/gr/A4q9Gd54U6k45OTF85piBkEENHyHA4=",
-  halaman125: "U2FsdGVkX191nwyhDNG2a9dl4Zmh6kvXDz74w5dBRcwxcswgs7EUImiaOnuzmEthAaIL2tartrxip4azkbM2jcctzdJcX20Z9choEpWhmO2K7G+VjWzCr+A3o0DBQO5lkM60dY6L05C+nQh5jP8weMvByrRPXIwQN2WwdxWINSNuRnJkZByoqEbYSahbSFqvsUsTdYfQykt81e55ffPNBg==",
-  halaman126: "U2FsdGVkX19uAzb+fcjakFoq6JzNvPui4EMu77E+Pu1+w4KvHTnrvjDbTaoU+blUY5pGwHsXG7nNmmXoFn40XAAqf46iMQ6NYR18OObGbnoZ1bvLlCDj0OL3mhSAWdTlsJhMlr3XNhz62eyYHiLJnp4w1EB3+vzhjQm40Pl1QNaZGkfIZONzHRHqu7odLKmR",
-  halaman127: "U2FsdGVkX18V/56WnELdw7seNo4V7kXr5txQHIllXTBhaEhRbs5gl5dSl06adicSJwZ/LR7t2OEDxm4hrPP8UKd71DHBtRYm6zEcQFOkicLioHCEMeWYw9U2DM4dFu9MvXWzF/pk1uotYj8ndJ0ZZMB+RcJuuFZRpj8YQpFOIb8=",
-  halaman128: "U2FsdGVkX1+jBga2elUE3qkkOb7Yauil4lYyy1Ag0ToQVMvMD3D7S9+VKicq6gq6LIsHYVPFfGWeJuzOdARhMoS4vLKcjOkYuoT5GLbeiZ+OzF4uyKhtSuWpPXmtC72J2TCPKPi5gumVLpgNzde61A==",
-  halaman129: "U2FsdGVkX18Vsr4BsGft6WXkP/3uBOdt2zpJSJG6RChDj37GrTrS/aVCX8WwwjYtZ/OB9/uU5p7cKV8aTn02XhTAwj5pV/Z7Np2IpqvvaVAfcUURKLKDujmCvw93Z/YBVOBpn2ATowoV+imoS/sI3A==",
-  halaman130: "U2FsdGVkX1/sKbRrC92VrbStWUfi9FcZjUFDvdMQE1TpIlDhBvSmbHGi5VwDSsNVSNZ3AL5gh9UB+tfwCylxLFgCUm/KyTqzs3DlRxBOvn0/bUdfKSs8MKzALolJjZyA/zWmn1Bh668+Ckei+5K4D5aa80cg+7FSSFztdgiKS0w=",
-  halaman131: "U2FsdGVkX1/ZxhH5YjVz7ddBaNQPDMYK3R782BYpS4rUIjLHYa3+mzX7BAKJKxCHHtEYxNAZJ92Mh+EfOtrEQ72UgaXrBx8I7/HBPuqKAUDO9u/verC5k1TTGeynBI3fsGM3urVxqM6iPyp42KVI1Q==",
-  halaman132: "U2FsdGVkX1+O1WGD6sLE3TWuJSYtKCqV+6ayd0n/nCrviwpleXy/fAOoMH3+7703A2DS27b0GMi9fjYCWcn2ityYek8Kdu9LGszSNGKbZm3GpYCJ5+CKzA37jN56QBJObgRnHx0uVJPyi9yMLsGXOlyEtNAkqwRmRQhUOwqr0sE=",
-  halaman133: "U2FsdGVkX182QQPRV0XedHHLyRjg55ze9KjKh5wxnCX8LqurIllfymykuMXCVNPP///wEuwpPeVXCwcZDn4AS+7viI4TrUj6aGZS694bmmknehKkYMDxtuzGOrGNOmj87WuNNs5AqWYKlxNgFJzf0BUmOkgzhckguCKgpkq45eZsFnSPSn9j4FkIQHnkslaK",
-  halaman134: "U2FsdGVkX19k9f268YZZNwdocSG7rCmUtDkMmsK2f81Md0WoZ71+yQvBSMDwx5NBj9joqW4pC4e9ApBrYZiEMn9IG8azx36NS7O2lxi2gUto1vkUGcmyi/RsJZ/Th7jsP7CdzAAITCT4Hka6F7KfKbnm7cWSBzX1X6zJx1mHR8A=",
-  halaman135: "U2FsdGVkX18YnMMvZbCayiO+JHF+qmu28uD9WI5tAHxWplSwtJpKLdeCpqIJ2MGn63vYowg74JyjPTp7Rj5ssTEz+nRbnvE0v+ZBfFhPirs0B8Q0yKE27LXrHbAh8NU7GFGNpujNbdqQVOWDryq9ArWO0rn+YGa+65DoZuc/WvE=",
-  halaman136: "U2FsdGVkX1/kEL65P1DZL46qCMZOTK4yyI7624J879a/zsjWToDCtiS8cMGserMpR28gMbs9bAJR3ptAGpphix32zJuMckkc7934kwFWlGxNGJlIfgcgbMsj73CO90I3njEtUr4t8U5E8JYRrv5VMz01252AWydyFE3pCPp1b5DzcthC1fqbnjazH1MvONaZ",
-  halaman137: "U2FsdGVkX1+ZXD+J6j+pkrHZgy3WvGO3HvPNOEJmPv9usGg6QwhdhIEhx34lGxm+uWHokvJWLkHI5r5zcCca4yu4J8m2xCeReIHVjculganQixT00BSzGmRY+xWt6zr6AA+46+nnG611HgPyk54MrGae5Ckb1KlLAvfFtxgjvQs=",
-  halaman138: "U2FsdGVkX1+BO4Kgghz24krd9qTziiDFk5iZAx+j6s8DpsKrGmj3+BbrwtuARy0U1c/+r534yoBGU4lqbEFnGZX2XtHWhpFKJJSO0WPym3NUSjAXqLEeUSuZlRlw7rYPk/+DPueULMc+YSZq6ol63PC9uN51Ud8o/dL+ywKKkfv9LJXNhb2OAqJqztwL1ECP",
-  halaman139: "U2FsdGVkX1/YMzMHToBBOGGABINj1IidTAXQwgqI8bJt52KJJWVlX7u6kXk2PmfFI0QwG9N0WRYpnFmMp5yma1HCnZLtG9MmcnbgX6aXCzg9YXLl+t1yMm7kbivqlM0QfHR8HOUBiRDnyiRzxO68fZXE8LL0qrzENf1TFMmbQ4Q=",
-  halaman140: "U2FsdGVkX1+lw2nGP908b3Z3hlNOldVXMmP0SR6CrOUTD4zOn1mzuEScOj6lDGvsF18UargtsCyjkH+7MRf1dMmLpHPZILu7w2zqFa/B2G2pUGZvLuHFxGMqB5lfTxLSJLmYn4P/RWXXub6PYcMJ/mVAqBa+z9Sk1C+PDMDY9Rs=",
-  halaman141: "U2FsdGVkX1+h948Klb40UX72CByVHu9gHLGqkGRnjyRN9zgxgBnlhQN6f5rivIDnb2RG1yM63FSogbUIv5sILuRfkssHJj2PQaTNrHlpD3mnb9POdVeOvGL8KxyklwWSOh+IZTxKNDER26J7CCzOfV0Mn+77fBrsD7/2XChqCYxnuwDgLDON0UJ9+Qg/iTYe3XmyBWPWh1XFiTFNAf/5Mg==",
-  halaman142: "U2FsdGVkX1/vlTgjQDj+ibK51HfHNpnal7YZTfUD7gWlqLPYhSrKF+iyCvhoMzOs/0ojPlhcwSTeooeGkRz/PRKVbu3TGWYAolD4mhsMyIBerJNuWZ+qpEryVQ9jpE+hVZeXdCUy9c1Vm14Cta+XzCZiRU6kcv5KUJfdIf19/CA=",
-  halaman143: "U2FsdGVkX19qEydERoA/OFPjY2kzy/HsnvRscXI6jcNcfFbWitZRX/WWHRuRzUmgB4ZQtDWfeqw7nLWDTrLhVFwLP2vcamdxi93KJNtpGI/BD/LOUUWCpJpNwhn6JRWGgGvj/eTUcBLdKrR0/3K9zjOvJDXgEqsjE4Lqge7QtbA=",
-  halaman144: "U2FsdGVkX1+T36Q/zLd66GRzAPS+cS8U5WlasY6UUCI8OrIluzya7clZEwCasyZ7Q7lgkK1WDhiu5JO/0a6NwGiVgYzHQ3dT+71ISsRyr1FoblQQ4ic6qDIE54vfy+iYubXctX2cFr6On5aPnaZlfw==",
-  halaman145: "U2FsdGVkX1+0pNMO9KwppmPhFQM5V+Xkjp6yoaTICpIITYVwynb4HqZj1EHErP47KJLmDgi4BgqazK80QJyOkiWv0UDl6JjcgTSYcFfsb2vzVFGfSIgraa/Ro25sX4gFkFno/xUmjTsFRyVktJgRFRfovd3y20PEVilk9Kyi1Dvr+Cf5jRl49qlRlrH23NL6",
-  halaman146: "U2FsdGVkX18f+8ho486DXVJf8aNQa8GGA5R2qpzFrdVnwfj8btOF6Qs7rl+rtb9KL0cvT28K8rzwZfgh9zn9/QKA5Z4c3JLHRiC6iywarC2oFvYgzMQPSTXNGs0Fv/aFUKC1zIaMNv7CVN3+Z9m2Wspt5qaqR33O6Rf/jipuO3cApy46BUgeI9KwFpmmylrfUNR7qEuNrABgxkq6LM7GY4ij8G1pJvdiyD0lz0bGOmM=",
-  halaman147: "U2FsdGVkX1/shAaKQF6BgNwsv9MMob6bOgk+xkS1fpwctH2x5EfAM0vA+x3c6PSqDEQZoI1LYq+CRpYKuhD93imoS7eYW1Czo6kcG1jc/lfdp6NSO0DmNiat42vNAXYKdSGIp1SKyQWa9WRsk9LP1rwSQvkKq+0NdSsBBLyrDX/Ohy/zmK6YJS6UoN3vnSI+",
-  halaman148: "U2FsdGVkX19kVcAYSm/KeeNsOvek7dKBLN2/myCI0R0iNhAm+szTsbpSAU06mVdOBK4CYzvaaEXJsN28S53UY3fkRehrWdjtwiN8bdBMv9QI6HEyivM0WVYmQLwSNTAFoYQVGFRJHwejpwN1ZAsnGwlCY4D2V+71vWSrfQCbMGYxZRUKrPjaN3r1icBopAVPpJpxD7HBwJrIF3U0qOh6kw==",
-  halaman149: "U2FsdGVkX1+edKGyimdvohxVydMUnSlbbnkm1pUsgyV3WQIblNoxVJaDx72T44XaiA1DUK4ik7Up3KVXA+7Y/Wyi1nR02UXiS6raPQaXB0O96BoI0ApLe5mc+NtBDuQgHK76RAv1pVtGkpYnZA5RZFPa9Kjm1Z38Yo4ROObSlnKZduCFogf/k3I286PP59aw",
-  halaman150: "U2FsdGVkX1+U+829oIIfPXmtHAt0CHnPyRUXGIfJ2ZMzjXRLT7c5cDTtGf6uQaIuoIoji2oeoJqLl2L3Dg3Jd6gKQRKt+amr9/b3/XPaeuFHTDp64NSTOznAVQ5TOn5ZSU2dTb2rmVbJx+EqzaQX4H7U9kl7aFcqFckKP+G/TiM=",
-      suratTerakhir: "U2FsdGVkX1+JthhYrcZDFCy3U3nBshh1VQX12SisqqOXf1D4EQ1s5iS4sDP91zm5FUseKOky3i0mksHOv+ayNwt7qNAeDTWJFeKohzyRZrh9NlQCMvN9BGp4PyhvJB47m3h4XtuYUm75Ejb91agSZozhhmEamIzT+MuI3IPqGxgN2QBfo9ghXDLMgVXV5GEDszuddgyKFTTlAeIGgHV52DSF65rJSn8G90GTVopekK05YvyuZkFvup5QElhECCaE39pJrLMZ3abgGbkJIftYfUE6b/qsRD1wk+u6zz7CKNGFC5BNlspUoCnWFXKdGrkfm+aD+pbbSiq0lOaSte6TW/KGPvY8KkSB7+l0GgjXDJeah8v3fYQAeoXjZfFMiozu4FdK4pvu7VKc6ortp/aAeNEt+aMsvJt97HzSP1pb2FXTvkF2hOHXn4JL9f5/y54SCVrrSEFbXqeQX6X8O8CS8ZKyO7T+L8qcbKArB664Vw9slCRhkdXqMgrtlYWEaC9aUxtM5K7KiyZvZs/EWXoarfwbmqjKil9pbWlCHjdfdufl6UC9Z9W+szOj2I4EiMXOa58Ob4bpfg9+6+fhqPqKRqiODKcOA+NzfwCGwrlcOPxi/jc11BsWjdvI8kPfASKGVqHnclCZK0fy6hMFn2OX9BI0TJuikyaODXuzF25zecgEMURa8poGRpadq2p50JxA6jk0hQrXAGzeVOOyVzO0U9XwkWlUl8qO5AE5ygcmLWHmUFbgx74wy0QV2bdPRzWzSGhZEvu5DGtVYWc8adb+V7aqvgkks+QKzz7gb8HkxSRr2/a0/MLvfSrm4a7DJ8yXrIiWdp88Q3zmKWlnbOHCkoDmVRcBeJ+6YBUzL6Od6vmLN/wRbvf+740tSHvIZhRjoywqMCWWoqsoUtlpghGul7DoNhqG9N3uKm8F/Q0nzaqEYiq9hUcUd3Z/Vu85ecr1w1ot3nWWtb/rZPn+COS/ku8htLEQFGlk6xjhbsdPMyywvO3butkxRQw8vyDX18Akxc+c8EP7ul0z2LjOOdPCwMUQdT5h17i4ljvURnHYkFNujQZ4PvP7MpAs23L3BFhoRjhQCZ73jg+/aNcvgrszUzYlt7gS9oFsE3ijY7gdsxH56oG5zyTcgztTXBa69bulyPxUGxfh2e9qSfnRWi6a+n+y+/tmKXVBR/1YnZGtB1Nsh+ZNJCjnvSl4VDFr449HkzAL7zh2qY30PbPE9o8FH2MsadTwS5iGykf6BeQC8a2e8Fgd1X7Sb4UGvEVrdbwe5QY8MDW7hGhoYRqt8hnO/ynb5R4KKftlFfl9Z70Oy92QmjbFiF+8lX+OfCCQLgHIqqeT8y4tSNXNrCXh+Me/jAMq2bO1+0oIMG0l2gVbjHSTBD9V368CnPrTEpNSK260yd7AHKAq/o44SE5+K2XzWsycahfVKb3+jeRa1pL84O9mTAjz9jkX4yGpOwVdAYX4eptvFekF+Ib9mJCDgq4KH9xRrh6ySX2zLN0oBFCjmxcKvf4d0mp/Jru+UdicOXtp4ZyM363BWiyCb+cXIeOpSijHVPQ4IFXw/8rRatdeVi9ASI1HIRP1jNwYZKGC9IATA7rreY8kjgduIJLS8hx4RgR+XLv+JTDYJgix8QbVR4Bnr0kUg21NITZjpK2aWTrl",
+      halaman1: "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",
+      halaman2: "U2FsdGVkX18Lie0u+zIEDT8bArmBpuSmTTEMywvQwMgGQgm5NQ6LT+7wzyDbhNmM1hj2Y8xUEIzAWMGXK2niGlNCX5Kk8CluKpQq4jwDNOMMXdnReVOMnz17LyYcAgf94KGe5AiWA3vsoW8M8V8L/q2+6CpiI8XmxLdyJNk8kR/aeA9+XPZYOGTgYhDmNhGTHdYTki10GPRtDzLYCPe6AZxE1xV46g8LaOw1bW3wDM0fZAXVpGhCslwqlWsZ5nps88RmDudC2FbUpTW9osrnoDd7Ejox/lt1tohhSc9wCMDyhh/t6Bi8Bk0emoqmvWZTkHhT2abbXG5w9JmgQv6F1IVEfbUp7edrQys95Lrq8IG6bkiZ6g8sAb5dN/ExOZvswYXjTCN0eUqwA3jR8jXuDz65d7LWCtd2YNYHPnxy4M/uBVLfBG23pA9QzN7yViknlnMzGAB1QsGBPNTQSd6I6DwiFzGzAnhi6tfYTwqgkBUx/v7EhfZpYUbBmbhIt7ukYdFvFLAzOsAhCJ6nNWJB1YRq9s83oC5fKBhGrt0ent+Aaw4mZaZPmDG05vqnm5QrwqeSq2i/51gM9pUnvuiVxycpqFIgo6xjkxYfcGs/mkp46Ftpa/yIw4qdH4EUviz4F8sElixnNBD7zEOOnL//b1tfm3nb2+iHbux6e4+Z/UZ1Mlo3aPDuO3HHk1nbk/T4zKT/VAqDqwnwesNEyx3nwFCBjCz5n5n/fCUBIf/dyRUJhl3U7tJU5ePhaUCiSEs08+2R9ncNemxFMz+GXJWTU57Voazza1/YP1odeN+9h5aRiK32IX1k/2YjZwPmxBNwi9EHjWJ/3PCxXW01hwEYaUXIb+wphu963yMFuYT3pJrDMqHeLj/jMFu3SzfHu7FAp5E8xZVWBp4kkP6aIKgGPVRJVSRbCCtDVOrYJjWlZWl2n04PTgHL+V30tAITZX2QKcSQnBcs1gCKviKVqfbEmHCQuPl2jkBDDsOBC66gYvvD6RX6bCBK4C21QA3gl01Gun2N0cjwAbLzLY1g/QNhJT/bV2e7Gn0G7Mkj9LN89EteOv9wD6UJd7uoom8DmKkEAYYIoW3j3IagixvqrSYEWkkycK51C90ZbUcYb2pMJDToWe8YAeLv3RUfeB/SatXAWDCemhIYq0h2M9dgL5hMPc0RyN5zlqZyoHCjNXI6Uw8UFuHLFu6MhoEIeZ9RGjgsdAPLAWubgd9QxBmdrtjpHz5Rt2sVSzbsbocvdLd+DWK2V0x3tsnmE4Ujo0FKMFRZ0xIWu7gf/tk+wUfZGdAnA5vSXoVd/h74CQnFRNCykMA/Ya7Z2TyaPsJN/EY1NZS/Thkt9DjSPP9EyIuWScw+myWJ56uHMYaiLgtg8fbRLpYRsuBgcw3l3AN3jDZCFVkzRenRzxwgzG22crCGmiTnqM/7QGeuqhXPmUxI/KlBphvkiaT2m1HIPweUybp/TLZMKEV9stdVAqAicF09cMuvEwNk7yfQw4gtetN47gg/HQzfLW4ftkaA9qSj3uVh0nWg2/zPPdspk+c3CLWhfVUbGr7v9HiQQw1CJBNaTMGI+1CRaN8pJtHmPHJAZ4Uz4fh97EUhmFlwZhHBrVe+fZljB4QUQAuQLvdxiceqUY8PPAF4ICNFmgVlNeK5u5/EiwD6xi7RXK14n95Ix/jp3X4+lP/SDZbSzGSKPduhMKoSzQI=",
+      halaman3: "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",
+      halaman4: "U2FsdGVkX1+5PQji9PA5PlA7rQlCpu84b8SPT0oqSFWFRXXfDn/XPSJoV6vIKqkxRsk13Q77jumvKKplvbTnpEJYOEwL+3IS+5OoZ83Yhkh2fVoCoywEhnZxqReeadjZJm8gerbeJBc/xghV2TwXy6zlUwLnZYRoaZG7V7ehJXbK97pq2ZnlhK7zTjcOIneN02r7fHWW765PBgdWwh0ge3FAg3sHPKsJMCu75km+MdS1DScg0DAVRHDc1jzOwpIQJ0TXB7jfydr7a9KxU+bLmlmuc6eSyUss4bxy+pEnSWwXTylpAsV6U0Qy12RrKCjoOmEMMY1L5kWr4hwMu08WPLsQiPIU+f0ryu/miYnuKm29vkas7dJQ50b8TDIOgXrSgG9gfVS84txgMu0hQh+pR2OhRa0w6Md6iFywCxwKzg5LQethBTUs0ojwGx4q3mahdDujf3+LyKVsYGiuI1/irc61P1Khx2PBDIMrnd5GBbQCncS1mV3BJHtEiQAhZ6EJxHFC8c/ccE4WZ+sts3gs2jlbnN5+z5h3cExZjbkKViwK1HSAFRg8qti0W8Jh43btpuuoTeOODsehMlI+omBOGMIUn+Q7ekXKo0AKhtRmWntQ6Kmcu+M+Awn0TpOQHKLwDjj+XSloWXCchvxrcPzlzajClkbXgH4Az7oWlzWudFPG9ncVuzQrau6AuJXuV2Zod/uQXRL7T7rf3cOD7Nc2cLYrdTapJ/dxw91wTMySW9Gaq0ZijxaIVwdiFTTkVEGoOL714kZQ+1OlDSKBISWfes1DKUZrpgTZVgCfGcQGiWitC3tgkpObL6P92p8JvrYlMrqhC5uBNxBpw7U2LcHBj9UZkrJeWz7nzOjs9ZY1kMPCsdf9gB+x9+5F6mkSovaYXtZtUEpwEFHtVV8izKY3eSXWPwfCNN7RRb8DyjhQz1gzHWV0fYzL02Xp84FQlTz+BkLpo5n+REFJEUl98yhMPbVRUixRDCPbxvM027Q7D/BrKHKxf/H3a0N5nIns9jyT1o7tR+CTj8DiSmlvgbR0ZToru45M4YWVhVc6Dqtt/vBYgvqHjzbIl66p9iY9cRM7JS4V6XsOrV3gvcXgRg9oJCDQ/Ena9AN2V8m8374y2JddySF0tDqT7zz0e79hWwGv1wQuCr5K8XU1pYenWhItWRc7TQPCXnGTSi7Y5fTzBArL/prQq5EnEiF3kKaR+bffkHOkbSN0J6g8zRd7cqAWtQLSLwtrgdwZfk9IlmaAcOz+E+ZyoLb6oGQhuLBaLYRjMT/+yfpDfWgEnRZ0bGJ0esKAjtg/kim61rNKNXVnoxMfSFqoYm19bNKoNCfoynvmlrThjbvRqLNIjp4TYqp1sHkv0GWHX+beJVjfBNaRBERiRyfdfyNaLg+EuPJVZkM9cj4A71OwxtiC+AtYnPPslKjypHmafNDuNxWE+cA50JYbwSG9dHw2bPsnH5kBaat9iK4HoFtPMXr81dTjsw9YIss8rS2SfHwdEXMFaiWZOfORGCMmPTV8ZPoJ4EpNuSy7",
+      halaman5: "U2FsdGVkX19ZmB3Lr7FzgBvIMdrKxXhSEknmy3UQ0/1J1K4yJYAIU1NezdN9VVndPenyespmOcLqqvqLmnEknZrikcp04kSF45NxqXziqxUg5/J9cicizzx3zjOVNBQhGYpeoMGM/D98XshPcI40lkt+lBCuWY+xecU/c9r+ECN5mbCbz/2qB3caXk4dfaTDbYUA5fqEVrGvtDegPuRvHKQ1xdNa0Vj88UFzK7lEFw97Qe9Hx+iGdwfDxCjuE0H9AlMpakVWeL1Q7pkE0G8z08NyR+adr9MAvo2M1NL+t54rRgaulawFdpGjdr0IVXBVb5ToWlm64tYvxCXi8nuDm5buzAMyGuQhZAwufUefHWCJzIigqCbKGQNLzEtFJuw83BANY0iGhJJNOFKyLHoMyBnD+N+Wcj/c2ifSsPv5MxjiUw5U7xVsLs+VQfyMU6G7yW53jBFcCeqwbCP6nvmymaKY2Qe6tVsYkw4YPiMBlh2mtNTzZrKC9uzshSIRS2p9PLgQqW8urdKQbFMK2UpaNUwYVnrOG9KOuz3Fb18QvnjEUWew8ON2icptOmvig+lyNm/ZHIOmNpQEpaaIRauZtKJW1sfgAJUTUGiOIqVWHnwVAT15zLOGNIpHQ5fbwxPEV5z+eN+x5y9vKJgjJ1piJHqxUDkyeE4Q88Bl3h1gBG1+lhk79NU4DoP7SY0lliqaB1oWOKkBkUi7BneJDTgyOke5mAJO9CCY92C/M6MYIwR6n+qmiy/iQrZg/9vxhGi43gx0zLp9MxJ5T4ca3QKxrUmGPZUo1uafskjB00nbRAucUXtBYhM8m4vSEJZJcNZju6MGrJvlvPAXBoTVOcclombhR+/SOiMAHTAwkMOK/WDgPQsqCKE7WPhMOVIwKojTTFB5MFSmerKFK5JgRNpPtVnVkrRCnLsZJ0WJ6+maBlXLgaDk9tkrRsbwShqLxWQ6BfENLiK/903I1f8Tv3yQleAqkxlSuTS+bYwfDHzBJwfsg3cHInDxHdwoQauRayFX+UyzKpXwrYmT/tjoOCxGgNph1szFbB4Skt6Pt0jen4mN9cjs70kD2WtpjeBM4qWnZKfKUPD9Ug8IvX9MYzS1VC/74mSDBJfvv6eGYsvb7rXzddgIxREoZK06gPa4WGcRGcxLD1iwP/U10qowDkcv+SfwxzBlyuW8zSz5UAgmDji1RLeWWOTpQIRDxvN1f6pTRbtnlbUb4WxZ/P/smJg0VEJaJTKJule8UtmiRPLHXM4uhBfLII34MTXXWx3ZShfalQ7I6u2mUi3rDauDBemmX5iCXPgsHv6eypenpLxgCVsuEA8oxgAzAVtZ8GsSHKfC2Ktic+XscCy6vB8osyANzJQz8UaF+mnR8WEU0msit8eFejX2QNFu/N5YEEA9+dgfWF2hoUMptcPNN616eZkZW1YCoQwXZRLPpyLyDWDTjMbQ65mTPtCkhs+E1UtzFmziS9X1ypdu1F1z3Xzvv6Yut4YTTdJSckTJ867Xn4dtm8MxFS1Q+nxCI7bkwO2XcR4I2K7xT785tRHc/fUai4gs+RpcjA3hWDDVIlKP1stiOq9z/KwNkpyxNEZrCLZT6Ne1eZdHcqkd/44zuKUlqwYD6dpAsQ4fl8doXbQM5z8wS5GVjdscJsYi1ZjS+DnijuGZ",
+      halaman6: "U2FsdGVkX18zgaX7OIH5CdArmzU1/HQu+hyHKLzpNpRgoQNEdZYhJLjN4Cvof2bR0iTvG76wx1YH1thzRj5ZCaQyU337KNHbOBjIC5T070Sv9vq4GjANT10Mx4fH6t0Uxv2QUMAlb5CBaE4D48ZELRKB50bSU6YZ8o2zvaHcqqIetrqN/f5aBsx+bRnuK2dzxn7KeBTKl8KkBw/PIDsSfGaoqJVZTZThz8rng7/hmYi9gbRTq0MmKDL68julxnRPksR3yLgmSZSCXbw2+8eJBE/2gV16evAF/5S/DO1EjPn6Gm5jxFHHpJjnxUNt+YBU6fki24tGnxGjhVjiIkMZD5dWsgw7Na07q7qGSbsg7/tip9fqmIN9rnovP+GyNGuDoPRcmMHhvG8xk1RRL84Ei72wIn+KmhFARqPnWr5kwz8pYd96W9fPy1vebPhhwTb8SZEk9K3h/YjNsMHc5fiBV0Cu9CHhKQ8Az+CLA3XnhKD8XXkQ4KAwsHzKAOVaBjoJNnRTlg/9JmNNYld9dnTZY6hIJnWEvA0RP7qw+4W90JDsVi8CscUnfnR9hpde7MTHttEiBW+0ZyNdVVIAd7qcNl7InC8BuFMdeHNxzaStOx0Qlt8nXMCousvCveJfjYnXkD9bt2LvG6+O5ncUJXnX2W2GwmtB2fNZeFGLPeS52G5krPvLo0g1E+2kccuPATgVpzK/Xyv4qHUu7NxD+kKs+Wm9OTh2rUfmSyQuUA+HET27VVdfqsbbi8DUmgozPs6QiyMnI9wISwankFAHV2VsnUuC64remYP5hj7RMe+e/fYrT44iU7HC7m/BENBKtS49K+dIUQkb3IBQ5Un6tfxTFL0ntWdQmkD4oDP4Ln3YlNp2f9uhDdhBLkryUKnN4g3NFPirCvBVKuyM2qiLzSYPrC2EW05LnLWLMoA1sWFKM8iBxBUXPuwjnuQunTAN+xFfGNMKYY6VdH9UPJk2/l3Ys1tiBq1RUmEuhMXy2Wq/zXTE7DunYZ28o9OXxpjuulMqgl3F0YCPBk4BJmHLMsS4Sucw9me4nWrp32VVztuFUpALQ1w++JdNisQ0yBAT86TUTyusvIbhOQ1b4Z3qAruwZikB1r6n5OFhNZDVJzQKpP+U3kngbnHfqMJLO6YGIbxmAIT2NuksV28+bvbUVl8LFsYbEMLsbAj6W9AcwIbwsY0Mmto1ycAABhgYv8FvsTf/mRhiwuPGp60H4pXdNckhDMHi72lVR+kA58Bja0IDM5rfhtdmcKcd+x4LxW4qPdFyzl3txB1v31FWCCJeRYRi2d0RLW/Zy9Ll1eq8TVpK8RR0Efm3PAxjJ3f1oVpgH0fjUVrOFATuyvvppmrT4xNN+S2RPj29CWO3qO+mC4Ah2bFX4eDmbRTc4iSmmG0B2MMN4nCwFGp1VNAf7UIICIIBysZAoxvDT6pItgCw9Q2JswGnpakFb7R9C0nFgQ0OWRWClXZai3uf9FfDwDVsuvYFislD6UirDStqoGqf6x6RBzGbFYoHtW8CqroTlYsbsRAL6eiIG+vVvH6iH+X345ywQvOEHnx49jGV/A5qfEQ4titgeSlStVQ+1l3gcLNnUdkwzMIz1e1D83CYTdUTvcekAo5QVUTGsLvnMt3WKKdLXw8+QTtFd5b4Z12mBHHUPpYFZHCukAZZhlBmRTDDV/qIc/66zaSBx6uzmo7UNSoTcz9Pa7OhByqgTw/r9QQpxZGUgZWVkGTyBJQXeLit3yhx3jCIeBEYu6G8ZSoTHhivHKkb/RmU7kBf4OSiCvCLG9dkLp7pjResAMT7FOZf7vu6yi44uhzlsiTf+/y1o/xfVgQ=",
+      halaman7: "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",
+      halaman8: "U2FsdGVkX18yo6X6jc6RlePplOt/mZJfT19F5q234eJgG3LGIrmm1qWj6r1P0jxhcYbPNafLghnLdYWcMwQmJGTueZ19G5XeYfXC8DSL10B2HdNIrpTyHoORbPorbn2fOz3gOtiqjOPuS53m6c1Yz5dMhJqjHidpka4c/4vqMOtS2BkA8Kiw0OkLqy0Ya1/OHlEUWKE365rkW4D0+NriEMpWum3AxMEtVGjZzxIzNQMtJ4kDqHsdPw+cgrB/6z+Fj9fibPGFFW11V/D+e07GeZ5yEZVS2yu0thRV/ErLiw0laUU1rmcbIZzZv+g/AJ3NuX7gBBUoEGHkH7yhUbHASmx2llldkjlvWg6Dpwt9NhDiRrGlQYNgB01mVN/jIt+TE64T3kMy4lTi2rHEgsWaKBhyUIyWCUWpMNGmxHt/j/oGajLmC4Ao+4U/3PnC4gy5jgQsOSrD6e0O9eur8WUtskNNrJfgw4EENnrtFZfTqpf5Mb/ZXBUh79SG3FtakMNpJdpGfpiQeBMnxdNhImU7pgzZw6zlojdqZCuI/UWeqKlQYkXFCz6jIGd12+7AY75qyLXTse0P9yPElEh4ovRlU1ftSYyc6FC5qzkVH9bLNoh2TJMshBCzSOkyP2cSW1EP3bEebJ6J021J91hJ1LXjPZyt+yJoljnTpMM2JOH+NN5wxVBrZR95+3cGZwBUO6XxDPllhmUjkfpvx48EOksKt/1BrFqZ9gsiNXlgWhm5k+ym/svjWby04NgX4oW4A5CIitKeDSA7mt+3S1dgWZCOuUpyDY4rs6cKm/kzmy9Qs5Iv+cS9MnLqVu1bnEFZOGDq3xDSpJ+wEDWrtjw48KguZ6JVVXW2ozJDqxsjedZwDslgbRC0emdSkjsJqZTbfBN9aMwgfX6XttinGbn//VvGQbjQIAkM8B++1hi9902HD6w+cCI1U3IwCJVBbzi2D0ognDBNhJhCKaYf0dCPm2YUM5NqwzCGdF2srhULqrqc/fZVnE83kxAyeezRcQYXB+ZDBQLqPhAMeVcGj70BmuLNoUaOZYGtSNO1G0Fm/IB7RmByp1FojVtSOSmajuS3Vmqj54xq7GJeULkuggsU+idaMY+cqABFTt6GE/m2pVazd+MBPv+KS/o/FaLsyq2NboCy4VWf5YD87r5SAGemkyDWnrUgI+hBjb1SHi53zPHDjfgUgDaaLtKHjNhMLRZxY2GR09kRZBqVM9a1zWBAYZ2dyvOswpyzqu88SyYqH+TpUAxCxdG/LcwQwO7CpSrglw+KV4jT0ZBDrRKnJLTAFbvBBFrR4EFoxziball6Xrp7+q5Il9ZAZjuA8GmkxqlfxbPEipWQ7/9aHIc81+RFRHI1cTfDQ9ydJ4ziDS8y8ibVpJm1g0G6ZDntbjqr7TXlg+YFKc1cvriTESotvvDEzWRkN3VwoSRsUvuFK27kPVFARif5W8DgQYtlq0TFfK+8y0KPe88UooKHnJJsgBjPfJQ+ObboHuNRMAA/b1o12qhnSEBT4mh/cNG2i+ztbwvCYyk6orqMuMRYXWoKT/dRLLmab5kw8RxOnijXvEjZY9DbXTnuWl/AMU/nKM/i8pJrzfUXGiBCjMAqcRhubckB61eJBEuZhwaW6qzCjlEhIKrelmlCAIBv2jEcA/KiQjKN4M7Mz528eeoT8kVRmQhFiw750G0Du9tkmPeV7EchgI4FOPBJ4aaiu939OPQSgqy1DDCl",
+      suratTerakhir: "U2FsdGVkX18kScDn3Q/XZxlN/bY2U8aSQQMakJxdoIgak05Ecknjubfw32RENGXLYgkIvws/ct07apmhsPzjYJwdaNakQIeYDuNFngTUWr15R6NemjBagOw2Bbe+tUA63/E5mKM8repofTsBeXd0UbE0QXg4bprGIDnfSszmOi/bdS03G1eAjaazDN8kRYd0dKBFtenYPp6PWI7jmlU0fdHXlxlQ+F/Y0ZFDw1h4/ZqrT6IziMf8egdQPTXsSHk95n0qitNvsM85C4fjQPkX4hP1vw9gtczzVjf1bJqc3bCQZ8nMxuhe0FSeJyZGrzNS/ea77Lw8xKfzE1sEpe9+PycbtdZ+P4eBn8f1KspDCYpp4Y1lU1e+5sDuRStBVbWbiB2Jetv7mdnVc5elapKaW8RASBHoW4bo4na8Bu2WJlLEtLMFkBBDmOlSU5RVDDo1nszon6LHFoD0AkHWPGRRJw==",
+  };
   };
 
   function playMusik() {
@@ -522,7 +376,7 @@
     const progress = document.getElementById("progressBar");
     const timeDisplay = document.getElementById("timeDisplay");
     const current = audio.currentTime;
-    const duration = audio.duration;
+    const duration = audio.duration || 0;
     const percent = (current / duration) * 100;
     progress.style.width = percent + "%";
 
@@ -576,8 +430,15 @@
   function showAsciiAnime() {
     const notif = document.getElementById("asciiNotifAnime");
     const asciiText = `
-📜 Tamparan Jiwa
-- D
+📜 Haii orang yang selalu aku tunggu
+(Di baco sampe abis yo hehe surat yang aku buat)
+
+"Kalau kamu bisa baca ini,
+berarti kamu berhasil membuka
+surat terakhir dari orang yang belum pernah ninggalin kamu..."
+
+🖤 Surat ini diem-diem dijaga sejak hari pertama...
+    dan cuma buat kamu.
     `;
 
     notif.style.display = "block";
@@ -605,16 +466,16 @@
   }
 
   function hitungHari() {
-    const awal = new Date("2025-07-15T00:30:00");
+    const awal = new Date("2025-06-24T00:30:00");
     const sekarang = new Date();
-    const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 15));
-    document.getElementById("counter").textContent = `📅 Jiwa ini sudah disimpan selama ${selisih} hari.`;
+    const selisih = Math.floor((sekarang - awal) / (1000 * 60 * 60 * 24));
+    document.getElementById("counter").textContent = `📅 Surat ini sudah disimpan selama ${selisih} hari.`;
   }
 </script>
 <script>
 function renderHalaman(kunci) {
   const container = document.getElementById("semuaHalaman");
-  for (let i = 1; i <= 151; i++) {
+  for (let i = 1; i <= 20; i++) {
     const key = "halaman" + i;
     if (!encryptedSurat[key]) continue;
 
@@ -633,26 +494,26 @@ function renderHalaman(kunci) {
 
     const indikator = document.createElement("div");
     indikator.className = "halaman-indikator";
-    indikator.textContent = `📖 Lembaran ${i}`;
+    indikator.textContent = `📖 Halaman ${i}`;
 
     const nav = document.createElement("div");
     nav.className = "navigasi";
 
-    if (i > 151) {
+    if (i > 1) {
       const back = document.createElement("button");
       back.textContent = "⬅ Kembali";
       back.onclick = () => gantiHalaman(i - 1);
       nav.appendChild(back);
     }
 
-    if (i < 151 && encryptedSurat["halaman" + (i + 1)]) {
+    if (i < 20 && encryptedSurat["halaman" + (i + 1)]) {
       const next = document.createElement("button");
       next.textContent = "Lanjut ➡";
       next.onclick = () => gantiHalaman(i + 1);
       nav.appendChild(next);
-    } else if (i === 151 || !encryptedSurat["halaman" + (i + 1)]) {
+    } else {
       const toLast = document.createElement("button");
-      toLast.textContent = "📜 Lembaran Terakhir";
+      toLast.textContent = "📜 Surat Terakhir";
       toLast.onclick = () => bukaSuratTerakhir(kunci);
       nav.appendChild(toLast);
     }
@@ -664,121 +525,113 @@ function renderHalaman(kunci) {
     container.appendChild(div);
   }
 }
-  function bukaSuratTerakhir(kunci) {
-    const container = document.getElementById("semuaHalaman");
 
-    const semuaLayer = container.querySelectorAll(".layer");
-    semuaLayer.forEach(el => el.classList.remove("active"));
+function bukaSuratTerakhir(kunci) {
+  const container = document.getElementById("semuaHalaman");
 
-    const existing = document.getElementById("suratTerakhirLayer");
-    if (existing) existing.remove();
+  const semuaLayer = container.querySelectorAll(".layer");
+  semuaLayer.forEach(el => el.classList.remove("active"));
 
-    const div = document.createElement("div");
-    div.classList.add("layer", "active");
-    div.id = "suratTerakhirLayer";
+  const existing = document.getElementById("suratTerakhirLayer");
+  if (existing) existing.remove();
 
-    const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
-    const p = document.createElement("p");
-    p.textContent = decrypted;
+  const div = document.createElement("div");
+  div.classList.add("layer", "active");
+  div.id = "suratTerakhirLayer";
 
-    const timestamp = document.createElement("div");
-    timestamp.className = "timestamper";
-    timestamp.textContent = `📅 Dibuka pada ${new Date().toLocaleString("id-ID")}`;
+  const decrypted = CryptoJS.AES.decrypt(encryptedSurat.suratTerakhir, kunci).toString(CryptoJS.enc.Utf8);
+  const p = document.createElement("p");
+  p.textContent = decrypted;
 
-    const notif = document.createElement("div");
-    notif.className = "notif-penutup";
-    notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih.</span>`;
+  const timestamp = document.createElement("div");
+  timestamp.className = "timestamper";
+  timestamp.textContent = `📅 Dibuka pada ${new Date().toLocaleString("id-ID")}`;
 
-    const nav = document.createElement("div");
-    nav.className = "navigasi";
-    const kembaliBtn = document.createElement("button");
-    kembaliBtn.textContent = "🏠 Kembali ke Dashboard";
-    kembaliBtn.onclick = () => {
-      const dashboard = document.getElementById("dashboardSurat");
-      dashboard.classList.add("fade-slow");
-      setTimeout(() => {
-        gantiHalaman("dashboardSurat");
-        dashboard.classList.remove("fade-slow");
-      }, 750);
-    };
-    nav.appendChild(kembaliBtn);
+  const notif = document.createElement("div");
+  notif.className = "notif-penutup";
+  notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
 
-    div.appendChild(notif);
-    div.appendChild(p);
-    div.appendChild(timestamp);
-    div.appendChild(nav);
-    container.appendChild(div);
-  }
+  const galeri = document.createElement("div");
+  galeri.id = "suratFotoGallery";
+  galeri.className = "surat-terakhir-grid";
+  galeri.style.marginTop = "20px";
+
+  const nav = document.createElement("div");
+  nav.className = "navigasi";
+  const kembaliBtn = document.createElement("button");
+  kembaliBtn.textContent = "🏠 Kembali ke Dashboard";
+  kembaliBtn.onclick = () => {
+    const dashboard = document.getElementById("dashboardSurat");
+    dashboard.classList.add("fade-slow");
+    setTimeout(() => {
+      gantiHalaman("dashboardSurat");
+      dashboard.classList.remove("fade-slow");
+    }, 750);
+  };
+  nav.appendChild(kembaliBtn);
+
+  div.appendChild(notif);
+  div.appendChild(p);
+  div.appendChild(timestamp);
+  div.appendChild(galeri); // ← Tambahin div gallery di sini
+  div.appendChild(nav);
+  container.appendChild(div);
+
+  renderFotoSurat();
+}
+
+function renderFotoSurat() {
+  fetch("foto.json")
+    .then(res => res.json())
+    .then(fotoList => {
+      const gallery = document.getElementById("suratFotoGallery");
+      if (!gallery) return;
+
+      fotoList.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Foto";
+        img.className = "surat-foto";
+        gallery.appendChild(img);
+      });
+    })
+    .catch(err => {
+      console.error("Gagal load foto.json:", err);
+    });
+}
 </script>
 
-<style>
-  .stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background: transparent;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-  }
-
-  .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    width: 2px;
-    height: 2px;
-    animation: blink 2s infinite ease-in-out alternate;
-  }
-
-  @keyframes blink {
-    0% { opacity: 0.2; }
-    100% { opacity: 1; }
-  }
-</style>
-
 <script>
-  function createShootingStar() {
-    const star = document.createElement("div");
-    star.className = "shooting-star";
-
-    star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
-    star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
-
-    document.body.appendChild(star);
-
-  setTimeout(() => {
-    star.remove();
-  }, 1800);
+function createShootingStar() {
+  const star = document.createElement("div");
+  star.className = "shooting-star";
+  star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
+  star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
+  document.body.appendChild(star);
+  setTimeout(() => { star.remove(); }, 1800);
 }
 
 setInterval(() => {
-  if (Math.random() < 0.4) {
-    createShootingStar();
-  }
+  if (Math.random() < 0.4) createShootingStar();
 }, 4500);
 
-  function createStars(jumlah = 120) {
-    const starsContainer = document.createElement("div");
-    starsContainer.className = "stars";
-
-    for (let i = 0; i < jumlah; i++) {
-      const star = document.createElement("div");
-      star.className = "star";
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.animationDelay = `${Math.random() * 2}s`;
-      starsContainer.appendChild(star);
-    }
-
-    document.body.appendChild(starsContainer);
+function createStars(jumlah = 120) {
+  const starsContainer = document.createElement("div");
+  starsContainer.className = "stars";
+  for (let i = 0; i < jumlah; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.animationDelay = `${Math.random() * 2}s`;
+    starsContainer.appendChild(star);
   }
+  document.body.appendChild(starsContainer);
+}
 
-  window.onload = () => {
-    createStars();
-  };
+window.onload = () => {
+  createStars();
+};
 </script>
 </body>
 </html>
-
