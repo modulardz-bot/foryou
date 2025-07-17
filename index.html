@@ -572,7 +572,6 @@ surat terakhir dari orang yang belum pernah ninggalin kamu..."
       container.appendChild(div);
 
       requestAnimationFrame(() => {
-        renderFotoSurat();
       });
     }
 
@@ -599,6 +598,7 @@ function renderFotoSurat(parentDiv) {
       console.error("Gagal load foto:", err);
     });
 }
+<script>
 <style>
     .surat-terakhir-grid {
       display: grid;
