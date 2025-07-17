@@ -29,15 +29,21 @@
         0 0 8px #fff,
         0 0 15px #a29bfe,
         0 0 25px #fd79a8,
-        -5px -5px 15px rgba(255,255,255,0.3);
+        -5px -5px 15px rgba(255,255,255,0.3); /* jejak */
       animation: shoot 1.5s ease-out forwards;
       opacity: 0.95;
       z-index: 1;
     }
 
     @keyframes shoot {
-      0% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(600px, 400px) scale(0.9); opacity: 0; }
+      0% {
+       transform: translate(0, 0) scale(1);
+       opacity: 1;
+      }
+      100% {
+       transform: translate(600px, 400px) scale(0.9);
+       opacity: 0;
+      }
     }
 
     .stars {
@@ -47,8 +53,6 @@
       background: transparent;
       z-index: -1;
       overflow: hidden;
-      top: 0;
-      left: 0;
     }
 
     .star {
@@ -58,11 +62,11 @@
       background: white;
       border-radius: 50%;
       box-shadow:
-        0 0 4px #a29bfe,
-        0 0 8px #81ecec,
-        0 0 12px #fd79a8,
-        0 0 16px #a29bfe,
-        0 0 20px #81ecec;
+       0 0 4px #a29bfe,
+       0 0 8px #81ecec,
+       0 0 12px #fd79a8,
+       0 0 16px #a29bfe,
+       0 0 20px #81ecec;
       animation: blink 2s infinite ease-in-out alternate;
     }
 
@@ -171,8 +175,13 @@
       text-align: left;
     }
 
-    .active { display: block; }
-    .hidden { display: none; }
+    .active {
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
 
     .dashboard-text {
       display: flex;
@@ -189,7 +198,7 @@
       font-size: 1.6em;
       line-height: 1.6;
       text-align: center;
-      white-space: pre-wrap;
+      white-space: pre-warp;
     }
 
     .timestamper {
@@ -221,10 +230,10 @@
       opacity: 0.9;
       filter: blur(0.1px) brightness(1.2);
       text-shadow:
-        0 0 4px rgba(255, 255, 255, 0.3),
-        0 0 8px rgba(255, 255, 255, 0.2),
-        0 0 12px #ff7675,
-        0 0 20px #ff7675;
+      0 0 4px rgba(255, 255, 255, 0.3),
+      0 0 8px rgba(255, 255, 255, 0.2),
+      0 0 12px #ff7675,
+      0 0 20px #ff7675;
     }
 
     @keyframes pigeonLoop {
@@ -239,6 +248,15 @@
       0%   { text-shadow: 0 0 6px #ff7675; }
       50%  { text-shadow: 0 0 12px #ff7675, 0 0 24px #ff7675; }
       100% { text-shadow: 0 0 6px #ff7675; }
+    }
+
+    .fade-out {
+      animation: fadeOut 2s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
     .notif-penutup {
@@ -277,27 +295,27 @@
       margin-top: 15px;
     }
 
-    .surat-terakhir-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      padding-top: 12px;
-    }
+  .surat-terakhir-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 12px;
+  }
 
-    .surat-foto {
-      width: 160px;
-      height: auto;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 0 8px rgba(255,255,255,0.2);
-      transition: transform 0.3s ease;
-    }
+  .surat-foto {
+    width: 160px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 0 8px rgba(255,255,255,0.2);
+    transition: transform 0.3s ease;
+  }
 
-    .surat-foto:hover {
-      transform: scale(1.05);
-    }
-  </style>
+  .surat-foto:hover {
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
   <div class="container">
@@ -356,7 +374,6 @@
       halaman8: "U2FsdGVkX18yo6X6jc6RlePplOt/mZJfT19F5q234eJgG3LGIrmm1qWj6r1P0jxhcYbPNafLghnLdYWcMwQmJGTueZ19G5XeYfXC8DSL10B2HdNIrpTyHoORbPorbn2fOz3gOtiqjOPuS53m6c1Yz5dMhJqjHidpka4c/4vqMOtS2BkA8Kiw0OkLqy0Ya1/OHlEUWKE365rkW4D0+NriEMpWum3AxMEtVGjZzxIzNQMtJ4kDqHsdPw+cgrB/6z+Fj9fibPGFFW11V/D+e07GeZ5yEZVS2yu0thRV/ErLiw0laUU1rmcbIZzZv+g/AJ3NuX7gBBUoEGHkH7yhUbHASmx2llldkjlvWg6Dpwt9NhDiRrGlQYNgB01mVN/jIt+TE64T3kMy4lTi2rHEgsWaKBhyUIyWCUWpMNGmxHt/j/oGajLmC4Ao+4U/3PnC4gy5jgQsOSrD6e0O9eur8WUtskNNrJfgw4EENnrtFZfTqpf5Mb/ZXBUh79SG3FtakMNpJdpGfpiQeBMnxdNhImU7pgzZw6zlojdqZCuI/UWeqKlQYkXFCz6jIGd12+7AY75qyLXTse0P9yPElEh4ovRlU1ftSYyc6FC5qzkVH9bLNoh2TJMshBCzSOkyP2cSW1EP3bEebJ6J021J91hJ1LXjPZyt+yJoljnTpMM2JOH+NN5wxVBrZR95+3cGZwBUO6XxDPllhmUjkfpvx48EOksKt/1BrFqZ9gsiNXlgWhm5k+ym/svjWby04NgX4oW4A5CIitKeDSA7mt+3S1dgWZCOuUpyDY4rs6cKm/kzmy9Qs5Iv+cS9MnLqVu1bnEFZOGDq3xDSpJ+wEDWrtjw48KguZ6JVVXW2ozJDqxsjedZwDslgbRC0emdSkjsJqZTbfBN9aMwgfX6XttinGbn//VvGQbjQIAkM8B++1hi9902HD6w+cCI1U3IwCJVBbzi2D0ognDBNhJhCKaYf0dCPm2YUM5NqwzCGdF2srhULqrqc/fZVnE83kxAyeezRcQYXB+ZDBQLqPhAMeVcGj70BmuLNoUaOZYGtSNO1G0Fm/IB7RmByp1FojVtSOSmajuS3Vmqj54xq7GJeULkuggsU+idaMY+cqABFTt6GE/m2pVazd+MBPv+KS/o/FaLsyq2NboCy4VWf5YD87r5SAGemkyDWnrUgI+hBjb1SHi53zPHDjfgUgDaaLtKHjNhMLRZxY2GR09kRZBqVM9a1zWBAYZ2dyvOswpyzqu88SyYqH+TpUAxCxdG/LcwQwO7CpSrglw+KV4jT0ZBDrRKnJLTAFbvBBFrR4EFoxziball6Xrp7+q5Il9ZAZjuA8GmkxqlfxbPEipWQ7/9aHIc81+RFRHI1cTfDQ9ydJ4ziDS8y8ibVpJm1g0G6ZDntbjqr7TXlg+YFKc1cvriTESotvvDEzWRkN3VwoSRsUvuFK27kPVFARif5W8DgQYtlq0TFfK+8y0KPe88UooKHnJJsgBjPfJQ+ObboHuNRMAA/b1o12qhnSEBT4mh/cNG2i+ztbwvCYyk6orqMuMRYXWoKT/dRLLmab5kw8RxOnijXvEjZY9DbXTnuWl/AMU/nKM/i8pJrzfUXGiBCjMAqcRhubckB61eJBEuZhwaW6qzCjlEhIKrelmlCAIBv2jEcA/KiQjKN4M7Mz528eeoT8kVRmQhFiw750G0Du9tkmPeV7EchgI4FOPBJ4aaiu939OPQSgqy1DDCl",
       suratTerakhir: "U2FsdGVkX18kScDn3Q/XZxlN/bY2U8aSQQMakJxdoIgak05Ecknjubfw32RENGXLYgkIvws/ct07apmhsPzjYJwdaNakQIeYDuNFngTUWr15R6NemjBagOw2Bbe+tUA63/E5mKM8repofTsBeXd0UbE0QXg4bprGIDnfSszmOi/bdS03G1eAjaazDN8kRYd0dKBFtenYPp6PWI7jmlU0fdHXlxlQ+F/Y0ZFDw1h4/ZqrT6IziMf8egdQPTXsSHk95n0qitNvsM85C4fjQPkX4hP1vw9gtczzVjf1bJqc3bCQZ8nMxuhe0FSeJyZGrzNS/ea77Lw8xKfzE1sEpe9+PycbtdZ+P4eBn8f1KspDCYpp4Y1lU1e+5sDuRStBVbWbiB2Jetv7mdnVc5elapKaW8RASBHoW4bo4na8Bu2WJlLEtLMFkBBDmOlSU5RVDDo1nszon6LHFoD0AkHWPGRRJw==",
   };
-  };
 
   function playMusik() {
     const audio = document.getElementById("audio");
@@ -376,7 +393,7 @@
     const progress = document.getElementById("progressBar");
     const timeDisplay = document.getElementById("timeDisplay");
     const current = audio.currentTime;
-    const duration = audio.duration || 0;
+    const duration = audio.duration;
     const percent = (current / duration) * 100;
     progress.style.width = percent + "%";
 
@@ -511,10 +528,10 @@ function renderHalaman(kunci) {
       next.textContent = "Lanjut ➡";
       next.onclick = () => gantiHalaman(i + 1);
       nav.appendChild(next);
-    } else {
+    } else if (i === 20 || !encryptedSurat["halaman" + (i + 1)]) {
       const toLast = document.createElement("button");
       toLast.textContent = "📜 Surat Terakhir";
-      toLast.onclick = () => bukaSuratTerakhir(kunci);
+      toLast.onclick = () => bukaSuratTerakhir(kunci); // ← ini ganti jadi call fungsi, bukan open tab
       nav.appendChild(toLast);
     }
 
@@ -525,7 +542,6 @@ function renderHalaman(kunci) {
     container.appendChild(div);
   }
 }
-
 function bukaSuratTerakhir(kunci) {
   const container = document.getElementById("semuaHalaman");
 
@@ -551,6 +567,7 @@ function bukaSuratTerakhir(kunci) {
   notif.className = "notif-penutup";
   notif.innerHTML = `📩 Surat telah dibaca sampai akhir.<br><span class="ily-text">Terima kasih. ily</span>`;
 
+  // Tambah galeri container
   const galeri = document.createElement("div");
   galeri.id = "suratFotoGallery";
   galeri.className = "surat-terakhir-grid";
@@ -573,13 +590,21 @@ function bukaSuratTerakhir(kunci) {
   div.appendChild(notif);
   div.appendChild(p);
   div.appendChild(timestamp);
-  div.appendChild(galeri); // ← Tambahin div gallery di sini
+  div.appendChild(galeri); // Inject gallery div
   div.appendChild(nav);
   container.appendChild(div);
 
-  renderFotoSurat();
+  // Panggil renderFotoSurat terakhir
+  try {
+    renderFotoSurat();
+  } catch (err) {
+    console.warn("Gagal load galeri:", err);
+  }
 }
+</script>
 
+<!-- Tambahin renderFotoSurat() di akhir HTML -->
+<script>
 function renderFotoSurat() {
   fetch("foto.json")
     .then(res => res.json())
@@ -601,37 +626,74 @@ function renderFotoSurat() {
 }
 </script>
 
+<style>
+  .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: transparent;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    animation: blink 2s infinite ease-in-out alternate;
+  }
+
+  @keyframes blink {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+  }
+</style>
+
 <script>
-function createShootingStar() {
-  const star = document.createElement("div");
-  star.className = "shooting-star";
-  star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
-  star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
-  document.body.appendChild(star);
-  setTimeout(() => { star.remove(); }, 1800);
+  function createShootingStar() {
+    const star = document.createElement("div");
+    star.className = "shooting-star";
+
+    star.style.top = Math.random() * window.innerHeight * 0.4 + "px";
+    star.style.left = Math.random() * window.innerWidth * 0.2 + "px";
+
+    document.body.appendChild(star);
+
+  setTimeout(() => {
+    star.remove();
+  }, 1800);
 }
 
 setInterval(() => {
-  if (Math.random() < 0.4) createShootingStar();
+  if (Math.random() < 0.4) {
+    createShootingStar();
+  }
 }, 4500);
 
-function createStars(jumlah = 120) {
-  const starsContainer = document.createElement("div");
-  starsContainer.className = "stars";
-  for (let i = 0; i < jumlah; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.animationDelay = `${Math.random() * 2}s`;
-    starsContainer.appendChild(star);
-  }
-  document.body.appendChild(starsContainer);
-}
+  function createStars(jumlah = 120) {
+    const starsContainer = document.createElement("div");
+    starsContainer.className = "stars";
 
-window.onload = () => {
-  createStars();
-};
+    for (let i = 0; i < jumlah; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      starsContainer.appendChild(star);
+    }
+
+    document.body.appendChild(starsContainer);
+  }
+
+  window.onload = () => {
+    createStars();
+  };
 </script>
 </body>
 </html>
+
